@@ -1,0 +1,189 @@
+<html ng-app="webApp">
+    <head>
+        <title>Sebaybud</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/angular-material.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Proza+Libre:400,700&amp;subset=latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="menuContent" layout="row" layout-align="center center">
+            <div id="menuInner">
+                <div class="menuInnerButton">
+<md-button class="md-whiteframe-3dp">Start</md-button>
+</div>
+<div class="menuInnerButton">
+                <md-button class="md-whiteframe-3dp">Galeria</md-button>
+</div>
+<div class="menuInnerButton">
+                <md-button class="md-whiteframe-3dp">O firmie</md-button>
+</div>
+<div class="menuInnerButton">
+                <md-button class="md-whiteframe-3dp">Oferta</md-button>
+</div>
+<div class="menuInnerButton">
+                <md-button class="md-whiteframe-3dp">Oferta</md-button>
+</div>
+<div class="menuInnerButton">
+                <md-button class="md-whiteframe-3dp">Referencje</md-button>
+</div>
+<div class="menuInnerButton">
+                <md-button class="md-whiteframe-3dp">Cennik</md-button>
+</div>
+<div class="menuInnerButton">
+                <md-button class="md-whiteframe-3dp">Kontakt</md-button>
+</div>
+            </div>
+        </div>
+
+        <header>
+            <md-button class="md-fab md-mini menuButton" ng-click="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </md-button>
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo firmy Sebaybud"/>
+            </div>
+        </header>
+
+        <section id="baner" layout="row" layout-align="center center">
+            <div class="baner-overlay"></div>
+            <div id="banerText" class="md-display-2 relative text-center">Firma remontowo-budowlana</div>
+        </section>
+        <section id="about">
+            <h1>O firmie</h1>
+            <p>
+                Firma Remontowo-Budowlana Sebaybud działa od 2008 roku w Zakopanem, realizując coraz większe inwestycje zleceniodawców. Świadczymy usługi ogólnobudowlane, wykonujemy remonty, adaptacje, kompleksowe wykończenia wnętrz, jak również realizujemy budowy budynków.
+            </p>
+            <p>
+                Stawiamy zawsze na dokładność, profesjonalizm, terminowość i rzetelność wykonywanych usług. Świadczyć mogą o tym między innymi referencje od naszych klientów, które znajdziecie państwo na naszej stronie.
+            </p>
+            <p>
+                Swoje usługi polecamy klientom indywidualnym (mieszkania, domy jednorodzinne), jak również wszelkim firmom (sklepy, wspólnoty, developerzy).
+            </p>
+            <p>
+                Każdy z naszych klientów traktowany jest indywidualnie, co pozwala nam na realizowanie jego pomysłów i inwestycji według jego potrzeb.
+            </p>
+            <p>
+                W zakresie działalności naszej firmy oferujemy również doradztwo, zakup i dowóz materiałów budowlanych. Na wszystkie prace oraz materiały budowlane dajemy  stosowne gwarancje oraz wystawiamy faktury VAT
+            </p>
+        </section>
+        <section id="offer">
+            <h1>Oferta</h1>
+            <p>
+                W zakresie działalności naszej firmy realizujemy wszelkiego rodzaju prace remontowo-budowlane, między innymi:
+            </p>
+            <ul>
+                <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>kładzenie gładzi gipsowych</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>układanie glazury i terakoty</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>układanie paneli ściennych i podłogowych</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi posadzkarskie</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi wod-kan-co</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi elektryczne</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>stawianie ścianek gipsowych</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>montaże sufitów podwieszanych i ścianek działowych</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>montaże armatury i ceramiki sanitarnej</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>montaże ścian działowych, drzwi i sufitów podwieszanych z oświetleniem halogenowym</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi malarskie</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>malowanie i tapetowanie</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>ozdabianie ścian i sufitów (tynki weneckie, stiuki i trawerty)</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi brukarskie</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi murarskie</span></li>
+                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>tworzenie ogrodów, trawników, rabatów, itp.</span></li>
+            </ul>
+        </section>
+        <section id="testimontials">
+            <h1>Referencje</h1>
+            <div class="ref-container">
+                <div class="ref-slide">
+                    <img src="media/ref1.jpg" class="md-whiteframe-4dp" />
+                    <div class="ref-overlay" layout="row" layout-align="center center">
+                        <div>ul.Bachledzki Wierch 7 Zakopane</div>
+                    </div>
+                </div>
+                <md-button class="md-fab md-mini md-primary ref-button prev-button">
+                    <md-icon class="material-icons">arrow_back</md-icon>
+                </md-button>
+                <md-button class="md-fab md-mini md-primary ref-button next-buton">
+                    <md-icon class="material-icons">arrow_forward</md-icon>
+                </md-button>
+            </div>
+        </section>
+        <section id="prices">
+            <h1>Cennik</h1>
+            <div class="container">
+                <h3>Wycena:</h3>
+                <div layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
+                    <div>Dokonanie oględzin, pomiarów i wyceny wstępnej</div>
+                    <div class="price">30,00 zł</div>
+                </div>
+                <div layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
+                    <div>Stawka roboczogodzina za prace niewymierne</div>
+                    <div class="price">15,00 zł/godz</div>
+                </div>
+                <h3>Układanie glazury:</h3>
+                <div layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
+                    <div>Kafelkowanie (zależnie od wielkości)</div>
+                    <div class="price">30,00-45,00 zł/m2</div>
+                </div>
+                <div layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
+                    <div>Kafelkowanie płytki (10x10)</div>
+                    <div class="price">5,00 zł/m2</div>
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <h1>Kontakt</h1>
+            <div class="container">
+                <form name="contactForm" novalidate>
+                    <md-input-container class="md-block">
+                        <label>Nazwisko lub pseudonim</label>
+                        <input type="text" ng-model="contact.name" required />
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Temat</label>
+                        <input type="text" ng-model="contact.title" required />
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>E-mail</label>
+                        <input type="email" ng-model="contact.email" required />
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Treść wiadomości</label>
+                        <textarea ng-model="contact.text" rows="3" required ></textarea>
+                    </md-input-container>
+                    <div layout="row" layout-align="center">
+                        <md-button class="md-primary md-raised">
+                            <md-icon class="materal-icons">send</md-icon>
+                            Wyślij
+                        </md-button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <div>
+                Firma Remontowo budowlana <span class="white-text bold">SEBAYBUD</span> Harbut ul.Michała Małaszyńskiego 7a 34-511 Zakopane
+            </div>
+            <div>
+                NIP: <span class="white-text bold">736-140-11-55</span> Regon: <span class="white-text bold">121206370</span> sebaybud@gmail.com
+            </div>
+        </footer>
+        <div class="made-by italic">
+            Made with <md-icon class="material-icons red-text">favorite</md-icon> by <a href="#" class="white-text bold underline">Filarrro</a>
+        </div>
+
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/angular/angular-animate.min.js"></script>
+        <script src="js/angular/angular-aria.min.js"></script>
+        <script src="js/angular/angular-material.min.js"></script>
+        <script src="js/gsap/TweenMax.min.js"></script>
+        <script src="js/scrollmagic/ScrollMagic.min.js"></script>
+        <script src="js/scrollmagic/animation.gsap.min.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>

@@ -1,0 +1,246 @@
+@whiteColor: #FFF;
+@whiteOpacityColor: rgba(255,255,255,.8);
+@grayColor: #212121;
+@yellowColor: #FFC107;
+@yellowColorDark: #FF6F00;
+
+.gradient(@dir, @start, @end) {
+    background-color: @start;
+    background: linear-gradient(@dir, @start , @end);
+}
+
+body {
+    background-color: @grayColor;
+    color: @whiteColor;
+    height: auto;
+    font-family: 'Proza Libre', sans-serif;
+    min-width: 320px;
+}
+section {
+    position: relative;
+    background-color: @grayColor;
+    overflow: auto;
+}
+
+h1 {
+    .gradient(to bottom, @yellowColor, @yellowColorDark);
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    text-transform: uppercase;
+    font-size: 1.6em;
+}
+p {
+    margin: 1em;
+}
+a {outline: none;}
+
+.relative {position: relative;}
+.text-center {text-align: center;}
+.bold {font-weight: 700;}
+.underline {text-decoration: underline;}
+.italic {font-style: italic;}
+.white-text {color: @whiteColor;}
+.yellow-text {color: @yellowColorDark;}
+.red-text {color: #F44336;}
+
+.container {margin: 0 1em;}
+
+#menuContent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    visibility: hidden;
+    z-index: 40;
+    background-color: rgba(0,0,0,.55);
+    #menuInner {
+        position: relative;
+        display: block;
+        overflow-x: hidden;
+        width: 60%;
+        max-width: 500px;
+        min-width: 300px;
+        margin: 0 auto;
+        background-color: @whiteOpacityColor;
+        padding: 15px 30px;
+        border-radius: 6px;
+        max-height: 85%;
+        z-index: 50;
+        box-sizing: border-box;
+        .menuInnerButton {
+            position: relative;
+        }
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            height: 55px;
+            color: @whiteColor;
+            .gradient(to top left, #202020, #656565);
+            font-weight: 700;
+        }
+    }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 60;
+    .menuButton {
+        position: relative;
+        border: 1px solid @whiteColor;
+        padding: 5px;
+        background-color: @grayColor !important;
+        margin: 12px;
+        span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            background-color: @whiteColor;
+            border-radius: 3px;
+            width: 20px;
+            left: 9px;
+            top: 18px;
+            &:first-of-type {
+                top: 12px;
+            }
+            &:last-of-type {
+                top: 24px;
+            }
+        }
+    }
+    .logo {
+        background: @whiteOpacityColor;
+        padding: 2px 10px;
+        position: fixed;
+        top: 5px;
+        right: 10px;
+        text-align: center;
+        border-radius: 50%;
+        height: 70px;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+}
+
+#baner {
+    height: 100%;
+    background: url(../img/baner.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    .baner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.6);
+    }
+}
+
+#offer {
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 20px;
+        li {
+            margin-bottom: 5px;
+        }
+    }
+}
+
+#testimontials {
+    .ref-button {
+        color: @whiteColor;
+        position: absolute;
+        top: 43%;
+        &.prev-button {
+            left: 1em;
+        }
+        &.next-buton {
+            right: 1em;
+        }
+        md-icon {
+            color: inherit;
+        }
+    }
+    .ref-container {
+        max-width: 450px;
+        margin: 20px auto;
+        padding: 0 40px;
+        position: relative;
+        .ref-slide {
+            text-align: center;
+            position: relative;
+            margin: 0 auto;
+            min-width: 240px;
+            max-width: 300px;
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+            .ref-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.65);
+                color: @whiteColor;
+                font-size: 1.4em;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+#prices {
+    margin-bottom: 30px;
+    .container {
+        perspective: 1000px;
+    }
+    .price-row {
+        background-color: #424242;
+        padding: 7px 10px;
+        margin: 10px 0;
+        backface-visibility: hidden;
+        border-radius: 4px;
+        .price {
+            font-weight: 700;
+            color: @yellowColor;
+            text-align: right;
+        }
+    }
+}
+
+#contact {
+    form {
+        margin: 35px 0;
+        .md-errors-spacer {
+            display: none;
+        }
+        button {
+            color: @whiteColor;
+            width: 200px;
+            md-icon {
+                color: inherit;
+            }
+        }
+    }
+}
+
+footer {
+    padding: 10px 15px;
+    background-color: #FFB300;
+    color: rgba(0,0,0,0.87);
+}
+.made-by {
+    background-color: #F9A825;
+    padding: 10px;
+    text-align: center;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/angular-material.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="style/css" href="css/admin.css"/>
+
+    </head>
+    <body ng-app="app" ng-cloak layout="row" class="appContainer">
+        <div flex="15" class="md-whiteframe-4dp">
+            <div>
+                <h3>AdminApp</h3>
+            </div>
+            <div layout="column">
+                <md-button class="md-nostyle" href="#/" aria-label="">Dashboard</md-button>
+                <md-button class="md-nostyle" href="#/price"aria-label="">Cennik</md-button>
+                <md-button class="md-nostyle" aria-label="">Referencje</md-button>
+                <md-button class="md-nostyle" aria-label="">Galeria</md-button>
+                <md-button class="md-nostyle" aria-label="">Użytkownicy</md-button>
+            </div>
+        </div>
+        <div class="viewWrapper" flex>
+            <div ng-view></div>
+        </div>
+
+        <script type="text/javascript" src="js/angular/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular/angular-route.min.js"></script>
+        <script type="text/javascript" src="js/angular/angular-aria.min.js"></script>
+        <script type="text/javascript" src="js/angular/angular-animate.min.js"></script>
+        <script type="text/javascript" src="js/angular/angular-messages.min.js"></script>
+        <script type="text/javascript" src="js/angular/angular-resource.min.js"></script>
+        <script type="text/javascript" src="js/angular/angular-material.min.js"></script>
+        <script type="text/javascript" src="js/bundle.js"></script>
+    </body>
+</html>
