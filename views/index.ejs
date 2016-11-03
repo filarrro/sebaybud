@@ -49,9 +49,11 @@
             </div>
         </header>
 
-        <section id="baner" layout="row" layout-align="center center">
-            <div class="baner-overlay"></div>
-            <div id="banerText" class="md-display-2 relative text-center">Firma remontowo-budowlana</div>
+        <section id="baner">
+            <div id="banerContent" layout="row" layout-align="center center">
+                <div class="baner-overlay"></div>
+                <div id="banerText" class="md-display-2 relative text-center">Firma remontowo-budowlana</div>
+            </div>
         </section>
         <section id="about">
             <h1>O firmie</h1>
@@ -115,23 +117,12 @@
         <section id="prices">
             <h1>Cennik</h1>
             <div class="container">
-                <h3>Wycena:</h3>
-                <div layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
-                    <div>Dokonanie oględzin, pomiarów i wyceny wstępnej</div>
-                    <div class="price">30,00 zł</div>
-                </div>
-                <div layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
-                    <div>Stawka roboczogodzina za prace niewymierne</div>
-                    <div class="price">15,00 zł/godz</div>
-                </div>
-                <h3>Układanie glazury:</h3>
-                <div layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
-                    <div>Kafelkowanie (zależnie od wielkości)</div>
-                    <div class="price">30,00-45,00 zł/m2</div>
-                </div>
-                <div layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
-                    <div>Kafelkowanie płytki (10x10)</div>
-                    <div class="price">5,00 zł/m2</div>
+                <div ng-repeat="item in ::priceCategories track by $index">
+                    <h3 ng-bind="::item.category.name"></h3>
+                    <div ng-repeat="priceRow in ::item.priceList" layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
+                        <div ng-bind="::priceRow.name">Dokonanie oględzin, pomiarów i wyceny wstępnej</div>
+                        <div class="price" ng-bind="::priceRow.price">30,00 zł</div>
+                    </div>
                 </div>
             </div>
         </section>

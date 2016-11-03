@@ -135,6 +135,11 @@ header .logo img {
 }
 #baner {
   height: 100%;
+  overflow: hidden;
+}
+#baner #banerContent {
+  position: relative;
+  height: 100%;
   background: url(../img/baner.jpg) no-repeat;
   background-size: cover;
   background-position: center;

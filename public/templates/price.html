@@ -1,27 +1,65 @@
-<form ng-submit="save()" novalidate layout="row" layout-align="center start">
-    <md-input-container>
-        <label>Nazwa</label>
-        <input type="text" ng-model="newPriceName" required />
-    </md-input-container>
-    <md-input-container>
-        <label>Cena</label>
-        <input type="text" ng-model="newPricePrice" required />
-    </md-input-container>
-    <md-button class="md-raised md-primary" type="submit">Dodaj</md-button>
-</form>
-
-<div layout="column">
-    <div layout="row" layout-align="space-around center" class="md-whiteframe-2dp"
-         ng-repeat="price in priceList track by price.id">
-        <h3 class="md-title">{{::price.name}}</h3>
-        <h4 class="md-title">{{::price.price}}</h4>
-        <div>
-            <md-button class="md-fab md-mini md-primary">
-                <md-icon class="material-icons">edit</md-icon>
-            </md-button>
-            <md-button class="md-fab md-mini" ng-click="delete(price, $index)">
-                <md-icon class="material-icons">delete</md-icon>
-            </md-button>
+<div layout="row">
+    <div flex="30">
+        <div class="form-bg md-whiteframe-3dp" flex layout="row" layout-align="center">
+            <form name="categoryForm" ng-submit="saveCategory(categoryForm.$valid)" novalidate layout="row" layout-align="center center">
+                <md-input-container class="no-errors">
+                    <label>Nazwa</label>
+                    <input type="text" ng-model="categoryName" required />
+                </md-input-container>
+                <md-button class="md-raised md-primary" type="submit">Dodaj kategorię</md-button>
+            </form>
+        </div>
+    </div>
+    <div class="form-bg md-whiteframe-3dp" flex>
+        <form name="priceForm" ng-submit="save(priceForm.$valid)" flex novalidate layout="row" layout-align="center center">
+            <md-input-container class="no-errors" flex="25">
+                <label>Nazwa</label>
+                <input type="text" ng-model="newPrice.name" required />
+            </md-input-container>
+            <md-input-container class="no-errors" flex="25">
+                <label>Cena</label>
+                <input type="text" ng-model="newPrice.price" required />
+            </md-input-container>
+            <md-input-container class="no-errors" flex="25">
+                <label>Kategoria</label>
+                <md-select ng-model="newPrice.categoryId" required>
+                    <md-option ng-repeat="category in categories" ng-value="category.id">
+                        {{category.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-button class="md-raised md-primary" type="submit">Dodaj</md-button>
+        </form>
+    </div>
+</div>
+<div layout="row">
+    <div flex="30" layout="column">
+        <div layout="row" layout-align="space-between center" class="md-whiteframe-2dp price-row"
+             ng-repeat="cat in categories track by cat.id">
+            <div class="md-header">{{cat.name}}</div>
+            <div>
+                <md-button class="md-icon-button primary-text" ng-disabled="true">
+                    <md-icon class="material-icons">edit</md-icon>
+                </md-button>
+                <md-button class="md-icon-button warn-text" ng-click="deleteCategory(cat, $index)">
+                    <md-icon class="material-icons">delete</md-icon>
+                </md-button>
+            </div>
+        </div>
+    </div>
+    <div flex layout="column">
+        <div layout="row" layout-align="space-between center" class="md-whiteframe-2dp price-row"
+             ng-repeat="price in priceList track by price.id">
+            <div flex="50" class="md-header">{{price.name}}</div >
+            <div flex class="md-header bold">{{price.price}}</div >
+            <div>
+                <md-button class="md-icon-button primary-text" ng-disabled="true">
+                    <md-icon class="material-icons">edit</md-icon>
+                </md-button>
+                <md-button class="md-icon-button warn-text" ng-click="delete(price, $index)">
+                    <md-icon class="material-icons">delete</md-icon>
+                </md-button>
+            </div>
         </div>
     </div>
 </div>

@@ -4,7 +4,10 @@ angular.module("webApp", ["ngMaterial"])
                     // 'default': '900'
                 });
             }])
-        .run(["$rootScope", "$mdSidenav", function ($rootScope, $mdSidenav) {
+        .run(["$rootScope", "$timeout", "Factory", function ($rootScope, $timeout, Factory) {
+                Factory.GetData().then(function (response) {
+                    $rootScope.priceCategories = response.categories;
+                });
                 var TM = TweenMax, SMController = new ScrollMagic.Controller(), i, len;
 
                 var menuContainer = angular.element(document.querySelector('#menuContent')),
@@ -31,8 +34,8 @@ angular.module("webApp", ["ngMaterial"])
                 };
 
                 var bannerParallaxTween = new TimelineMax();
-                bannerParallaxTween.to(document.getElementById('baner'), 1, {yPercent: 60})
-                        .to(document.getElementById('banerText'), .7, {alpha: 0}, .3);
+                bannerParallaxTween.to(document.getElementById('banerContent'), 1, {yPercent: 60, ease: Power0.easeNone})
+                        .to(document.getElementById('banerText'), .7, {alpha: 0, scale: 0.8}, 0.3);
                 new ScrollMagic.Scene({
                     triggerElement: document.getElementById('about'),
                     triggerHook: 'onEnter',
@@ -56,18 +59,39 @@ angular.module("webApp", ["ngMaterial"])
                             .setTween(tween)
                             .addTo(SMController);
                 }
-                
-                var priceRows = document.getElementsByClassName('price-row');
-                len = priceRows.length;
-                for (i = 0; i < len; i++) {
-                    var tween = TM.from(priceRows[i], .5, {rotationX: "90deg", alpha: 0})
-                    new ScrollMagic.Scene({
-                        triggerElement: priceRows[i],
-                        triggerHook: 'onCenter',
-                        offset: -150
-                    })
-                            .setTween(tween)
-                            .addTo(SMController);
-                }
+                $timeout(function () {
+                    var priceRows = document.getElementsByClassName('price-row');
+                    len = priceRows.length;
+                    for (i = 0; i < len; i++) {
+                        var tween = TM.from(priceRows[i], .5, {rotationX: "90deg", alpha: 0})
+                        new ScrollMagic.Scene({
+                            triggerElement: priceRows[i],
+                            triggerHook: 'onCenter',
+                            offset: -150
+                        })
+                                .setTween(tween)
+                                .addTo(SMController);
+                    }
+                });
 
-            }]);
+            }])
+        .factory("Factory", ["$http", "$q", function ($http, $q) {
+                var service = {};
+
+                service.GetData = function () {
+                    var defered = $q.defer();
+
+                    $http.get("/api/main-page")
+                            .success(function (data) {
+                                console.log(data);
+                                defered.resolve(data);
+                            })
+                            .error(function (err) {
+                                console.log("error");
+                                console.log(err);
+                                defered.resolve(err);
+                            });
+                    return defered.promise;
+                };
+                return service;
+            }])

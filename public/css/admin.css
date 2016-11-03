@@ -9,3 +9,27 @@
     position: relative;
     padding: 10px 20px;
 }
+
+.form-bg {
+    background-color: #EEEEEE;
+    margin: 10px 10px 30px;
+    padding: 5px 10px;
+}
+
+.price-row {
+    margin: 5px 10px;
+    padding: 5px 10px 5px 15px;
+}
+.price-row .md-icon-button {
+    margin: 0;
+}
+
+md-input-container.no-errors .md-errors-spacer {
+    display: none;
+}
+.md-icon-button md-icon {color:inherit;}
+
+.warn-text {color: #F44336;}
+.primary-text {color: #3F51B5;}
+
+.bold {font-weight: bold;}

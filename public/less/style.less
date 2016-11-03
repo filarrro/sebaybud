@@ -130,9 +130,14 @@ header {
 
 #baner {
     height: 100%;
-    background: url(../img/baner.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
+    #banerContent {
+        position: relative;
+        height: 100%;
+        background: url(../img/baner.jpg) no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
     .baner-overlay {
         position: absolute;
         top: 0;
