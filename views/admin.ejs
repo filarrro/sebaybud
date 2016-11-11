@@ -6,6 +6,7 @@
 
         <link rel="stylesheet" href="css/angular-material.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/cropper.min.css"/>
         <link rel="stylesheet" href="css/admin.css"/>
 
     </head>
@@ -16,16 +17,16 @@
             </div>
             <div layout="column">
                 <md-button class="md-nostyle" href="#/" aria-label="">Dashboard</md-button>
-                <md-button class="md-nostyle" href="#/price"aria-label="">Cennik</md-button>
-                <md-button class="md-nostyle" aria-label="">Referencje</md-button>
-                <md-button class="md-nostyle" aria-label="">Galeria</md-button>
-                <md-button class="md-nostyle" aria-label="">Użytkownicy</md-button>
+                <md-button class="md-nostyle" href="#/price" aria-label="">Cennik</md-button>
+                <md-button class="md-nostyle" href="#/testimontials" aria-label="">Referencje</md-button>
+                <md-button class="md-nostyle" href="#/gallery" aria-label="">Galeria</md-button>
             </div>
         </div>
         <div class="viewWrapper" flex>
             <div ng-view></div>
         </div>
 
+        <script type="text/javascript" src="js/cropper/cropper.min.js"></script>
         <script type="text/javascript" src="js/angular/angular.min.js"></script>
         <script type="text/javascript" src="js/angular/angular-route.min.js"></script>
         <script type="text/javascript" src="js/angular/angular-aria.min.js"></script>
@@ -34,5 +35,6 @@
         <script type="text/javascript" src="js/angular/angular-resource.min.js"></script>
         <script type="text/javascript" src="js/angular/angular-material.min.js"></script>
         <script type="text/javascript" src="js/bundle.js"></script>
+        <script type="text/javascript" src="modules/cropper/cropperCtrl.js"></script>
     </body>
 </html>

@@ -1,6 +1,6 @@
 angular.module("webApp", ["ngMaterial"])
         .config(["$mdThemingProvider", function ($mdThemingProvider) {
-                $mdThemingProvider.theme('default').dark().primaryPalette('amber', {
+                $mdThemingProvider.theme('default').primaryPalette('blue', {
                     // 'default': '900'
                 });
             }])
@@ -33,9 +33,11 @@ angular.module("webApp", ["ngMaterial"])
                     }
                 };
 
-                var bannerParallaxTween = new TimelineMax();
-                bannerParallaxTween.to(document.getElementById('banerContent'), 1, {yPercent: 60, ease: Power0.easeNone})
-                        .to(document.getElementById('banerText'), .7, {alpha: 0, scale: 0.8}, 0.3);
+                var bannerParallaxTween = new TimelineMax(), litery = document.getElementById('firmName').getElementsByTagName('span');
+                bannerParallaxTween.to(document.getElementById('banerContent'), 2, {yPercent: 40, ease: Power0.easeNone}, 0)
+                        .to(document.getElementById('banerText'), .7, {alpha: 0}, 1.3)
+                        .staggerTo(litery, .8, {rotationZ: "60deg", ease: Back.easeOut}, .1, 1)
+                        .staggerTo(litery, .4, {y: 200, ease: Power2.easeIn}, .1, 1.2);
                 new ScrollMagic.Scene({
                     triggerElement: document.getElementById('about'),
                     triggerHook: 'onEnter',

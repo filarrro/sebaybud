@@ -19,6 +19,18 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                                 }
                             }
                         })
+                        .when('/testimontials', {
+                            controller: 'TestimontialsController',
+                            templateUrl: 'templates/testimontials.html',
+                            resolve: {
+                            }
+                        })
+                        .when('/gallery', {
+                            controller: 'GalleryController',
+                            templateUrl: 'templates/gallery.html',
+                            resolve: {
+                            }
+                        })
                         .otherwise({
                             redirectTo: '/'
                         });
@@ -28,6 +40,20 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
             }])
         .controller("MainController", ["$scope", function ($scope) {
                 $scope.txt = "lalalalal";
+            }])
+        .controller("TestimontialsController", ["$scope", "$route", function ($scope, $route) {
+                $scope.list = [];
+            }])
+        .controller("GalleryController", ["$scope", "$route", "$mdDialog", function ($scope, $route, $mdDialog) {
+                $scope.add = function () {
+                    $mdDialog.show({
+                        controller: 'cropperController',
+                        templateUrl: 'modules/cropper/cropper.tmpl.html',
+                        clickOutsideToClose: true
+                    }).then(function (image) {
+                        console.log(image);
+                    });
+                };
             }])
         .controller("PriceController", ["$scope", "$route", "PriceFactory", "PriceCategoryFactory", "priceList", "priceCategories", function ($scope, $route, PriceFactory, PriceCategoryFactory, priceList, priceCategories) {
                 $scope.priceList = priceList;
