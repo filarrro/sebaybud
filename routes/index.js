@@ -1,4 +1,5 @@
 var express = require('express'),
+        fs = require('fs'),
         models = require('../models'),
         User = models.User,
         Price = models.Price,
@@ -139,8 +140,14 @@ router.route('/files')
             });
         })
         .post(function (req, res) {
+            var base64 = new Buffer(req.body.image.replace(/^data:image\/(png|gif|jpeg);base64,/, ''), 'base64');
+            var hash = 'filename.jpg';
+            fs.writeFile("public/files/" + hash, base64, 'base64', function (err) {
+                console.log(err);
+            });
+
             File.create({
-                source: req.body.source,
+                source: hash,
                 desc: req.body.desc,
                 type: req.body.type
             }).then(function (err) {

@@ -44,7 +44,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
         .controller("TestimontialsController", ["$scope", "$route", function ($scope, $route) {
                 $scope.list = [];
             }])
-        .controller("GalleryController", ["$scope", "$route", "$mdDialog", function ($scope, $route, $mdDialog) {
+        .controller("GalleryController", ["$scope", "$route", "$mdDialog", "FileFactory", function ($scope, $route, $mdDialog, FileFactory) {
                 $scope.add = function () {
                     $mdDialog.show({
                         controller: 'cropperController',
@@ -52,6 +52,14 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                         clickOutsideToClose: true
                     }).then(function (image) {
                         console.log(image);
+                        var item = new FileFactory({
+                            image: image,
+                            desc: 'desc',
+                            type: 1
+                        });
+                        item.$save(function(res) {
+                            console.log(res);
+                        })
                     });
                 };
             }])
@@ -101,4 +109,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
             }])
         .factory("PriceCategoryFactory", ["$resource", function ($resource) {
                 return $resource('/api/priceCategory/:id', {id: "@id"});
+            }])
+        .factory("FileFactory", ["$resource", function ($resource) {
+                return $resource('/api/files/:id', {id: "@id"});
             }])
