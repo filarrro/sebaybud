@@ -112,7 +112,7 @@ angular.module('app')
                             case 'getCroppedCanvas':
                                 if (result) {
                                     var canvasImge = cropper.getCroppedCanvas({
-                                        height: 700,
+                                        height: 600,
                                         fillColor: "#FFF"
                                     }).toDataURL("image/jpeg");
 //                                    var canvasImge = cropper.getCroppedCanvas({height: 700}).toDataURL("image/png");

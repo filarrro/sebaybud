@@ -3,10 +3,6 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                 $mdThemingProvider.theme('default');
 
                 $routeProvider
-                        .when('/', {
-                            controller: 'MainController',
-                            templateUrl: 'templates/main.html'
-                        })
                         .when('/price', {
                             controller: 'PriceController',
                             templateUrl: 'templates/price.html',
@@ -23,43 +19,80 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                             controller: 'TestimontialsController',
                             templateUrl: 'templates/testimontials.html',
                             resolve: {
+                                list: function (TestimontialFactory) {
+                                    return TestimontialFactory.query().$promise
+                                }
                             }
                         })
                         .when('/gallery', {
                             controller: 'GalleryController',
                             templateUrl: 'templates/gallery.html',
                             resolve: {
+                                list: function (FileFactory) {
+                                    return FileFactory.query().$promise
+                                }
                             }
                         })
                         .otherwise({
-                            redirectTo: '/'
+                            redirectTo: '/price'
                         });
             }])
         .run([function () {
                 console.log("run");
             }])
-        .controller("MainController", ["$scope", function ($scope) {
-                $scope.txt = "lalalalal";
-            }])
-        .controller("TestimontialsController", ["$scope", "$route", function ($scope, $route) {
-                $scope.list = [];
-            }])
-        .controller("GalleryController", ["$scope", "$route", "$mdDialog", "FileFactory", function ($scope, $route, $mdDialog, FileFactory) {
+        .controller("TestimontialsController", ["$scope", "$route", "$mdDialog", "TestimontialFactory", "list", function ($scope, $route, $mdDialog, TestimontialFactory, list) {
+                $scope.list = list;
+                $scope.testimontial = {};
+
                 $scope.add = function () {
                     $mdDialog.show({
                         controller: 'cropperController',
                         templateUrl: 'modules/cropper/cropper.tmpl.html',
                         clickOutsideToClose: true
                     }).then(function (image) {
-                        console.log(image);
+                        $scope.testimontial.image = image;
+                    });
+                };
+                $scope.save = function () {
+                    var item = new TestimontialFactory($scope.testimontial);
+                    item.$save(function (res) {
+                        console.log(res);
+                        $route.reload();
+                    });
+                };
+                $scope.delete = function (item, index) {
+                    console.log(item);
+                    item.$delete(function (response) {
+                        console.log(response);
+                        $scope.list.splice(index, 1);
+                    });
+                };
+            }])
+        .controller("GalleryController", ["$scope", "$route", "$mdDialog", "FileFactory", "list", function ($scope, $route, $mdDialog, FileFactory, list) {
+                $scope.list = list;
+
+                $scope.add = function () {
+                    $mdDialog.show({
+                        controller: 'cropperController',
+                        templateUrl: 'modules/cropper/cropper.tmpl.html',
+                        clickOutsideToClose: true
+                    }).then(function (image) {
                         var item = new FileFactory({
                             image: image,
-                            desc: 'desc',
+                            desc: '',
                             type: 1
                         });
-                        item.$save(function(res) {
+                        item.$save(function (res) {
                             console.log(res);
-                        })
+                            $route.reload();
+                        });
+                    });
+                };
+                $scope.delete = function (item, index) {
+                    console.log(item);
+                    item.$delete(function (response) {
+                        console.log(response);
+                        $scope.list.splice(index, 1);
                     });
                 };
             }])
@@ -112,4 +145,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
             }])
         .factory("FileFactory", ["$resource", function ($resource) {
                 return $resource('/api/files/:id', {id: "@id"});
+            }])
+        .factory("TestimontialFactory", ["$resource", function ($resource) {
+                return $resource('/api/testimontials/:id', {id: "@id"});
             }])

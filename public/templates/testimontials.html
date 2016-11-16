@@ -2,21 +2,29 @@
     <div class="form-bg md-whiteframe-3dp" flex layout="row" layout-align="center">
         <form name="testimontialForm" ng-submit="save(testimontialForm.$valid)" novalidate layout="row" layout-align="center center">
             <md-input-container class="no-errors">
-                <label>Nazwa</label>
-                <input type="text" ng-model="testimontial" required />
+                <label>Osoba / firma</label>
+                <input type="text" ng-model="testimontial.user" required />
             </md-input-container>
+            <md-input-container class="no-errors">
+                <label>Opis</label>
+                <input type="text" ng-model="testimontial.text" />
+            </md-input-container>
+            <md-button class="md-fab md-mini md-primary" ng-click="add()">
+                <md-icon class="material-icons">photo</md-icon>
+            </md-button>
             <md-button class="md-raised md-primary" type="submit">Dodaj referencję</md-button>
         </form>
     </div>
 </div>
 <div layout="row" layout-align="center" layout-wrap>
-    <div class="md-whiteframe-2dp testimontial-card"
-         ng-repeat="item in list track by item.id">
-        <img ng-src="" alt="Zdjęcie referencji" />
-        <div>
-            <md-button class="md-icon-button warn-text" ng-click="delete(price, $index)">
+    <div class="md-whiteframe-3dp testimontial-card" ng-repeat="item in list track by item.id">
+        <img ng-src="media/testimontials/{{item.img}}" alt="Referencja" />
+        <div layout="row" layout-align="space-between center">
+            <div class="author" ng-bind="item.user"></div>
+            <md-button class="md-icon-button warn-text" ng-click="delete(item, $index)">
                 <md-icon class="material-icons">delete</md-icon>
             </md-button>
         </div>
+        <div class="caption" ng-bind="item.text"></div>
     </div>
 </div>

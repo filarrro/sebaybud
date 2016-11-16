@@ -36,7 +36,7 @@
     <div flex="30" layout="column">
         <div layout="row" layout-align="space-between center" class="md-whiteframe-2dp price-row"
              ng-repeat="cat in categories track by cat.id">
-            <div class="md-header">{{cat.name}}</div>
+            <div class="md-header">{{::cat.name}}</div>
             <div>
                 <md-button class="md-icon-button primary-text" ng-disabled="true">
                     <md-icon class="material-icons">edit</md-icon>
@@ -50,8 +50,8 @@
     <div flex layout="column">
         <div layout="row" layout-align="space-between center" class="md-whiteframe-2dp price-row"
              ng-repeat="price in priceList track by price.id">
-            <div flex="50" class="md-header">{{price.name}}</div >
-            <div flex class="md-header bold">{{price.price}}</div >
+            <div flex="50" class="md-header">{{::price.name}}</div >
+            <div flex class="md-header bold">{{::price.price}}</div >
             <div>
                 <md-button class="md-icon-button primary-text" ng-disabled="true">
                     <md-icon class="material-icons">edit</md-icon>

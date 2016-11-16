@@ -21,6 +21,13 @@ var File = sequelize.define('file', {
     type: {type: Sequelize.INTEGER, allowNull: false}
 });
 
+var Testimontial = sequelize.define('testal', {
+    id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+    user: {type: Sequelize.STRING},
+    img: {type: Sequelize.STRING, allowNull: false},
+    text: Sequelize.STRING
+});
+
 var Price = sequelize.define('price', {
     id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: Sequelize.STRING, allowNull: false},
@@ -37,6 +44,7 @@ Price.belongsTo(PriceCategory, {as: 'category', foreignKey: {allowNull: false}, 
 db.sequelize = sequelize;
 db.User = User;
 db.File = File;
+db.Testimontial = Testimontial;
 db.Price = Price;
 db.PriceCategory = PriceCategory;
 
