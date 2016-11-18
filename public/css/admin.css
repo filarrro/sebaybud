@@ -8,6 +8,8 @@
 .viewWrapper {
     position: relative;
     padding: 10px 20px;
+    height: 100%;
+    overflow: auto;
 }
 
 .form-bg {
@@ -17,8 +19,22 @@
 }
 
 .price-row {
+    margin: 5px 10px 5px 50px;
+    padding: 3px 3px 3px 15px;
+    background-color: #EEE;
+    border-radius: 4px;
+    margin-left: 70px;
+}
+.price-list-item-container .price-row:last-of-type {
+    margin-bottom: 20px;
+}
+.price-row .md-icon-button {
+    margin: 0;
+}
+.category-row {
     margin: 5px 10px;
     padding: 5px 10px 5px 15px;
+    background-color: #F5F5F5;
 }
 .price-row .md-icon-button {
     margin: 0;

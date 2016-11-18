@@ -1,0 +1,18 @@
+<md-dialog aria-label="Dialog" style="width: 75%;min-width: 900px;max-width: 1240px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 flex>Dodaj zdjęcie</h2>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon class="material-icons">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <image-cropper></image-cropper>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button class="md-primary md-raised" ng-click="save()">Zapisz</md-button>
+    </md-dialog-actions>
+</md-dialog>

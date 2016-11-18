@@ -7,6 +7,9 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                             controller: 'PriceController',
                             templateUrl: 'templates/price.html',
                             resolve: {
+                                list: function (Factory) {
+                                    return Factory.GetData();
+                                },
                                 priceList: function (PriceFactory) {
                                     return PriceFactory.query().$promise
                                 },
@@ -46,18 +49,15 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
 
                 $scope.add = function () {
                     $mdDialog.show({
-                        controller: 'cropperController',
-                        templateUrl: 'modules/cropper/cropper.tmpl.html',
+                        controller: 'TestimontialDialogController',
+                        templateUrl: 'templates/testimontials.tmpl.html',
                         clickOutsideToClose: true
-                    }).then(function (image) {
-                        $scope.testimontial.image = image;
-                    });
-                };
-                $scope.save = function () {
-                    var item = new TestimontialFactory($scope.testimontial);
-                    item.$save(function (res) {
-                        console.log(res);
-                        $route.reload();
+                    }).then(function (data) {
+                        var item = new TestimontialFactory(data);
+                        item.$save(function (res) {
+                            console.log(res);
+                            $route.reload();
+                        });
                     });
                 };
                 $scope.delete = function (item, index) {
@@ -68,17 +68,34 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                     });
                 };
             }])
+        .controller("TestimontialDialogController", ["$scope", "$mdDialog", function ($scope, $mdDialog) {
+                $scope.data = {};
+                $scope.cropperOptions = {
+                    aspectRatio: "a" / 2,
+                    height: 600,
+                    fillColor: "#FFF",
+                    imgType: "image/jpeg"
+                };
+                $scope.save = function () {
+                    var img = $scope.sendToServer();
+                    $scope.data.image = img.image;
+                    $mdDialog.hide($scope.data);
+                };
+                $scope.cancel = function () {
+                    $mdDialog.cancel();
+                };
+            }])
         .controller("GalleryController", ["$scope", "$route", "$mdDialog", "FileFactory", "list", function ($scope, $route, $mdDialog, FileFactory, list) {
                 $scope.list = list;
 
                 $scope.add = function () {
                     $mdDialog.show({
-                        controller: 'cropperController',
-                        templateUrl: 'modules/cropper/cropper.tmpl.html',
+                        controller: 'GalleryDialogController',
+                        templateUrl: 'templates/gallery.tmpl.html',
                         clickOutsideToClose: true
-                    }).then(function (image) {
+                    }).then(function (data) {
                         var item = new FileFactory({
-                            image: image,
+                            image: data.image,
                             desc: '',
                             type: 1
                         });
@@ -96,7 +113,25 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                     });
                 };
             }])
-        .controller("PriceController", ["$scope", "$route", "PriceFactory", "PriceCategoryFactory", "priceList", "priceCategories", function ($scope, $route, PriceFactory, PriceCategoryFactory, priceList, priceCategories) {
+        .controller("GalleryDialogController", ["$scope", "$mdDialog", function ($scope, $mdDialog) {
+                $scope.data = {};
+                $scope.cropperOptions = {
+                    aspectRatio: "a" / 2,
+                    height: 600,
+                    fillColor: "#FFF",
+                    imgType: "image/jpeg"
+                };
+                $scope.save = function () {
+                    var img = $scope.sendToServer();
+                    $scope.data.image = img.image;
+                    $mdDialog.hide($scope.data);
+                };
+                $scope.cancel = function () {
+                    $mdDialog.cancel();
+                };
+            }])
+        .controller("PriceController", ["$scope", "$route", "PriceFactory", "PriceCategoryFactory", "list", "priceList", "priceCategories", function ($scope, $route, PriceFactory, PriceCategoryFactory, list, priceList, priceCategories) {
+                $scope.list = list.categories;
                 $scope.priceList = priceList;
                 $scope.categories = priceCategories;
 
@@ -109,12 +144,17 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                         });
                     }
                 };
-                $scope.delete = function (price, index) {
+                $scope.delete = function (price) {
                     console.log(price);
-                    price.$delete(function (response) {
-                        console.log(response);
-                        $scope.priceList.splice(index, 1);
-                    });
+                    for (var i = 0; i < $scope.priceList.length; i++) {
+                        if ($scope.priceList[i].id === price.id) {
+                            $scope.priceList[i].$delete(function (response) {
+                                console.log(response);
+                                $route.reload();
+                            });
+                            break;
+                        }
+                    }
                 };
 
                 $scope.saveCategory = function (valid) {
@@ -123,18 +163,20 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                             name: $scope.categoryName
                         });
                         priceCat.$save(function (response) {
-                            $scope.categories.push(response);
-                            $scope.categoryName = '';
-                            $scope.categoryForm.$setPristine();
-                            $scope.categoryForm.$setUntouched();
+                            $route.reload();
                         });
                     }
                 };
-                $scope.deleteCategory = function (category, index) {
-                    category.$delete(function (response) {
-                        console.log(response);
-                        $route.reload();
-                    });
+                $scope.deleteCategory = function (category) {
+                    for (var i = 0; i < $scope.categories.length; i++) {
+                        if ($scope.categories[i].id === category.id) {
+                            $scope.categories[i].$delete(function (response) {
+                                console.log(response);
+                                $route.reload();
+                            });
+                            break;
+                        }
+                    }
                 };
             }])
         .factory("PriceFactory", ["$resource", function ($resource) {
@@ -148,4 +190,22 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
             }])
         .factory("TestimontialFactory", ["$resource", function ($resource) {
                 return $resource('/api/testimontials/:id', {id: "@id"});
+            }])
+        .factory("Factory", ["$http", "$q", function ($http, $q) {
+                var service = {};
+                service.GetData = function () {
+                    var defered = $q.defer();
+                    $http.get("/api/main-page")
+                            .success(function (data) {
+                                console.log(data);
+                                defered.resolve(data);
+                            })
+                            .error(function (err) {
+                                console.log("error");
+                                console.log(err);
+                                defered.resolve(err);
+                            });
+                    return defered.promise;
+                };
+                return service;
             }])

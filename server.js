@@ -24,7 +24,7 @@ app.get('/admin', function (req, res) {
 
 app.use('/api', router);
 
-sequelize.sync({force: true}).then(function () {
+sequelize.sync().then(function () {
     app.listen(port);
     console.log('Magic happens on port ' + port);
 });

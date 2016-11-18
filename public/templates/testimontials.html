@@ -1,21 +1,6 @@
-<div>
-    <div class="form-bg md-whiteframe-3dp" flex layout="row" layout-align="center">
-        <form name="testimontialForm" ng-submit="save(testimontialForm.$valid)" novalidate layout="row" layout-align="center center">
-            <md-input-container class="no-errors">
-                <label>Osoba / firma</label>
-                <input type="text" ng-model="testimontial.user" required />
-            </md-input-container>
-            <md-input-container class="no-errors">
-                <label>Opis</label>
-                <input type="text" ng-model="testimontial.text" />
-            </md-input-container>
-            <md-button class="md-fab md-mini md-primary" ng-click="add()">
-                <md-icon class="material-icons">photo</md-icon>
-            </md-button>
-            <md-button class="md-raised md-primary" type="submit">Dodaj referencję</md-button>
-        </form>
-    </div>
-</div>
+<md-button ng-click="add()" class="md-fab md-primary fab" type="button">
+    <md-icon class="material-icons">add</md-icon>
+</md-button>
 <div layout="row" layout-align="center" layout-wrap>
     <div class="md-whiteframe-3dp testimontial-card" ng-repeat="item in list track by item.id">
         <img ng-src="media/testimontials/{{item.img}}" alt="Referencja" />
