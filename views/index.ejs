@@ -79,10 +79,15 @@
             </p>
         </section>
         <section id="offer">
-            <h1>Oferta</h1>
-            <p>
-                W zakresie działalności naszej firmy realizujemy wszelkiego rodzaju prace remontowo-budowlane, między innymi:
-            </p>
+            <div class="offer-header">
+                <div class="bg animated-bg"></div>
+                <div class="offer-header-content">
+                    <h1>Oferta</h1>
+                    <p>
+                        W zakresie działalności naszej firmy realizujemy wszelkiego rodzaju prace remontowo-budowlane, między innymi:
+                    </p>
+                </div>
+            </div>
             <ul>
                 <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>kładzenie gładzi gipsowych</span></li>
                 <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>układanie glazury i terakoty</span></li>
@@ -120,7 +125,10 @@
             </div>
         </section>
         <section id="prices">
-            <h1>Cennik</h1>
+            <div class="price-header">
+                <div class="price-bg animated-bg"></div>
+                <h1>Cennik</h1>
+            </div>
             <div class="container">
                 <div ng-repeat="item in ::priceCategories track by $index">
                     <h3 ng-bind="::item.category.name"></h3>
@@ -132,6 +140,7 @@
             </div>
         </section>
         <section id="contact">
+            <div class="contact-bg"></div>
             <h1>Kontakt</h1>
             <div class="container">
                 <form name="contactForm" novalidate>
@@ -173,6 +182,7 @@
             Made with <md-icon class="material-icons red-text">favorite</md-icon> by <a href="#" class="white-text bold underline">Filarrro</a>
         </div>
 
+        <script src="js/jquery/jquery-3.1.1.min.js"></script>
         <script src="js/angular/angular.min.js"></script>
         <script src="js/angular/angular-animate.min.js"></script>
         <script src="js/angular/angular-aria.min.js"></script>

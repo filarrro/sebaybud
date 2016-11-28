@@ -6,6 +6,8 @@
 @primary: #2196F3;
 @primaryDark: #1976D2;
 
+@darkGray: #404545;
+
 .gradient(@dir, @start, @end) {
     background-color: @start;
     background: linear-gradient(@dir, @start , @end);
@@ -22,16 +24,20 @@ section {
 }
 
 h1 {
-    /*.gradient(to bottom, @yellowColor, @yellowColorDark);*/
     text-align: center;
     margin: 0;
     padding: 15px;
     text-transform: uppercase;
     font-size: 1.6em;
-    background-color: @whiteColor;
-    border-top: 5px solid;
-    border-bottom: 5px solid;
-    color: @primary;
+    color: @darkGray;
+    &::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 70px;
+        background-color: @darkGray;
+        margin: 5px auto 0;
+    }
 }
 p {
     margin: 1em;
@@ -49,6 +55,12 @@ a {outline: none;}
 .red-text {color: #F44336;}
 
 .container {margin: 0 1em;}
+
+.animated-bg {
+    height: 200%;
+    transform: translateY(0);
+    box-sizing: border-box;
+}
 
 #menuContent {
     position: fixed;
@@ -139,7 +151,7 @@ header {
     #banerContent {
         position: relative;
         height: 100%;
-        background: url(../img/baner.jpg) no-repeat;
+        background: url(../img/slider/slide1.jpg) no-repeat;
         background-size: cover;
         background-position: center;
     }
@@ -158,7 +170,45 @@ header {
     }
 }
 
+#about {
+    p {
+        text-align: justify;
+    }
+}
+
 #offer {
+    overflow: hidden;
+    .offer-header {
+        overflow: hidden;
+        position: relative;
+        padding: 15px 0 30px;
+        background-color: #000;
+        box-sizing: border-box;
+        .bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: url(../img/offer.jpg) no-repeat center;
+            background-size: cover;
+            opacity: .4;
+        }
+        .offer-header-content {
+            position: relative;
+            h1 {
+                color: @whiteColor;
+                &::after {
+                    background-color: @whiteColor;
+                }
+            }
+            p {
+                background-color: rgba(255,255,255,0.7);
+                margin: 0;
+                padding: 1em;
+            }
+        }
+    }
     ul {
         list-style: none;
         padding: 0;
@@ -216,8 +266,27 @@ header {
 
 #prices {
     margin-bottom: 30px;
+    .price-header {
+        overflow: hidden;
+        position: relative;
+        padding: 20px 0 60px;
+        box-sizing: border-box;
+        .price-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url(../img/pricing.jpg) no-repeat center;
+            background-size: cover;
+            opacity: .3;
+        }
+        h1 {
+            position: relative;
+        }
+    }
     .container {
-        perspective: 1000px;
+        perspective: 700px;
     }
     .price-row {
         background-color: @whiteColor;
@@ -234,8 +303,31 @@ header {
 }
 
 #contact {
+    position:relative;
+    .contact-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url(../img/contact.jpg) no-repeat center left;
+        background-size: cover;
+    }
+    h1 {
+        position: relative;
+        color: @whiteColor;
+        &::after {
+            background-color: @whiteColor;
+        }
+    }
+    .container {
+        padding: 0.5em 1em 1px;
+        background-color: rgba(255, 255, 255, 0.93);
+        position: relative;
+        border-radius: 4px;
+        margin: 1em 1em 3em;
+    }
     form {
-        margin: 35px 0;
         .md-errors-spacer {
             display: none;
         }

@@ -51,12 +51,26 @@ angular.module("webApp", ["ngMaterial"])
                 for (i = 0; i < len; i++) {
                     var tween = new TimelineMax();
                     tween
-                            .from(offerRows[i].children[0], .5, {x: -200, alpha: 0})
-                            .from(offerRows[i].children[1], .5, {x: 200, alpha: 0}, 0);
+                            .from(offerRows[i], .5, {alpha: 0, scale:0, ease: Back.easeOut});
                     new ScrollMagic.Scene({
                         triggerElement: offerRows[i],
                         triggerHook: 'onCenter',
                         offset: -150
+                    })
+                            .setTween(tween)
+                            .addTo(SMController);
+                }
+                
+                var animatedBackgrounds = document.getElementsByClassName('animated-bg');
+                len = animatedBackgrounds.length;
+                for (i = 0; i < len; i++) {
+                    var tween = new TimelineMax();
+                    tween
+                            .fromTo(animatedBackgrounds[i], 1, {yPercent: 0}, {yPercent: -50, ease: Power0.easeNone});
+                    new ScrollMagic.Scene({
+                        triggerElement: animatedBackgrounds[i],
+                        triggerHook: 'onEnter',
+                        duration: "200%"
                     })
                             .setTween(tween)
                             .addTo(SMController);
