@@ -3,8 +3,8 @@
 @grayColor: #212121;
 @yellowColor: #FFC107;
 @yellowColorDark: #FF6F00;
-@primary: #2196F3;
-@primaryDark: #1976D2;
+@primary: #FFC107;
+@primaryDark: #FFA000;
 
 @darkGray: #404545;
 
@@ -17,6 +17,7 @@ body {
     height: auto;
     font-family: 'Proza Libre', sans-serif;
     min-width: 320px;
+    font-size: 14px;
 }
 section {
     position: relative;
@@ -151,13 +152,35 @@ header {
     #banerContent {
         position: relative;
         height: 100%;
-        background: url(../img/slider/slide1.jpg) no-repeat;
-        background-size: cover;
-        background-position: center;
     }
     #firmName {
         span {
             display: inline-block;
+        }
+    }
+    .slides {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .slide {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            position: absolute;
+            &.slide1 {
+                background: url(../img/slider/slide1.jpg) no-repeat center;
+                background-size: cover;
+            }
+            &.slide2 {
+                background: url(../img/slider/slide2.jpeg) no-repeat center;
+                background-size: cover;
+            }
+            &.slide3 {
+                background: url(../img/slider/slide3.jpg) no-repeat center;
+                background-size: cover;
+            }
         }
     }
     .baner-overlay {
@@ -225,40 +248,42 @@ header {
         position: absolute;
         top: 43%;
         &.prev-button {
-            left: 1em;
+            left: -1em;
         }
         &.next-buton {
-            right: 1em;
+            right: -1em;
         }
         md-icon {
             color: inherit;
         }
     }
-    .ref-container {
+    .ref-container-outer {
+        margin: auto;
         max-width: 450px;
-        margin: 20px auto;
-        padding: 0 40px;
-        position: relative;
-        .ref-slide {
-            text-align: center;
+        padding: 20px 40px;
+        overflow: hidden;
+        .ref-container {
             position: relative;
-            margin: 0 auto;
-            min-width: 240px;
-            max-width: 300px;
-            img {
-                max-width: 100%;
-                max-height: 100%;
-            }
-            .ref-overlay {
+            height: 300px;
+            .ref-slide {
                 position: absolute;
                 top: 0;
-                left: 0;
-                right: 0;
+                left: 20px;
+                right: 20px;
                 bottom: 0;
-                background-color: rgba(0,0,0,0.65);
-                color: @whiteColor;
-                font-size: 1.4em;
-                font-weight: 700;
+                text-align: center;
+                opacity: 0;
+                .ref-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0,0,0,0.65);
+                    color: @whiteColor;
+                    font-size: 1.4em;
+                    font-weight: 700;
+                }
             }
         }
     }
@@ -337,6 +362,26 @@ header {
             md-icon {
                 color: inherit;
             }
+        }
+    }
+}
+
+#popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.55);
+    z-index: -1;
+    .popup-container {
+        margin: 30px;
+        width: 90%;
+        #popup-dialog {
+            width: 100%;
+            min-height: 250px;
+            background-color: @whiteColor;
+            z-index: -1;
         }
     }
 }

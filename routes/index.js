@@ -170,7 +170,7 @@ router.route('/files/:id')
                 });
             });
         });
-        
+
 router.route('/testimontials')
         .get(function (req, res) {
             Testimontial.all().then(function (data) {
@@ -250,8 +250,11 @@ router.route('/main-page')
                         obj.priceList = prices.filter(filterPrices, cat[i].id);
                         arr.push(obj);
                     }
-                    res.json({
-                        categories: arr
+                    Testimontial.all().then(function (testimontials) {
+                        res.json({
+                            categories: arr,
+                            testimontials: testimontials
+                        });
                     });
                 });
             });

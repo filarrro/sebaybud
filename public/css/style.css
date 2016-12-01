@@ -2,6 +2,7 @@ body {
   height: auto;
   font-family: 'Proza Libre', sans-serif;
   min-width: 320px;
+  font-size: 14px;
 }
 section {
   position: relative;
@@ -51,7 +52,7 @@ a {
   color: #FF6F00;
 }
 .primary-text {
-  color: #2196F3;
+  color: #FFC107;
 }
 .red-text {
   color: #F44336;
@@ -153,12 +154,34 @@ header .logo img {
 #baner #banerContent {
   position: relative;
   height: 100%;
-  background: url(../img/slider/slide1.jpg) no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 #baner #firmName span {
   display: inline-block;
+}
+#baner .slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#baner .slides .slide {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+}
+#baner .slides .slide.slide1 {
+  background: url(../img/slider/slide1.jpg) no-repeat center;
+  background-size: cover;
+}
+#baner .slides .slide.slide2 {
+  background: url(../img/slider/slide2.jpeg) no-repeat center;
+  background-size: cover;
+}
+#baner .slides .slide.slide3 {
+  background: url(../img/slider/slide3.jpg) no-repeat center;
+  background-size: cover;
 }
 #baner .baner-overlay {
   position: absolute;
@@ -219,32 +242,34 @@ header .logo img {
   top: 43%;
 }
 #testimontials .ref-button.prev-button {
-  left: 1em;
+  left: -1em;
 }
 #testimontials .ref-button.next-buton {
-  right: 1em;
+  right: -1em;
 }
 #testimontials .ref-button md-icon {
   color: inherit;
 }
-#testimontials .ref-container {
+#testimontials .ref-container-outer {
+  margin: auto;
   max-width: 450px;
-  margin: 20px auto;
-  padding: 0 40px;
-  position: relative;
+  padding: 20px 40px;
+  overflow: hidden;
 }
-#testimontials .ref-container .ref-slide {
+#testimontials .ref-container-outer .ref-container {
+  position: relative;
+  height: 300px;
+}
+#testimontials .ref-container-outer .ref-container .ref-slide {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
   text-align: center;
-  position: relative;
-  margin: 0 auto;
-  min-width: 240px;
-  max-width: 300px;
+  opacity: 0;
 }
-#testimontials .ref-container .ref-slide img {
-  max-width: 100%;
-  max-height: 100%;
-}
-#testimontials .ref-container .ref-slide .ref-overlay {
+#testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -289,7 +314,7 @@ header .logo img {
 }
 #prices .price-row .price {
   font-weight: 700;
-  color: #2196F3;
+  color: #FFC107;
   text-align: right;
 }
 #contact {
@@ -328,13 +353,32 @@ header .logo img {
 #contact form button md-icon {
   color: inherit;
 }
+#popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: -1;
+}
+#popup-overlay .popup-container {
+  margin: 30px;
+  width: 90%;
+}
+#popup-overlay .popup-container #popup-dialog {
+  width: 100%;
+  min-height: 250px;
+  background-color: #FFF;
+  z-index: -1;
+}
 footer {
   padding: 10px 15px;
-  background-color: #2196F3;
+  background-color: #FFC107;
   color: rgba(0, 0, 0, 0.87);
 }
 .made-by {
-  background-color: #1976D2;
+  background-color: #FFA000;
   padding: 10px;
   text-align: center;
   color: #FFF;

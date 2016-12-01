@@ -51,6 +51,11 @@
 
         <section id="baner">
             <div id="banerContent" layout="row" layout-align="center center">
+                <div class="slides">
+                    <div class="slide slide1"></div>
+                    <div class="slide slide2"></div>
+                    <div class="slide slide3"></div>
+                </div>
                 <div class="baner-overlay"></div>
                 <div id="banerText" class="relative white-text">
                     <div class="md-display-1 text-center">Firma remontowo-budowlana</div>
@@ -109,19 +114,24 @@
         </section>
         <section id="testimontials">
             <h1>Referencje</h1>
-            <div class="ref-container">
-                <div class="ref-slide">
-                    <img src="media/ref1.jpg" class="md-whiteframe-4dp" />
-                    <div class="ref-overlay" layout="row" layout-align="center center">
-                        <div>ul.Bachledzki Wierch 7 Zakopane</div>
+            <div class="ref-container-outer">
+                <div class="ref-container">
+                    <div class="ref-slide md-whiteframe-4dp"
+                         ng-repeat="testimontial in testimontials track by testimontial.id"
+                         ng-click="showReference(testimontial)"
+                         style="background: url(/media/testimontials/{{::testimontial.img}}) no-repeat center; background-size: cover;">
+                        <div class="ref-overlay">
+                            <div ng-bind="::testimontial.text"></div>
+                            <div ng-bind="::testimontial.user"></div>
+                        </div>
                     </div>
+                    <md-button class="md-fab md-mini md-primary ref-button prev-button" id="prev-testimontial">
+                        <md-icon class="material-icons">arrow_back</md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini md-primary ref-button next-buton" id="next-testimontial">
+                        <md-icon class="material-icons">arrow_forward</md-icon>
+                    </md-button>
                 </div>
-                <md-button class="md-fab md-mini md-primary ref-button prev-button">
-                    <md-icon class="material-icons">arrow_back</md-icon>
-                </md-button>
-                <md-button class="md-fab md-mini md-primary ref-button next-buton">
-                    <md-icon class="material-icons">arrow_forward</md-icon>
-                </md-button>
             </div>
         </section>
         <section id="prices">
@@ -169,6 +179,17 @@
                 </form>
             </div>
         </section>
+
+        <div id="popup-overlay" layout="row" layout-align="center center">
+            <div class="popup-container">
+                <md-button class="md-icon-button" id="popup-cancel" ng-click="hidePopup()">
+                    <md-icon class="material-icons">close</md-icon>
+                </md-button>
+                <div id="popup-dialog">
+
+                </div>
+            </div>
+        </div>
 
         <footer>
             <div>
