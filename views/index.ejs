@@ -7,10 +7,11 @@
         <link href="https://fonts.googleapis.com/css?family=Proza+Libre:400,700&amp;subset=latin-ext" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style-600.css" media="screen and (min-width:600px)">
     </head>
-    <body>
-        <div id="menuContent" layout="row" layout-align="center center">
-            <div id="menuInner">
+    <body ng-cloak>
+        <div id="menuContent">
+            <div id="menuInner" layout="column" layout-align="space-between">
                 <div class="menuInnerButton">
                     <md-button class="md-whiteframe-3dp">Start</md-button>
                 </div>
@@ -39,7 +40,7 @@
         </div>
 
         <header>
-            <md-button class="md-fab md-mini menuButton" ng-click="toggleMenu()">
+            <md-button class="md-fab md-mini menuButton" ng-click="toggleMenu()" aria-label="menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -49,158 +50,164 @@
             </div>
         </header>
 
-        <section id="baner">
-            <div id="banerContent" layout="row" layout-align="center center">
-                <div class="slides">
-                    <div class="slide slide1"></div>
-                    <div class="slide slide2"></div>
-                    <div class="slide slide3"></div>
-                </div>
-                <div class="baner-overlay"></div>
-                <div id="banerText" class="relative white-text">
-                    <div class="md-display-1 text-center">Firma remontowo-budowlana</div>
-                    <div class="md-display-2 text-center bold" id="firmName">
-                        <span>S</span><span>E</span><span>B</span><span>A</span><span>Y</span><span>B</span><span>U</span><span>D</span>
+        <div id="page-content">
+            <section id="baner">
+                <div id="banerContent" layout="row" layout-align="center center">
+                    <div class="slides">
+                        <div class="slide slide1"></div>
+                        <div class="slide slide2"></div>
+                        <div class="slide slide3"></div>
                     </div>
-                </div>
-            </div>
-        </section>
-        <section id="about">
-            <h1>O firmie</h1>
-            <p>
-                Firma Remontowo-Budowlana Sebaybud działa od 2008 roku w Zakopanem, realizując coraz większe inwestycje zleceniodawców. Świadczymy usługi ogólnobudowlane, wykonujemy remonty, adaptacje, kompleksowe wykończenia wnętrz, jak również realizujemy budowy budynków.
-            </p>
-            <p>
-                Stawiamy zawsze na dokładność, profesjonalizm, terminowość i rzetelność wykonywanych usług. Świadczyć mogą o tym między innymi referencje od naszych klientów, które znajdziecie państwo na naszej stronie.
-            </p>
-            <p>
-                Swoje usługi polecamy klientom indywidualnym (mieszkania, domy jednorodzinne), jak również wszelkim firmom (sklepy, wspólnoty, developerzy).
-            </p>
-            <p>
-                Każdy z naszych klientów traktowany jest indywidualnie, co pozwala nam na realizowanie jego pomysłów i inwestycji według jego potrzeb.
-            </p>
-            <p>
-                W zakresie działalności naszej firmy oferujemy również doradztwo, zakup i dowóz materiałów budowlanych. Na wszystkie prace oraz materiały budowlane dajemy  stosowne gwarancje oraz wystawiamy faktury VAT
-            </p>
-        </section>
-        <section id="offer">
-            <div class="offer-header">
-                <div class="bg animated-bg"></div>
-                <div class="offer-header-content">
-                    <h1>Oferta</h1>
-                    <p>
-                        W zakresie działalności naszej firmy realizujemy wszelkiego rodzaju prace remontowo-budowlane, między innymi:
-                    </p>
-                </div>
-            </div>
-            <ul>
-                <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>kładzenie gładzi gipsowych</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>układanie glazury i terakoty</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>układanie paneli ściennych i podłogowych</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi posadzkarskie</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi wod-kan-co</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi elektryczne</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>stawianie ścianek gipsowych</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>montaże sufitów podwieszanych i ścianek działowych</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>montaże armatury i ceramiki sanitarnej</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>montaże ścian działowych, drzwi i sufitów podwieszanych z oświetleniem halogenowym</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi malarskie</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>malowanie i tapetowanie</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>ozdabianie ścian i sufitów (tynki weneckie, stiuki i trawerty)</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi brukarskie</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>usługi murarskie</span></li>
-                <li class="offer-row" layout="row" layout-align="start cener"><i class="material-icons">arrow_forward</i> <span>tworzenie ogrodów, trawników, rabatów, itp.</span></li>
-            </ul>
-        </section>
-        <section id="testimontials">
-            <h1>Referencje</h1>
-            <div class="ref-container-outer">
-                <div class="ref-container">
-                    <div class="ref-slide md-whiteframe-4dp"
-                         ng-repeat="testimontial in testimontials track by testimontial.id"
-                         ng-click="showReference(testimontial)"
-                         style="background: url(/media/testimontials/{{::testimontial.img}}) no-repeat center; background-size: cover;">
-                        <div class="ref-overlay">
-                            <div ng-bind="::testimontial.text"></div>
-                            <div ng-bind="::testimontial.user"></div>
+                    <div class="baner-overlay"></div>
+                    <div id="banerText" class="relative white-text">
+                        <div class="md-display-1 text-center">Firma remontowo-budowlana</div>
+                        <div class="md-display-2 text-center bold" id="firmName">
+                            <span>S</span><span>E</span><span>B</span><span>A</span><span>Y</span><span>B</span><span>U</span><span>D</span>
                         </div>
                     </div>
-                    <md-button class="md-fab md-mini md-primary ref-button prev-button" id="prev-testimontial">
-                        <md-icon class="material-icons">arrow_back</md-icon>
-                    </md-button>
-                    <md-button class="md-fab md-mini md-primary ref-button next-buton" id="next-testimontial">
-                        <md-icon class="material-icons">arrow_forward</md-icon>
-                    </md-button>
                 </div>
-            </div>
-        </section>
-        <section id="prices">
-            <div class="price-header">
-                <div class="price-bg animated-bg"></div>
-                <h1>Cennik</h1>
-            </div>
-            <div class="container">
-                <div ng-repeat="item in ::priceCategories track by $index">
-                    <h3 ng-bind="::item.category.name"></h3>
-                    <div ng-repeat="priceRow in ::item.priceList" layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
-                        <div ng-bind="::priceRow.name">Dokonanie oględzin, pomiarów i wyceny wstępnej</div>
-                        <div class="price" ng-bind="::priceRow.price">30,00 zł</div>
+            </section>
+            <section id="about">
+                <h1>O firmie</h1>
+                <p>
+                    Firma Remontowo-Budowlana Sebaybud działa od 2008 roku w Zakopanem, realizując coraz większe inwestycje zleceniodawców. Świadczymy usługi ogólnobudowlane, wykonujemy remonty, adaptacje, kompleksowe wykończenia wnętrz, jak również realizujemy budowy budynków.
+                </p>
+                <p>
+                    Stawiamy zawsze na dokładność, profesjonalizm, terminowość i rzetelność wykonywanych usług. Świadczyć mogą o tym między innymi referencje od naszych klientów, które znajdziecie państwo na naszej stronie.
+                </p>
+                <p>
+                    Swoje usługi polecamy klientom indywidualnym (mieszkania, domy jednorodzinne), jak również wszelkim firmom (sklepy, wspólnoty, developerzy).
+                </p>
+                <p>
+                    Każdy z naszych klientów traktowany jest indywidualnie, co pozwala nam na realizowanie jego pomysłów i inwestycji według jego potrzeb.
+                </p>
+                <p>
+                    W zakresie działalności naszej firmy oferujemy również doradztwo, zakup i dowóz materiałów budowlanych. Na wszystkie prace oraz materiały budowlane dajemy  stosowne gwarancje oraz wystawiamy faktury VAT
+                </p>
+            </section>
+            <section id="offer">
+                <div class="offer-header">
+                    <div class="bg animated-bg"></div>
+                    <div class="offer-header-content">
+                        <h1>Oferta</h1>
+                        <p>
+                            W zakresie działalności naszej firmy realizujemy wszelkiego rodzaju prace remontowo-budowlane, między innymi:
+                        </p>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section id="contact">
-            <div class="contact-bg"></div>
-            <h1>Kontakt</h1>
-            <div class="container">
-                <form name="contactForm" novalidate>
-                    <md-input-container class="md-block">
-                        <label>Nazwisko lub pseudonim</label>
-                        <input type="text" ng-model="contact.name" required />
-                    </md-input-container>
-                    <md-input-container class="md-block">
-                        <label>Temat</label>
-                        <input type="text" ng-model="contact.title" required />
-                    </md-input-container>
-                    <md-input-container class="md-block">
-                        <label>E-mail</label>
-                        <input type="email" ng-model="contact.email" required />
-                    </md-input-container>
-                    <md-input-container class="md-block">
-                        <label>Treść wiadomości</label>
-                        <textarea ng-model="contact.text" rows="3" required ></textarea>
-                    </md-input-container>
-                    <div layout="row" layout-align="center">
-                        <md-button class="md-primary md-raised">
-                            <md-icon class="materal-icons">send</md-icon>
-                            Wyślij
+                <ul>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>kładzenie gładzi gipsowych</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>układanie glazury i terakoty</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>układanie paneli ściennych i podłogowych</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>usługi posadzkarskie</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>usługi wod-kan-co</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>usługi elektryczne</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>stawianie ścianek gipsowych</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>montaże sufitów podwieszanych i ścianek działowych</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>montaże armatury i ceramiki sanitarnej</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>montaże ścian działowych, drzwi i sufitów podwieszanych z oświetleniem halogenowym</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>usługi malarskie</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>malowanie i tapetowanie</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>ozdabianie ścian i sufitów (tynki weneckie, stiuki i trawerty)</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>usługi brukarskie</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>usługi murarskie</span></li>
+                    <li class="offer-row" layout="row" layout-align="start center"><i class="material-icons">arrow_forward</i> <span>tworzenie ogrodów, trawników, rabatów, itp.</span></li>
+                </ul>
+            </section>
+            <section id="testimontials">
+                <h1>Referencje</h1>
+                <div class="ref-container-outer">
+                    <div class="ref-container">
+                        <div class="ref-slide md-whiteframe-4dp"
+                             ng-repeat="testimontial in testimontials track by testimontial.id"
+                             ng-click="showReference(testimontial)"
+                             style="background: url(/media/testimontials/{{::testimontial.img}}) no-repeat center; background-size: cover;">
+                            <div class="ref-overlay" layout="row" layout-align="center center">
+                                <div class="testmontial-desc">
+                                    <div class="testmontial-text" ng-bind="::testimontial.text"></div>
+                                    <div class="testmontial-author" ng-bind="::testimontial.user"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <md-button class="md-fab md-mini md-primary ref-button prev-button" id="prev-testimontial">
+                            <md-icon class="material-icons">arrow_back</md-icon>
+                        </md-button>
+                        <md-button class="md-fab md-mini md-primary ref-button next-buton" id="next-testimontial">
+                            <md-icon class="material-icons">arrow_forward</md-icon>
                         </md-button>
                     </div>
-                </form>
-            </div>
-        </section>
+                </div>
+            </section>
+            <section id="prices">
+                <div class="price-header">
+                    <div class="price-bg animated-bg"></div>
+                    <h1>Cennik</h1>
+                </div>
+                <div class="container">
+                    <div class="prices-container">
+                        <div ng-repeat="item in ::priceCategories track by $index">
+                            <h3 class="price-row-header" ng-bind="::item.category.name"></h3>
+                            <div ng-repeat="priceRow in ::item.priceList" layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
+                                <div ng-bind="::priceRow.name">Dokonanie oględzin, pomiarów i wyceny wstępnej</div>
+                                <div class="price" ng-bind="::priceRow.price">30,00 zł</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="contact">
+                <div class="contact-bg"></div>
+                <h1>Kontakt</h1>
+                <div class="container">
+                    <form name="contactForm" novalidate>
+                        <md-input-container class="md-block">
+                            <label>Nazwisko lub pseudonim</label>
+                            <input type="text" ng-model="contact.name" required />
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Temat</label>
+                            <input type="text" ng-model="contact.title" required />
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>E-mail</label>
+                            <input type="email" ng-model="contact.email" required />
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Treść wiadomości</label>
+                            <textarea ng-model="contact.text" rows="3" required ></textarea>
+                        </md-input-container>
+                        <div layout="row" layout-align="center">
+                            <md-button type="submit" class="md-primary md-raised">
+                                <md-icon class="materal-icons">send</md-icon>
+                                Wyślij
+                            </md-button>
+                        </div>
+                    </form>
+                </div>
+            </section>
 
-        <div id="popup-overlay" layout="row" layout-align="center center">
-            <div class="popup-container">
-                <md-button class="md-icon-button" id="popup-cancel" ng-click="hidePopup()">
-                    <md-icon class="material-icons">close</md-icon>
-                </md-button>
-                <div id="popup-dialog">
-
+            <div id="popup-overlay" layout="row" layout-align="center center">
+                <div class="popup-container">
+                    <md-button id="popup-cancel" ng-click="hidePopup()">
+                        <md-icon class="material-icons">close</md-icon>
+                    </md-button>
+                    <div id="popup-dialog">
+                        <img ng-src="/media/testimontials/{{modalData.img}}" alt="Referencja" />
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <footer>
-            <div>
-                Firma Remontowo budowlana <span class="white-text bold">SEBAYBUD</span> Harbut ul.Michała Małaszyńskiego 7a 34-511 Zakopane
+            <footer>
+                <div>
+                    Firma Remontowo budowlana <span class="white-text bold">SEBAYBUD</span> Harbut ul.Michała Małaszyńskiego 7a 34-511 Zakopane
+                </div>
+                <div>
+                    NIP: <span class="white-text bold">736-140-11-55</span> Regon: <span class="white-text bold">121206370</span> sebaybud@gmail.com
+                </div>
+            </footer>
+            <div class="made-by italic">
+                Made with <md-icon class="material-icons red-text">favorite</md-icon> by <a href="#" class="white-text bold underline">Filarrro</a>
             </div>
-            <div>
-                NIP: <span class="white-text bold">736-140-11-55</span> Regon: <span class="white-text bold">121206370</span> sebaybud@gmail.com
-            </div>
-        </footer>
-        <div class="made-by italic">
-            Made with <md-icon class="material-icons red-text">favorite</md-icon> by <a href="#" class="white-text bold underline">Filarrro</a>
         </div>
 
         <script src="js/jquery/jquery-3.1.1.min.js"></script>

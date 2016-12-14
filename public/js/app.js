@@ -11,23 +11,18 @@ angular.module("webApp", ["ngMaterial"])
                         body = angular.element(document.querySelector('body')),
                         innerMenu = angular.element(document.querySelector('#menuInner')),
                         menuButtons = document.getElementsByClassName('menuInnerButton'),
-                        MenuTL = new TimelineMax({paused: true});
+                        MenuTL = new TimelineMax({paused: true}),
+                        menuOpened = false;
 
-                MenuTL
-                        .to(menuContainer, .3, {autoAlpha: 1})
-                        .fromTo(innerMenu, .4, {width: 0, height: 0}, {width: "60%", height: "85%"}, "-=.1")
-                        .staggerFrom(menuButtons, .3, {cycle: {xPercent: [-100, 100]}, alpha: 0, scale: .5}, 0.1, "-=.2");
+                MenuTL.fromTo(menuContainer, .3, {left: "-100%"}, {left: "0%"});
 
                 $rootScope.toggleMenu = function () {
-                    var visible = menuContainer.css("opacity");
-                    console.log(visible);
-                    if (visible == 0) {
+                    if (!menuOpened) {
                         MenuTL.play();
-                        body.css("overflow", "hidden");
                     } else {
                         MenuTL.reverse();
-                        body.css("overflow", "auto");
                     }
+                    menuOpened = !menuOpened;
                 };
 
                 $rootScope.showReference = function (item) {
@@ -134,22 +129,13 @@ angular.module("webApp", ["ngMaterial"])
                             length: $("#testimontials .ref-slide").length,
                             build: function () {
                                 console.log(this.length + " testimontials found");
-                                TweenMax.fromTo(this.array[0], 1, {
-                                    alpha: 0,
-                                    scale: 0
-                                }, {
-                                    alpha: 1,
-                                    scale: 1,
-                                    ease: Elastic.easeOut,
-                                    onComplete: function () {
-                                        $("#next-testimontial").click(function () {
-                                            this.next();
-                                        }.bind(this));
-                                        $("#prev-testimontial").click(function () {
-                                            this.prev();
-                                        }.bind(this))
-                                    }.bind(this)
-                                });
+                                TweenMax.set(this.array[0], {alpha: 1, scale: 1});
+                                $("#next-testimontial").click(function () {
+                                    this.next();
+                                }.bind(this));
+                                $("#prev-testimontial").click(function () {
+                                    this.prev();
+                                }.bind(this))
                             },
                             next: function () {
                                 console.log("next testimontial");
@@ -184,6 +170,19 @@ angular.module("webApp", ["ngMaterial"])
                             }
                         };
                         testimontialCarousel.build();
+
+                        var priceRowsHeaders = document.getElementsByClassName('price-row-header');
+                        len = priceRowsHeaders.length;
+                        for (i = 0; i < len; i++) {
+                            var tween = TM.from(priceRowsHeaders[i], .3, {x: -100, alpha: 0})
+                            new ScrollMagic.Scene({
+                                triggerElement: priceRowsHeaders[i],
+                                triggerHook: 'onCenter',
+                                offset: -150
+                            })
+                                    .setTween(tween)
+                                    .addTo(SMController);
+                        }
 
                         var priceRows = document.getElementsByClassName('price-row');
                         len = priceRows.length;

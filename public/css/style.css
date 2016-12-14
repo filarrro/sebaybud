@@ -67,41 +67,32 @@ a {
 }
 #menuContent {
   position: fixed;
-  left: 0;
-  right: 0;
+  left: -100%;
   top: 0;
   bottom: 0;
-  visibility: hidden;
-  z-index: 40;
-  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 59;
+  background-color: #404545;
 }
 #menuContent #menuInner {
   position: relative;
   display: block;
-  overflow-x: hidden;
-  width: 60%;
-  max-width: 500px;
-  min-width: 300px;
-  margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 15px 30px;
-  border-radius: 6px;
-  max-height: 85%;
-  z-index: 50;
+  padding: 60px 15px 15px;
+  width: 250px;
+  height: 100%;
   box-sizing: border-box;
 }
 #menuContent #menuInner .menuInnerButton {
   position: relative;
+  margin: 15px 0;
 }
 #menuContent #menuInner button {
   display: block;
   width: 100%;
-  margin: 10px 0;
-  height: 55px;
+  margin: 0;
+  height: 48px;
   color: #FFF;
   background-color: #202020;
   background: linear-gradient(to top left, #202020, #656565);
-  /*.gradient(to top left, #202020, @primary);*/
   font-weight: 700;
 }
 header {
@@ -236,6 +227,13 @@ header .logo img {
 #offer ul li {
   margin-bottom: 5px;
 }
+#testimontials h1 {
+  background-color: #404545;
+  color: #FFF;
+}
+#testimontials h1::after {
+  background-color: #FFF;
+}
 #testimontials .ref-button {
   color: #FFF;
   position: absolute;
@@ -255,6 +253,7 @@ header .logo img {
   max-width: 450px;
   padding: 20px 40px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 #testimontials .ref-container-outer .ref-container {
   position: relative;
@@ -279,6 +278,17 @@ header .logo img {
   color: #FFF;
   font-size: 1.4em;
   font-weight: 700;
+}
+#testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-desc {
+  padding: 20px;
+}
+#testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-text {
+  margin-bottom: 15px;
+}
+#testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-author {
+  font-size: 14px;
+  font-weight: normal;
+  text-align: right;
 }
 #prices {
   margin-bottom: 30px;
@@ -359,18 +369,31 @@ header .logo img {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.55);
+  background-color: rgba(0, 0, 0, 0.75);
   z-index: -1;
 }
 #popup-overlay .popup-container {
   margin: 30px;
-  width: 90%;
+}
+#popup-overlay .popup-container #popup-cancel {
+  width: 40px;
+  min-width: auto;
+  height: 40px;
+  margin: 5px 0;
+  border: 2px solid;
+  color: #FFF;
+}
+#popup-overlay .popup-container #popup-cancel md-icon {
+  color: inherit;
 }
 #popup-overlay .popup-container #popup-dialog {
   width: 100%;
-  min-height: 250px;
   background-color: #FFF;
   z-index: -1;
+}
+#popup-overlay .popup-container #popup-dialog img {
+  max-height: 100%;
+  max-width: 100%;
 }
 footer {
   padding: 10px 15px;
