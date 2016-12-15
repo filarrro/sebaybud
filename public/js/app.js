@@ -26,6 +26,7 @@ angular.module("webApp", ["ngMaterial"])
                 };
 
                 $rootScope.showReference = function (item) {
+                    console.log(item)
                     $rootScope.modalData = item;
                     $timeout(function () {
                         var tween = new TimelineMax();
@@ -56,27 +57,10 @@ angular.module("webApp", ["ngMaterial"])
                         .setTween(bannerParallaxTween)
                         .addTo(SMController);
 
-                var offerRows = document.getElementsByClassName('offer-row');
-                len = offerRows.length;
-                for (i = 0; i < len; i++) {
-                    var tween = new TimelineMax();
-                    tween
-                            .from(offerRows[i], .5, {alpha: 0, scale: 0, ease: Back.easeOut});
-                    new ScrollMagic.Scene({
-                        triggerElement: offerRows[i],
-                        triggerHook: 'onCenter',
-                        offset: -150
-                    })
-                            .setTween(tween)
-                            .addTo(SMController);
-                }
-
                 var animatedBackgrounds = document.getElementsByClassName('animated-bg');
                 len = animatedBackgrounds.length;
                 for (i = 0; i < len; i++) {
-                    var tween = new TimelineMax();
-                    tween
-                            .fromTo(animatedBackgrounds[i], 1, {yPercent: 0}, {yPercent: -50, ease: Power0.easeNone});
+                    var tween = TM.fromTo(animatedBackgrounds[i], 1, {yPercent: 0}, {yPercent: -50, ease: Power0.easeNone});
                     new ScrollMagic.Scene({
                         triggerElement: animatedBackgrounds[i],
                         triggerHook: 'onEnter',
@@ -85,6 +69,7 @@ angular.module("webApp", ["ngMaterial"])
                             .setTween(tween)
                             .addTo(SMController);
                 }
+
                 Factory.GetData().then(function (response) {
                     $rootScope.priceCategories = response.categories;
                     $rootScope.testimontials = response.testimontials;
@@ -129,7 +114,7 @@ angular.module("webApp", ["ngMaterial"])
                             length: $("#testimontials .ref-slide").length,
                             build: function () {
                                 console.log(this.length + " testimontials found");
-                                TweenMax.set(this.array[0], {alpha: 1, scale: 1});
+                                TweenMax.set(this.array[0], {alpha: 1, scale: 1, zIndex: 4});
                                 $("#next-testimontial").click(function () {
                                     this.next();
                                 }.bind(this));
@@ -141,11 +126,12 @@ angular.module("webApp", ["ngMaterial"])
                                 console.log("next testimontial");
                                 var tween = new TimelineMax(), n = (this.actual + 1) < this.length && (this.actual + 1) || 0;
                                 tween
-                                        .fromTo(this.array[this.actual], .6, {xPercent: 0, alpha: 1, scale: 1}, {alpha: 0, scale: 0, xPercent: -100, ease: Power2.easeOut}, 0)
-                                        .fromTo(this.array[n], .6, {alpha: 0, scale: 0, xPercent: 100}, {
+                                        .fromTo(this.array[this.actual], .6, {xPercent: 0, alpha: 1, scale: 1, zIndex: 2}, {alpha: 0, scale: 0, xPercent: -100, zIndex: 2, ease: Power2.easeOut}, 0)
+                                        .fromTo(this.array[n], .6, {alpha: 0, scale: 0, xPercent: 100, zIndex: 4}, {
                                             alpha: 1,
                                             scale: 1,
                                             xPercent: 0,
+                                            zIndex: 4,
                                             ease: Back.easeOut,
                                             onStart: function () {
                                                 this.actual = n;
@@ -157,11 +143,12 @@ angular.module("webApp", ["ngMaterial"])
                                 var tween = new TimelineMax(), n = this.actual > 0 ? (this.actual - 1) : (this.length - 1);
                                 console.log(this.actual + " " + n);
                                 tween
-                                        .fromTo(this.array[this.actual], .6, {xPercent: 0, alpha: 1, scale: 1}, {alpha: 0, scale: 0, xPercent: 100, ease: Power2.easeOut}, 0)
-                                        .fromTo(this.array[n], .6, {alpha: 0, scale: 0, xPercent: -100}, {
+                                        .fromTo(this.array[this.actual], .6, {xPercent: 0, alpha: 1, scale: 1, zIndex: 2}, {alpha: 0, scale: 0, xPercent: 100, zIndex: 2, ease: Power2.easeOut}, 0)
+                                        .fromTo(this.array[n], .6, {alpha: 0, scale: 0, xPercent: -100, zIndex: 4}, {
                                             alpha: 1,
                                             scale: 1,
                                             xPercent: 0,
+                                            zIndex: 4,
                                             ease: Back.easeOut,
                                             onStart: function () {
                                                 this.actual = n;
@@ -171,6 +158,20 @@ angular.module("webApp", ["ngMaterial"])
                         };
                         testimontialCarousel.build();
 
+                        var offerRows = document.getElementsByClassName('offer-row');
+                        len = offerRows.length;
+                        for (i = 0; i < len; i++) {
+                            var tween = TM.from(offerRows[i], .5, {alpha: 0, scale: 0, ease: Back.easeOut});
+                            new ScrollMagic.Scene({
+                                triggerElement: offerRows[i],
+                                triggerHook: 'onCenter',
+                                offset: -150,
+                                reverse: false
+                            })
+                                    .setTween(tween)
+                                    .addTo(SMController);
+                        }
+
                         var priceRowsHeaders = document.getElementsByClassName('price-row-header');
                         len = priceRowsHeaders.length;
                         for (i = 0; i < len; i++) {
@@ -178,7 +179,8 @@ angular.module("webApp", ["ngMaterial"])
                             new ScrollMagic.Scene({
                                 triggerElement: priceRowsHeaders[i],
                                 triggerHook: 'onCenter',
-                                offset: -150
+                                offset: -150,
+                                reverse: false
                             })
                                     .setTween(tween)
                                     .addTo(SMController);
@@ -187,11 +189,12 @@ angular.module("webApp", ["ngMaterial"])
                         var priceRows = document.getElementsByClassName('price-row');
                         len = priceRows.length;
                         for (i = 0; i < len; i++) {
-                            var tween = TM.from(priceRows[i], .5, {rotationX: "90deg", alpha: 0})
+                            var tween = TM.fromTo(priceRows[i], .5, {rotationX: "90deg", alpha: 0}, {rotationX: "0deg", alpha: 1})
                             new ScrollMagic.Scene({
                                 triggerElement: priceRows[i],
                                 triggerHook: 'onCenter',
-                                offset: -150
+                                offset: -150,
+                                reverse: false
                             })
                                     .setTween(tween)
                                     .addTo(SMController);

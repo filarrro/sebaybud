@@ -91,7 +91,10 @@ a {
   margin: 0;
   height: 48px;
   color: #FFF;
-  background-color: #202020;
+  background: #202020;
+  background: -webkit-linear-gradient(to top left, #202020, #656565);
+  background: -o-linear-gradient(to top left, #202020, #656565);
+  background: -moz-linear-gradient(to top left, #202020, #656565);
   background: linear-gradient(to top left, #202020, #656565);
   font-weight: 700;
 }
@@ -276,7 +279,7 @@ header .logo img {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.65);
   color: #FFF;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 700;
 }
 #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-desc {
@@ -312,8 +315,9 @@ header .logo img {
 #prices .price-header h1 {
   position: relative;
 }
-#prices .container {
+#prices .price-cat-container {
   perspective: 700px;
+  max-height: none;
 }
 #prices .price-row {
   background-color: #FFF;
@@ -390,6 +394,7 @@ header .logo img {
   width: 100%;
   background-color: #FFF;
   z-index: -1;
+  max-height: 75%;
 }
 #popup-overlay .popup-container #popup-dialog img {
   max-height: 100%;
