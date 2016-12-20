@@ -3,6 +3,8 @@
 angular
     .module("webApp")
     .factory("Factory", function($http, $q) {
+        "ngInject";
+
         var service = {
             GetData: getData
         };
@@ -11,15 +13,14 @@ angular
         function getData() {
             var defered = $q.defer();
             $http.get("/api/main-page")
-                .success(function(data) {
+            .then (function(data) {
                     console.log(data);
-                    defered.resolve(data);
-                })
-                .error(function(err) {
+                    defered.resolve(data.data);
+                }, function(err) {
                     console.log("error");
                     console.log(err);
                     defered.resolve(err);
                 });
             return defered.promise;
-        };
+        }
     });
