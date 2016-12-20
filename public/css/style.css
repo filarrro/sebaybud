@@ -295,6 +295,7 @@ header .logo img {
 }
 #prices {
   margin-bottom: 30px;
+  overflow: hidden;
 }
 #prices .price-header {
   overflow: hidden;
