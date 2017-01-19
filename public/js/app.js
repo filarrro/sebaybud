@@ -1,12 +1,34 @@
 "use strict";
 
-angular.module("webApp", ["ngMaterial"])
-    .config(function($mdThemingProvider) {
+angular.module("webApp", ["ui.router", "ngMaterial"])
+    .config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
         "ngInject";
 
-        $mdThemingProvider.theme('default').primaryPalette('amber', {
+        $mdThemingProvider.theme("default").primaryPalette("amber", {
             // 'default': '900'
         });
+
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+
+        $urlRouterProvider.otherwise('/');
+        $stateProvider
+            .state({
+                name: "home",
+                url: "/",
+                controller: `MainController`,
+                controllerAs: `vm`,
+                templateUrl: `templates/application/main.html`
+            })
+            .state({
+                name: "gallery",
+                url: "/gallery",
+                controller: `GalleryController`,
+                controllerAs: `vm`,
+                templateUrl: `templates/application/gallery.html`
+            });
     })
     .run(function($rootScope) {
         "ngInject";
@@ -16,8 +38,7 @@ angular.module("webApp", ["ngMaterial"])
             MenuTL = new TimelineMax({ paused: true });
 
         $rootScope.toggleMenu = toggleMenu;
-
-        MenuTL.fromTo(menuContainer, 0.3, { left: "-100%" }, { left: "0%" });
+        MenuTL.fromTo(menuContainer, 0.3, { x: "0%" }, { x: "100%" });
 
         function toggleMenu() {
             if (!menuOpened) {

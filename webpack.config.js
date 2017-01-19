@@ -25,8 +25,8 @@ module.exports = {
             loader: 'ng-annotate!babel?presets[]=es2015',
             exclude: /node_modules/
         }, {
-            test: /\.(woff|woff2|ttf|eot|svg)(\?]?.*)?$/,
-            loader: 'file-loader?name=res/[name].[ext]?[hash]'
+            test: /\.(png|jpg|jpeg)$/,
+            loader: 'url-loader?limit=8192&name=../img/[name].[ext]'
         }]
     },
     resolve: {
