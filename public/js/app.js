@@ -27,7 +27,12 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
                 url: "/gallery",
                 controller: `GalleryController`,
                 controllerAs: `vm`,
-                templateUrl: `templates/application/gallery.html`
+                templateUrl: `templates/application/gallery.html`,
+                resolve: {
+                    images: function(Factory) {
+                        return Factory.GetImages();
+                    }
+                }
             });
     })
     .run(function($rootScope) {

@@ -1,1 +1,8 @@
-galery
+<div id="gallery">
+    <div class="gallery-container" layout="row" layout-align="center" layout-wrap>
+        <div class="md-whiteframe-4dp img-container" ng-repeat="image in vm.gallery track by image.id">
+            <div class="gallery-image" style="background: url(media/galery/{{::image.source}}) no-repeat center; background-size: cover;"></div>
+        </div>
+    </div>
+    <div id="loader"></div>    
+</div>

@@ -1,5 +1,10 @@
 "use strict";
 
+import jQuery from 'jquery';
+import { TweenMax } from 'gsap';
+import ScrollMagic from 'scrollmagic';
+var $ = jQuery;
+
 angular
     .module("webApp")
     .controller("MainController", function($rootScope, $scope, $timeout, Factory) {
@@ -26,18 +31,14 @@ angular
 
         Factory.GetData().then(handleData);
 
-
         function showReference(item) {
             console.log(item);
             $scope.modalData = item;
             $timeout(function() {
                 let tween = new TimelineMax();
                 tween
-                    .fromTo($("#popup-overlay"), 0.5,
-                        { autoAlpha: 0, zIndex: 70 }, { autoAlpha: 1, zIndex: 70 })
-                    .fromTo($("#popup-dialog"), 1,
-                        { scale: 0, opacity: 0 },
-                        { scale: 1, opacity: 1, ease: Elastic.easeOut }, "-= 0.2");
+                    .fromTo($("#popup-overlay"), 0.5, { autoAlpha: 0, zIndex: 70 }, { autoAlpha: 1, zIndex: 70 })
+                    .fromTo($("#popup-dialog"), 1, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, ease: Elastic.easeOut }, "-= 0.2");
             });
         }
 
@@ -131,9 +132,7 @@ angular
                         let tween = new TimelineMax(),
                             n = (this.actual + 1) < this.length && (this.actual + 1) || 0;
                         tween
-                            .fromTo(this.array[this.actual], 0.6,
-                                { xPercent: 0, alpha: 1, scale: 1, zIndex: 2 },
-                                { alpha: 0, scale: 0, xPercent: -100, zIndex: 2, ease: Power2.easeOut }, 0)
+                            .fromTo(this.array[this.actual], 0.6, { xPercent: 0, alpha: 1, scale: 1, zIndex: 2 }, { alpha: 0, scale: 0, xPercent: -100, zIndex: 2, ease: Power2.easeOut }, 0)
                             .fromTo(this.array[n], 0.6, { alpha: 0, scale: 0, xPercent: 100, zIndex: 4 }, {
                                 alpha: 1,
                                 scale: 1,
@@ -151,9 +150,7 @@ angular
                             n = this.actual > 0 ? (this.actual - 1) : (this.length - 1);
                         console.log(this.actual + " " + n);
                         tween
-                            .fromTo(this.array[this.actual], 0.6,
-                                { xPercent: 0, alpha: 1, scale: 1, zIndex: 2 },
-                                { alpha: 0, scale: 0, xPercent: 100, zIndex: 2, ease: Power2.easeOut }, 0)
+                            .fromTo(this.array[this.actual], 0.6, { xPercent: 0, alpha: 1, scale: 1, zIndex: 2 }, { alpha: 0, scale: 0, xPercent: 100, zIndex: 2, ease: Power2.easeOut }, 0)
                             .fromTo(this.array[n], 0.6, { alpha: 0, scale: 0, xPercent: -100, zIndex: 4 }, {
                                 alpha: 1,
                                 scale: 1,

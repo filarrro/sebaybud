@@ -1,19 +1,17 @@
 $whiteColor: #FFF;
-$whiteOpacityColor: rgba(255,255,255,.8);
+$whiteOpacityColor: rgba(255, 255, 255, .8);
 $grayColor: #212121;
 $yellowColor: #FFC107;
 $yellowColorDark: #FF6F00;
 $primary: #FFC107;
 $primaryDark: #FFA000;
-
 $darkGray: #404545;
-
 @mixin gradient($dir, $start, $end) {
     background: $start;
-    background: -webkit-linear-gradient($dir, $start , $end);
-    background: -o-linear-gradient($dir, $start , $end);
-    background: -moz-linear-gradient($dir, $start , $end);
-    background: linear-gradient($dir, $start , $end);
+    background: -webkit-linear-gradient($dir, $start, $end);
+    background: -o-linear-gradient($dir, $start, $end);
+    background: -moz-linear-gradient($dir, $start, $end);
+    background: linear-gradient($dir, $start, $end);
 }
 
 body {
@@ -22,6 +20,7 @@ body {
     min-width: 320px;
     font-size: 14px;
 }
+
 section {
     position: relative;
     overflow: auto;
@@ -43,22 +42,54 @@ h1 {
         margin: 5px auto 0;
     }
 }
+
 p {
     margin: 1em;
 }
-a {outline: none;}
 
-.relative {position: relative;}
-.text-center {text-align: center;}
-.bold {font-weight: 700;}
-.underline {text-decoration: underline;}
-.italic {font-style: italic;}
-.white-text {color: $whiteColor;}
-.yellow-text {color: $yellowColorDark;}
-.primary-text {color: $primary;}
-.red-text {color: #F44336;}
+a {
+    outline: none;
+}
 
-.container {margin: 0 1em;}
+.relative {
+    position: relative;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.white-text {
+    color: $whiteColor;
+}
+
+.yellow-text {
+    color: $yellowColorDark;
+}
+
+.primary-text {
+    color: $primary;
+}
+
+.red-text {
+    color: #F44336;
+}
+
+.container {
+    margin: 0 1em;
+}
 
 .animated-bg {
     height: 200%;
@@ -184,7 +215,7 @@ header {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0,0,0,0.6);
+        background-color: rgba(0, 0, 0, 0.6);
     }
 }
 
@@ -221,7 +252,7 @@ header {
                 }
             }
             p {
-                background-color: rgba(255,255,255,0.7);
+                background-color: rgba(255, 255, 255, 0.7);
                 margin: 0;
                 padding: 1em;
             }
@@ -282,7 +313,7 @@ header {
                     left: 0;
                     right: 0;
                     bottom: 0;
-                    background-color: rgba(0,0,0,0.65);
+                    background-color: rgba(0, 0, 0, 0.65);
                     color: $whiteColor;
                     font-size: 1.2em;
                     font-weight: 700;
@@ -344,7 +375,7 @@ header {
 }
 
 #contact {
-    position:relative;
+    position: relative;
     .contact-bg {
         position: absolute;
         top: 0;
@@ -388,7 +419,7 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0, 0, 0, 0.75);
     z-index: -1;
     .popup-container {
         margin: 30px;
@@ -419,11 +450,41 @@ header {
 footer {
     padding: 10px 15px;
     background-color: $primary;
-    color: rgba(0,0,0,0.87);
+    color: rgba(0, 0, 0, 0.87);
 }
+
 .made-by {
     background-color: $primaryDark;
     padding: 10px;
     text-align: center;
     color: $whiteColor;
+}
+
+
+/*** GALERY ***/
+
+#gallery {
+    .img-container {
+        width: 150px;
+        height: 120px;
+        margin: 20px;
+        img {
+            max-width: 100%;
+        }
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .gallery-container {
+        max-width: 960px;
+        margin: 20px auto;
+    }
+
+    #loader {
+        height: 15px;
+        background-color: #DDD;
+        margin-top: 20px;
+    }
 }
