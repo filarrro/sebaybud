@@ -12,32 +12,42 @@ angular
 
         console.log(images);
 
-        let vm = this,
-            page = 1;
+        let vm = this;
+        // page = 1;
 
-        vm.pageLimit = images.pageLimit;
+        // vm.pageLimit = images.pageLimit;
         vm.gallery = images.data;
+        vm.pagination = images.pages;
+        vm.selectedPage = 0;
 
-        let ctrl = new ScrollMagic.Controller();
-
-        let scene = new ScrollMagic.Scene({ triggerElement: "#loader", triggerHook: "onEnter" })
-            .addTo(ctrl)
-            .on("enter", function(e) {
-                if (page >= vm.pageLimit) {
-                    return;
-                }
-                if (!$("#loader").hasClass("active")) {
-                    $("#loader").addClass("active");
-
-                    Factory.GetImages(page).then(function(res) {
-                        console.log(res);
-                        page++;
-                        vm.gallery.push(...res.data);
-                        vm.pageLimit = res.pageLimit;
-                        scene.update(); // make sure the scene gets the new start position
-                        $("#loader").removeClass("active");
-                    });
-                }
+        vm.getPage = (page) => {
+            Factory.GetImages(page).then(function(res) {
+                console.log(res);
+                vm.gallery = res.data;
+                vm.selectedPage = page;
             });
+        };
+
+        // let ctrl = new ScrollMagic.Controller();
+
+        // let scene = new ScrollMagic.Scene({ triggerElement: "#loader", triggerHook: "onEnter" })
+        //     .addTo(ctrl)
+        //     .on("enter", function(e) {
+        //         if (page >= vm.pageLimit) {
+        //             return;
+        //         }
+        //         if (!$("#loader").hasClass("active")) {
+        //             $("#loader").addClass("active");
+
+        //             Factory.GetImages(page).then(function(res) {
+        //                 console.log(res);
+        //                 page++;
+        //                 vm.gallery.push(...res.data);
+        //                 vm.pageLimit = res.pageLimit;
+        //                 scene.update(); // make sure the scene gets the new start position
+        //                 $("#loader").removeClass("active");
+        //             });
+        //         }
+        //     });
 
     });

@@ -25,7 +25,7 @@ angular
             return defered.promise;
         }
 
-        function getImages(page = 0, size = 50) {
+        function getImages(page = 0, size = 20) {
             var defered = $q.defer();
             $http.get(`/api/galerry-files/${size}/${page}`)
                 .then(function(data) {

@@ -262,15 +262,20 @@ router.route('/main-page')
 
 router.route('/galerry-files/:size/:page')
     .get(function(req, res) {
-        let offset = Number(req.params.size) * Number(req.params.page),
+        let size = Number(req.params.size),
+            offset = size * Number(req.params.page),
             limit = Number(req.params.size);
-            
+
         File.findAndCountAll().then(function(result) {
-            let pageLimit = Math.ceil(result.count/limit);
+            let pageLimit = Math.ceil(result.count / limit),
+                pagesArr = [];
+            for (let i = 0; i < pageLimit; i++) {
+                pagesArr.push(i);
+            }
             File.findAll({ offset: offset, limit: limit }).then(function(data) {
                 res.json({
                     data: data,
-                    pageLimit: pageLimit
+                    pages: pagesArr
                 });
             });
         });

@@ -503,7 +503,7 @@
 
 
 	// module
-	exports.push([module.id, "@media screen and (min-width: 600px) {\n  body {\n    font-size: 16px; }\n  .container {\n    margin: 0 2em; }\n  p {\n    margin: 1em 2em; }\n  #about {\n    margin-bottom: 25px; }\n  #offer .offer-header {\n    padding: 40px 0 60px; }\n    #offer .offer-header .offer-header-content p {\n      padding: 1em 2em;\n      text-align: center; }\n  #offer ul {\n    padding: 0;\n    margin: 20px; }\n    #offer ul li {\n      margin-bottom: 10px;\n      padding: 5px;\n      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n      border-radius: 2px; }\n  #testimontials h1 {\n    padding: 20px 20px 30px; }\n  #testimontials .ref-button {\n    border-radius: 4px;\n    width: 55px;\n    height: 55px; }\n    #testimontials .ref-button .md-ripple-container {\n      border-radius: 4px; }\n    #testimontials .ref-button md-icon {\n      font-size: 32px;\n      line-height: 32px;\n      width: 32px;\n      height: 32px; }\n    #testimontials .ref-button.prev-button {\n      left: -50px; }\n    #testimontials .ref-button.next-buton {\n      right: -50px; }\n  #testimontials .ref-container-outer {\n    max-width: 450px;\n    padding: 40px 60px; }\n    #testimontials .ref-container-outer .ref-container {\n      height: 400px; }\n      #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay {\n        font-size: 1.3em; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-desc {\n          padding: 30px; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-text {\n          margin-bottom: 25px; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-author {\n          font-size: 20px; }\n  #prices {\n    margin-bottom: -70px; }\n    #prices .price-header {\n      padding: 30px 0 140px; }\n    #prices .container {\n      position: relative;\n      top: -120px; }\n      #prices .container .prices-container {\n        perspective: 1500px;\n        background-color: #fafafa;\n        padding: 1px 20px;\n        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n    #prices h3 {\n      text-align: center; }\n  #contact .container {\n    max-width: 400px;\n    margin: 1em auto 3em;\n    padding: 0.5em 2em 1px; } }\n\n@media screen and (min-width: 600px) and (min-width: 960px) {\n  .container {\n    max-width: 960px;\n    margin: 1em auto;\n    padding: 0 4em; }\n  p {\n    max-width: 960px;\n    margin: 1em auto;\n    padding: 0 4em; }\n  h1 {\n    padding: 25px 3em;\n    font-size: 2.2em; }\n    h1::after {\n      height: 4px;\n      width: 80px; }\n  #baner #banerContent .md-display-1 {\n    font-size: 45px;\n    margin-bottom: 50px; }\n  #baner #banerContent .md-display-2 {\n    font-size: 70px; }\n  #about {\n    margin-bottom: 35px; }\n  #offer .offer-header {\n    padding: 40px 0 60px; }\n    #offer .offer-header .offer-header-content p {\n      padding: 1.5em 4.5em;\n      max-width: 900px;\n      margin: 15px auto 0;\n      box-sizing: border-box;\n      font-size: 1.3em;\n      background: rgba(255, 255, 255, 0.8);\n      background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0) 100%);\n      background: -o-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0) 100%);\n      background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0) 100%);\n      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0) 100%); }\n  #offer ul {\n    max-width: 960px;\n    margin: 30px auto;\n    padding: 0 3em; }\n    #offer ul li {\n      margin-bottom: 15px;\n      background-color: #EEE; }\n  #prices {\n    margin-bottom: -100px; }\n    #prices .price-header {\n      padding: 45px 0 180px; }\n    #prices .container .prices-container {\n      background-color: transparent;\n      box-shadow: none; }\n    #prices .price-cat-container {\n      background-color: #fafafa;\n      padding: 10px 20px;\n      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n      margin-bottom: 40px;\n      overflow: hidden; }\n    #prices .price-row-header {\n      text-transform: uppercase;\n      font-size: 1.4em; }\n    #prices .price-row {\n      font-size: 1.1em; }\n  /*    #contact {\r\n                .container {\r\n                    max-width: 400px;\r\n                    margin: 1em auto 3em;\r\n                    padding: 0.5em 2em 1px;\r\n                }\r\n            }*/\n  #popup-overlay .popup-container #popup-dialog img {\n    height: 100%; }\n  footer {\n    text-align: center; } }\n\n@media screen and (min-width: 600px) and (min-width: 960px) {\n  body {\n    max-width: 1920px;\n    margin: 0 auto;\n    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n  #prices .container {\n    max-width: 1200px; } }\n", ""]);
+	exports.push([module.id, "@media screen and (min-width: 600px) {\n  body {\n    font-size: 16px; }\n  .container {\n    margin: 0 2em; }\n  p {\n    margin: 1em 2em; }\n  #about {\n    margin-bottom: 25px; }\n  #offer .offer-header {\n    padding: 40px 0 60px; }\n    #offer .offer-header .offer-header-content p {\n      padding: 1em 2em;\n      text-align: center; }\n  #offer ul {\n    padding: 0;\n    margin: 20px; }\n    #offer ul li {\n      margin-bottom: 10px;\n      padding: 5px;\n      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n      border-radius: 2px; }\n  #testimontials h1 {\n    padding: 20px 20px 30px; }\n  #testimontials .ref-button {\n    border-radius: 4px;\n    width: 55px;\n    height: 55px; }\n    #testimontials .ref-button .md-ripple-container {\n      border-radius: 4px; }\n    #testimontials .ref-button md-icon {\n      font-size: 32px;\n      line-height: 32px;\n      width: 32px;\n      height: 32px; }\n    #testimontials .ref-button.prev-button {\n      left: -50px; }\n    #testimontials .ref-button.next-buton {\n      right: -50px; }\n  #testimontials .ref-container-outer {\n    max-width: 450px;\n    padding: 40px 60px; }\n    #testimontials .ref-container-outer .ref-container {\n      height: 400px; }\n      #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay {\n        font-size: 1.3em; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-desc {\n          padding: 30px; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-text {\n          margin-bottom: 25px; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-author {\n          font-size: 20px; }\n  #prices {\n    margin-bottom: -70px; }\n    #prices .price-header {\n      padding: 30px 0 140px; }\n    #prices .container {\n      position: relative;\n      top: -120px; }\n      #prices .container .prices-container {\n        perspective: 1500px;\n        background-color: #fafafa;\n        padding: 1px 20px;\n        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n    #prices h3 {\n      text-align: center; }\n  #contact .container {\n    max-width: 400px;\n    margin: 1em auto 3em;\n    padding: 0.5em 2em 1px; }\n  .pagination .md-button {\n    width: 50px;\n    min-width: 65px;\n    height: 45px;\n    line-height: 40px;\n    border: 1px solid; }\n    .pagination .md-button.md-raised {\n      border: none; } }\n\n@media screen and (min-width: 960px) {\n  .container {\n    max-width: 960px;\n    margin: 1em auto;\n    padding: 0 4em; }\n  p {\n    max-width: 960px;\n    margin: 1em auto;\n    padding: 0 4em; }\n  h1 {\n    padding: 25px 3em;\n    font-size: 2.2em; }\n    h1::after {\n      height: 4px;\n      width: 80px; }\n  #baner #banerContent .md-display-1 {\n    font-size: 45px;\n    margin-bottom: 50px; }\n  #baner #banerContent .md-display-2 {\n    font-size: 70px; }\n  #about {\n    margin-bottom: 35px; }\n  #offer .offer-header {\n    padding: 40px 0 60px; }\n    #offer .offer-header .offer-header-content p {\n      padding: 1.5em 4.5em;\n      max-width: 900px;\n      margin: 15px auto 0;\n      box-sizing: border-box;\n      font-size: 1.3em;\n      background: rgba(255, 255, 255, 0.8);\n      background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0) 100%);\n      background: -o-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0) 100%);\n      background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0) 100%);\n      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0) 100%); }\n  #offer ul {\n    max-width: 960px;\n    margin: 30px auto;\n    padding: 0 3em; }\n    #offer ul li {\n      margin-bottom: 15px;\n      background-color: #EEE; }\n  #prices {\n    margin-bottom: -100px; }\n    #prices .price-header {\n      padding: 45px 0 180px; }\n    #prices .container .prices-container {\n      background-color: transparent;\n      box-shadow: none; }\n    #prices .price-cat-container {\n      background-color: #fafafa;\n      padding: 10px 20px;\n      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n      margin-bottom: 40px;\n      overflow: hidden; }\n    #prices .price-row-header {\n      text-transform: uppercase;\n      font-size: 1.4em; }\n    #prices .price-row {\n      font-size: 1.1em; }\n  /*    #contact {\r\n                .container {\r\n                    max-width: 400px;\r\n                    margin: 1em auto 3em;\r\n                    padding: 0.5em 2em 1px;\r\n                }\r\n            }*/\n  #popup-overlay .popup-container #popup-dialog img {\n    height: 100%; }\n  footer {\n    text-align: center; } }\n\n@media screen and (min-width: 960px) {\n  body {\n    max-width: 1920px;\n    margin: 0 auto;\n    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n  #prices .container {\n    max-width: 1200px; } }\n", ""]);
 
 	// exports
 
@@ -96728,7 +96728,7 @@
 
 	    function getImages() {
 	        var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-	        var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+	        var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
 
 	        var defered = $q.defer();
 	        $http.get("/api/galerry-files/" + size + "/" + page).then(function (data) {
@@ -96992,8 +96992,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	var $ = _jquery2.default;
 
 	angular.module("webApp").controller("GalleryController", ["$scope", "$timeout", "Factory", "images", function ($scope, $timeout, Factory, images) {
@@ -97001,33 +96999,43 @@
 
 	    console.log(images);
 
-	    var vm = this,
-	        page = 1;
+	    var vm = this;
+	    // page = 1;
 
-	    vm.pageLimit = images.pageLimit;
+	    // vm.pageLimit = images.pageLimit;
 	    vm.gallery = images.data;
+	    vm.pagination = images.pages;
+	    vm.selectedPage = 0;
 
-	    var ctrl = new _scrollmagic2.default.Controller();
+	    vm.getPage = function (page) {
+	        Factory.GetImages(page).then(function (res) {
+	            console.log(res);
+	            vm.gallery = res.data;
+	            vm.selectedPage = page;
+	        });
+	    };
 
-	    var scene = new _scrollmagic2.default.Scene({ triggerElement: "#loader", triggerHook: "onEnter" }).addTo(ctrl).on("enter", function (e) {
-	        if (page >= vm.pageLimit) {
-	            return;
-	        }
-	        if (!$("#loader").hasClass("active")) {
-	            $("#loader").addClass("active");
+	    // let ctrl = new ScrollMagic.Controller();
 
-	            Factory.GetImages(page).then(function (res) {
-	                var _vm$gallery;
+	    // let scene = new ScrollMagic.Scene({ triggerElement: "#loader", triggerHook: "onEnter" })
+	    //     .addTo(ctrl)
+	    //     .on("enter", function(e) {
+	    //         if (page >= vm.pageLimit) {
+	    //             return;
+	    //         }
+	    //         if (!$("#loader").hasClass("active")) {
+	    //             $("#loader").addClass("active");
 
-	                console.log(res);
-	                page++;
-	                (_vm$gallery = vm.gallery).push.apply(_vm$gallery, _toConsumableArray(res.data));
-	                vm.pageLimit = res.pageLimit;
-	                scene.update(); // make sure the scene gets the new start position
-	                $("#loader").removeClass("active");
-	            });
-	        }
-	    });
+	    //             Factory.GetImages(page).then(function(res) {
+	    //                 console.log(res);
+	    //                 page++;
+	    //                 vm.gallery.push(...res.data);
+	    //                 vm.pageLimit = res.pageLimit;
+	    //                 scene.update(); // make sure the scene gets the new start position
+	    //                 $("#loader").removeClass("active");
+	    //             });
+	    //         }
+	    //     });
 	}]);
 
 /***/ }

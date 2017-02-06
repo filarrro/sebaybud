@@ -4,5 +4,8 @@
             <div class="gallery-image" style="background: url(media/galery/{{::image.source}}) no-repeat center; background-size: cover;"></div>
         </div>
     </div>
-    <div id="loader"></div>    
+    <!--<div id="loader"></div>    -->
+    <div class="pagination" layout="row" layout-align="center">
+        <md-button class="md-primary" ng-repeat="page in vm.pagination" ng-class="{'md-raised': page === vm.selectedPage}" ng-click="vm.getPage(page)" aria-label="pagination page" ng-bind="page+1"></md-button>
+    </div>
 </div>
