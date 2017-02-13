@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack",
     "build-p": "webpack -p",
-    "watch": "webpack --watch"
+    "dev": "webpack --watch"
   },
   "dependencies": {
     "body-parser": "~1.0.1",

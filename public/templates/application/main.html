@@ -1,3 +1,4 @@
+<div id="page-content">
 <section id="baner">
     <div id="banerContent" layout="row" layout-align="center center">
         <div class="slides">
@@ -73,10 +74,10 @@
                     </div>
                 </div>
             </div>
-            <md-button class="md-fab md-mini md-primary ref-button prev-button" id="prev-testimontial">
+            <md-button class="md-fab md-mini md-primary ref-button prev-button" ng-click="testimontialSelect(false)" id="prev-testimontial">
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-button>
-            <md-button class="md-fab md-mini md-primary ref-button next-buton" id="next-testimontial">
+            <md-button class="md-fab md-mini md-primary ref-button next-buton" ng-click="testimontialSelect(true)" id="next-testimontial">
                 <md-icon class="material-icons">arrow_forward</md-icon>
             </md-button>
         </div>
@@ -152,4 +153,5 @@
 <div class="made-by italic">
     Made with
     <md-icon class="material-icons red-text">favorite</md-icon> by <a href="#" class="white-text bold underline">Filarrro</a>
+</div>
 </div>

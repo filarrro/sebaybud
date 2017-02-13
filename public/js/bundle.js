@@ -119,7 +119,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  height: auto;\n  font-family: 'Proza Libre', sans-serif;\n  min-width: 320px;\n  font-size: 14px; }\n\nsection {\n  position: relative;\n  overflow: auto; }\n\nh1 {\n  text-align: center;\n  margin: 0;\n  padding: 15px;\n  text-transform: uppercase;\n  font-size: 1.6em;\n  color: #404545; }\n  h1::after {\n    content: \"\";\n    display: block;\n    height: 2px;\n    width: 70px;\n    background-color: #404545;\n    margin: 5px auto 0; }\n\np {\n  margin: 1em; }\n\na {\n  outline: none; }\n\n.relative {\n  position: relative; }\n\n.text-center {\n  text-align: center; }\n\n.bold {\n  font-weight: 700; }\n\n.underline {\n  text-decoration: underline; }\n\n.italic {\n  font-style: italic; }\n\n.white-text {\n  color: #FFF; }\n\n.yellow-text {\n  color: #FF6F00; }\n\n.primary-text {\n  color: #FFC107; }\n\n.red-text {\n  color: #F44336; }\n\n.container {\n  margin: 0 1em; }\n\n.animated-bg {\n  height: 200%;\n  transform: translateY(0);\n  box-sizing: border-box; }\n\n#menuContent {\n  position: fixed;\n  left: -250px;\n  top: 0;\n  bottom: 0;\n  z-index: 59;\n  background-color: #404545; }\n  #menuContent #menuInner {\n    position: relative;\n    display: block;\n    padding: 60px 15px 15px;\n    width: 250px;\n    height: 100%;\n    box-sizing: border-box; }\n    #menuContent #menuInner .menuInnerButton {\n      position: relative;\n      margin: 15px 0; }\n    #menuContent #menuInner .md-button {\n      display: block;\n      width: 100%;\n      margin: 0;\n      height: 48px;\n      line-height: 48px;\n      color: #FFF;\n      background: #202020;\n      background: -webkit-linear-gradient(to top left, #202020, #656565);\n      background: -o-linear-gradient(to top left, #202020, #656565);\n      background: -moz-linear-gradient(to top left, #202020, #656565);\n      background: linear-gradient(to top left, #202020, #656565);\n      font-weight: 700; }\n\nheader {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 60; }\n  header .menuButton {\n    position: relative;\n    border: 1px solid #FFF;\n    padding: 5px;\n    background-color: #212121 !important;\n    margin: 12px; }\n    header .menuButton span {\n      display: block;\n      position: absolute;\n      height: 2px;\n      background-color: #FFF;\n      border-radius: 3px;\n      width: 20px;\n      left: 9px;\n      top: 18px; }\n      header .menuButton span:first-of-type {\n        top: 12px; }\n      header .menuButton span:last-of-type {\n        top: 24px; }\n  header .logo {\n    background: rgba(255, 255, 255, 0.8);\n    padding: 2px 10px;\n    position: fixed;\n    top: 5px;\n    right: 10px;\n    text-align: center;\n    border-radius: 50%;\n    height: 70px; }\n    header .logo img {\n      max-width: 100%;\n      max-height: 100%; }\n\n#baner {\n  height: 100%;\n  overflow: hidden; }\n  #baner #banerContent {\n    position: relative;\n    height: 100%; }\n  #baner #firmName span {\n    display: inline-block; }\n  #baner .slides {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0; }\n    #baner .slides .slide {\n      width: 100%;\n      height: 100%;\n      opacity: 0;\n      position: absolute; }\n      #baner .slides .slide.slide1 {\n        background: url(" + __webpack_require__(4) + ") no-repeat center;\n        background-size: cover; }\n      #baner .slides .slide.slide2 {\n        background: url(" + __webpack_require__(5) + ") no-repeat center;\n        background-size: cover; }\n      #baner .slides .slide.slide3 {\n        background: url(" + __webpack_require__(6) + ") no-repeat center;\n        background-size: cover; }\n  #baner .baner-overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(0, 0, 0, 0.6); }\n\n#about p {\n  text-align: justify; }\n\n#offer {\n  overflow: hidden; }\n  #offer .offer-header {\n    overflow: hidden;\n    position: relative;\n    padding: 15px 0 30px;\n    background-color: #000;\n    box-sizing: border-box; }\n    #offer .offer-header .bg {\n      position: absolute;\n      left: 0;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      background: url(" + __webpack_require__(7) + ") no-repeat center;\n      background-size: cover;\n      opacity: .4; }\n    #offer .offer-header .offer-header-content {\n      position: relative; }\n      #offer .offer-header .offer-header-content h1 {\n        color: #FFF; }\n        #offer .offer-header .offer-header-content h1::after {\n          background-color: #FFF; }\n      #offer .offer-header .offer-header-content p {\n        background-color: rgba(255, 255, 255, 0.7);\n        margin: 0;\n        padding: 1em; }\n  #offer ul {\n    list-style: none;\n    padding: 0;\n    margin: 20px; }\n    #offer ul li {\n      margin-bottom: 5px; }\n\n#testimontials h1 {\n  background-color: #404545;\n  color: #FFF; }\n  #testimontials h1::after {\n    background-color: #FFF; }\n\n#testimontials .ref-button {\n  color: #FFF;\n  position: absolute;\n  top: 43%; }\n  #testimontials .ref-button.prev-button {\n    left: -1em; }\n  #testimontials .ref-button.next-buton {\n    right: -1em; }\n  #testimontials .ref-button md-icon {\n    color: inherit; }\n\n#testimontials .ref-container-outer {\n  margin: auto;\n  max-width: 450px;\n  padding: 20px 40px;\n  overflow: hidden;\n  box-sizing: border-box; }\n  #testimontials .ref-container-outer .ref-container {\n    position: relative;\n    height: 300px; }\n    #testimontials .ref-container-outer .ref-container .ref-slide {\n      position: absolute;\n      top: 0;\n      left: 20px;\n      right: 20px;\n      bottom: 0;\n      text-align: center;\n      opacity: 0; }\n      #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay {\n        position: absolute;\n        top: 0;\n        left: 0;\n        right: 0;\n        bottom: 0;\n        background-color: rgba(0, 0, 0, 0.65);\n        color: #FFF;\n        font-size: 1.2em;\n        font-weight: 700; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-desc {\n          padding: 20px; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-text {\n          margin-bottom: 15px; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-author {\n          font-size: 14px;\n          font-weight: normal;\n          text-align: right; }\n\n#prices {\n  margin-bottom: 30px;\n  overflow: hidden; }\n  #prices .price-header {\n    overflow: hidden;\n    position: relative;\n    padding: 20px 0 60px;\n    box-sizing: border-box; }\n    #prices .price-header .price-bg {\n      position: absolute;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      background: url(" + __webpack_require__(8) + ") no-repeat center;\n      background-size: cover;\n      opacity: .3; }\n    #prices .price-header h1 {\n      position: relative; }\n  #prices .price-cat-container {\n    perspective: 700px;\n    max-height: none; }\n  #prices .price-row {\n    background-color: #FFF;\n    padding: 7px 10px;\n    margin: 10px 0;\n    backface-visibility: hidden;\n    border-radius: 4px; }\n    #prices .price-row .price {\n      font-weight: 700;\n      color: #FFC107;\n      text-align: right; }\n\n#contact {\n  position: relative; }\n  #contact .contact-bg {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: url(" + __webpack_require__(9) + ") no-repeat center left;\n    background-size: cover; }\n  #contact h1 {\n    position: relative;\n    color: #FFF; }\n    #contact h1::after {\n      background-color: #FFF; }\n  #contact .container {\n    padding: 0.5em 1em 1px;\n    background-color: rgba(255, 255, 255, 0.93);\n    position: relative;\n    border-radius: 4px;\n    margin: 1em 1em 3em; }\n  #contact form .md-errors-spacer {\n    display: none; }\n  #contact form button {\n    color: #FFF;\n    width: 200px; }\n    #contact form button md-icon {\n      color: inherit; }\n\n#popup-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.75);\n  z-index: -1; }\n  #popup-overlay .popup-container {\n    margin: 30px; }\n    #popup-overlay .popup-container #popup-cancel {\n      width: 40px;\n      min-width: auto;\n      height: 40px;\n      margin: 5px 0;\n      border: 2px solid;\n      color: #FFF; }\n      #popup-overlay .popup-container #popup-cancel md-icon {\n        color: inherit; }\n    #popup-overlay .popup-container #popup-dialog {\n      width: 100%;\n      background-color: #FFF;\n      z-index: -1;\n      max-height: 75%; }\n      #popup-overlay .popup-container #popup-dialog img {\n        max-height: 100%;\n        max-width: 100%; }\n\nfooter {\n  padding: 10px 15px;\n  background-color: #FFC107;\n  color: rgba(0, 0, 0, 0.87); }\n\n.made-by {\n  background-color: #FFA000;\n  padding: 10px;\n  text-align: center;\n  color: #FFF; }\n\n/*** GALERY ***/\n#gallery .img-container {\n  width: 150px;\n  height: 120px;\n  margin: 20px; }\n  #gallery .img-container img {\n    max-width: 100%; }\n  #gallery .img-container .gallery-image {\n    width: 100%;\n    height: 100%; }\n\n#gallery .gallery-container {\n  max-width: 960px;\n  margin: 20px auto; }\n\n#gallery #loader {\n  height: 15px;\n  background-color: #DDD;\n  margin-top: 20px; }\n", ""]);
+	exports.push([module.id, "body {\n  font-family: 'Proza Libre', sans-serif;\n  min-width: 320px;\n  font-size: 14px;\n  overflow: hidden; }\n\n#page-content {\n  height: 100%;\n  box-sizing: border-box;\n  overflow: auto; }\n\nsection {\n  position: relative;\n  overflow: auto; }\n\nh1 {\n  text-align: center;\n  margin: 0;\n  padding: 15px;\n  text-transform: uppercase;\n  font-size: 1.6em;\n  color: #404545; }\n  h1::after {\n    content: \"\";\n    display: block;\n    height: 2px;\n    width: 70px;\n    background-color: #404545;\n    margin: 5px auto 0; }\n\np {\n  margin: 1em; }\n\na {\n  outline: none; }\n\n.relative {\n  position: relative; }\n\n.text-center {\n  text-align: center; }\n\n.bold {\n  font-weight: 700; }\n\n.underline {\n  text-decoration: underline; }\n\n.italic {\n  font-style: italic; }\n\n.white-text {\n  color: #FFF; }\n\n.yellow-text {\n  color: #FF6F00; }\n\n.primary-text {\n  color: #FFC107; }\n\n.red-text {\n  color: #F44336; }\n\n.container {\n  margin: 0 1em; }\n\n.animated-bg {\n  height: 200%;\n  transform: translateY(0);\n  box-sizing: border-box; }\n\n#menuContent {\n  position: fixed;\n  left: -250px;\n  top: 0;\n  bottom: 0;\n  z-index: 59;\n  background-color: #404545; }\n  #menuContent #menuInner {\n    position: relative;\n    display: block;\n    padding: 60px 15px 15px;\n    width: 250px;\n    height: 100%;\n    box-sizing: border-box; }\n    #menuContent #menuInner .menuInnerButton {\n      position: relative;\n      margin: 15px 0; }\n    #menuContent #menuInner .md-button {\n      display: block;\n      width: 100%;\n      margin: 0;\n      height: 48px;\n      line-height: 48px;\n      color: #FFF;\n      background: #202020;\n      background: -webkit-linear-gradient(to top left, #202020, #656565);\n      background: -o-linear-gradient(to top left, #202020, #656565);\n      background: -moz-linear-gradient(to top left, #202020, #656565);\n      background: linear-gradient(to top left, #202020, #656565);\n      font-weight: 700; }\n\nheader {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 60; }\n  header .menuButton {\n    position: relative;\n    border: 1px solid #FFF;\n    padding: 5px;\n    background-color: #212121 !important;\n    margin: 12px; }\n    header .menuButton span {\n      display: block;\n      position: absolute;\n      height: 2px;\n      background-color: #FFF;\n      border-radius: 3px;\n      width: 20px;\n      left: 9px;\n      top: 18px; }\n      header .menuButton span:first-of-type {\n        top: 12px; }\n      header .menuButton span:last-of-type {\n        top: 24px; }\n  header .logo {\n    background: rgba(255, 255, 255, 0.8);\n    padding: 2px 10px;\n    position: fixed;\n    top: 5px;\n    right: 10px;\n    text-align: center;\n    border-radius: 50%;\n    height: 70px; }\n    header .logo img {\n      max-width: 100%;\n      max-height: 100%; }\n\n#baner {\n  height: 100%;\n  overflow: hidden; }\n  #baner #banerContent {\n    position: relative;\n    height: 100%; }\n  #baner #firmName span {\n    display: inline-block; }\n  #baner .slides {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0; }\n    #baner .slides .slide {\n      width: 100%;\n      height: 100%;\n      opacity: 0;\n      position: absolute; }\n      #baner .slides .slide.slide1 {\n        background: url(" + __webpack_require__(4) + ") no-repeat center;\n        background-size: cover; }\n      #baner .slides .slide.slide2 {\n        background: url(" + __webpack_require__(5) + ") no-repeat center;\n        background-size: cover; }\n      #baner .slides .slide.slide3 {\n        background: url(" + __webpack_require__(6) + ") no-repeat center;\n        background-size: cover; }\n  #baner .baner-overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(0, 0, 0, 0.6); }\n\n#about p {\n  text-align: justify; }\n\n#offer {\n  overflow: hidden; }\n  #offer .offer-header {\n    overflow: hidden;\n    position: relative;\n    padding: 15px 0 30px;\n    background-color: #000;\n    box-sizing: border-box; }\n    #offer .offer-header .bg {\n      position: absolute;\n      left: 0;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      background: url(" + __webpack_require__(7) + ") no-repeat center;\n      background-size: cover;\n      opacity: .4; }\n    #offer .offer-header .offer-header-content {\n      position: relative; }\n      #offer .offer-header .offer-header-content h1 {\n        color: #FFF; }\n        #offer .offer-header .offer-header-content h1::after {\n          background-color: #FFF; }\n      #offer .offer-header .offer-header-content p {\n        background-color: rgba(255, 255, 255, 0.7);\n        margin: 0;\n        padding: 1em; }\n  #offer ul {\n    list-style: none;\n    padding: 0;\n    margin: 20px; }\n    #offer ul li {\n      margin-bottom: 5px; }\n\n#testimontials h1 {\n  background-color: #404545;\n  color: #FFF; }\n  #testimontials h1::after {\n    background-color: #FFF; }\n\n#testimontials .ref-button {\n  color: #FFF;\n  position: absolute;\n  top: 43%; }\n  #testimontials .ref-button.prev-button {\n    left: -1em; }\n  #testimontials .ref-button.next-buton {\n    right: -1em; }\n  #testimontials .ref-button md-icon {\n    color: inherit; }\n\n#testimontials .ref-container-outer {\n  margin: auto;\n  max-width: 450px;\n  padding: 20px 40px;\n  overflow: hidden;\n  box-sizing: border-box; }\n  #testimontials .ref-container-outer .ref-container {\n    position: relative;\n    height: 300px; }\n    #testimontials .ref-container-outer .ref-container .ref-slide {\n      position: absolute;\n      top: 0;\n      left: 20px;\n      right: 20px;\n      bottom: 0;\n      text-align: center;\n      opacity: 0; }\n      #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay {\n        position: absolute;\n        top: 0;\n        left: 0;\n        right: 0;\n        bottom: 0;\n        background-color: rgba(0, 0, 0, 0.65);\n        color: #FFF;\n        font-size: 1.2em;\n        font-weight: 700; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-desc {\n          padding: 20px; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-text {\n          margin-bottom: 15px; }\n        #testimontials .ref-container-outer .ref-container .ref-slide .ref-overlay .testmontial-author {\n          font-size: 14px;\n          font-weight: normal;\n          text-align: right; }\n\n#prices {\n  margin-bottom: 30px;\n  overflow: hidden; }\n  #prices .price-header {\n    overflow: hidden;\n    position: relative;\n    padding: 20px 0 60px;\n    box-sizing: border-box; }\n    #prices .price-header .price-bg {\n      position: absolute;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      background: url(" + __webpack_require__(8) + ") no-repeat center;\n      background-size: cover;\n      opacity: .3; }\n    #prices .price-header h1 {\n      position: relative; }\n  #prices .price-cat-container {\n    perspective: 700px;\n    max-height: none; }\n  #prices .price-row {\n    background-color: #FFF;\n    padding: 7px 10px;\n    margin: 10px 0;\n    backface-visibility: hidden;\n    border-radius: 4px; }\n    #prices .price-row .price {\n      font-weight: 700;\n      color: #FFC107;\n      text-align: right; }\n\n#contact {\n  position: relative; }\n  #contact .contact-bg {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: url(" + __webpack_require__(9) + ") no-repeat center left;\n    background-size: cover; }\n  #contact h1 {\n    position: relative;\n    color: #FFF; }\n    #contact h1::after {\n      background-color: #FFF; }\n  #contact .container {\n    padding: 0.5em 1em 1px;\n    background-color: rgba(255, 255, 255, 0.93);\n    position: relative;\n    border-radius: 4px;\n    margin: 1em 1em 3em; }\n  #contact form .md-errors-spacer {\n    display: none; }\n  #contact form button {\n    color: #FFF;\n    width: 200px; }\n    #contact form button md-icon {\n      color: inherit; }\n\n#popup-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.75);\n  z-index: -1; }\n  #popup-overlay .popup-container {\n    margin: 30px; }\n    #popup-overlay .popup-container #popup-cancel {\n      width: 40px;\n      min-width: auto;\n      height: 40px;\n      margin: 5px 0;\n      border: 2px solid;\n      color: #FFF; }\n      #popup-overlay .popup-container #popup-cancel md-icon {\n        color: inherit; }\n    #popup-overlay .popup-container #popup-dialog {\n      width: 100%;\n      background-color: #FFF;\n      z-index: -1;\n      max-height: 75%; }\n      #popup-overlay .popup-container #popup-dialog img {\n        max-height: 100%;\n        max-width: 100%; }\n\nfooter {\n  padding: 10px 15px;\n  background-color: #FFC107;\n  color: rgba(0, 0, 0, 0.87); }\n\n.made-by {\n  background-color: #FFA000;\n  padding: 10px;\n  text-align: center;\n  color: #FFF; }\n\n/*** GALERY ***/\n#gallery .img-container {\n  width: 150px;\n  height: 120px;\n  margin: 20px; }\n  #gallery .img-container img {\n    max-width: 100%; }\n  #gallery .img-container .gallery-image {\n    width: 100%;\n    height: 100%; }\n\n#gallery .gallery-container {\n  max-width: 960px;\n  margin: 20px auto; }\n\n#gallery #loader {\n  height: 15px;\n  background-color: #DDD;\n  margin-top: 20px; }\n\n#gallery-popup img {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 0;\n  bottom: 0; }\n  #gallery-popup img:first-of-type {\n    position: relative;\n    width: 100%; }\n", ""]);
 
 	// exports
 
@@ -96678,21 +96678,28 @@
 	            }]
 	        }
 	    });
-	}]).run(["$rootScope", function ($rootScope) {
+	}]).run(["$rootScope", "$state", function ($rootScope, $state) {
 	    "ngInject";
 
-	    var menuOpened = false,
-	        menuContainer = angular.element(document.querySelector('#menuContent')),
-	        MenuTL = new TimelineMax({ paused: true });
+	    var TM = TweenMax,
+	        menuOpened = false,
+	        menuContainer = angular.element(document.querySelector('#menuContent'));
 
 	    $rootScope.toggleMenu = toggleMenu;
-	    MenuTL.fromTo(menuContainer, 0.3, { x: "0%" }, { x: "100%" });
+	    $rootScope.go = go;
+
+	    function go(state, params) {
+	        TM.killAll();
+	        TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
+	        menuOpened = false;
+	        $state.go(state, params);
+	    }
 
 	    function toggleMenu() {
 	        if (!menuOpened) {
-	            MenuTL.play();
+	            TM.fromTo(menuContainer, 0.3, { x: "0%" }, { x: "100%" });
 	        } else {
-	            MenuTL.reverse();
+	            TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
 	        }
 	        menuOpened = !menuOpened;
 	    }
@@ -96772,10 +96779,6 @@
 
 	"use strict";
 
-	var _jquery = __webpack_require__(13);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
 	var _gsap = __webpack_require__(14);
 
 	var _scrollmagic = __webpack_require__(16);
@@ -96784,13 +96787,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var $ = _jquery2.default;
-
 	angular.module("webApp").controller("MainController", ["$rootScope", "$scope", "$timeout", "Factory", function ($rootScope, $scope, $timeout, Factory) {
 	    "ngInject";
 
 	    var TM = _gsap.TweenMax,
-	        SMController = new _scrollmagic2.default.Controller(),
+	        SMController = new _scrollmagic2.default.Controller({ container: "#page-content" }),
 	        i = void 0,
 	        len = void 0;
 
@@ -96819,13 +96820,31 @@
 	        $scope.modalData = item;
 	        $timeout(function () {
 	            var tween = new TimelineMax();
-	            tween.fromTo($("#popup-overlay"), 0.5, { autoAlpha: 0, zIndex: 70 }, { autoAlpha: 1, zIndex: 70 }).fromTo($("#popup-dialog"), 1, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, ease: Elastic.easeOut }, "-= 0.2");
+	            tween.fromTo(document.getElementById("popup-overlay"), 0.5, {
+	                autoAlpha: 0,
+	                zIndex: 70
+	            }, {
+	                autoAlpha: 1,
+	                zIndex: 70
+	            }).fromTo(document.getElementById("popup-dialog"), 1, {
+	                scale: 0, opacity: 0
+	            }, {
+	                scale: 1, opacity: 1, ease: Elastic.easeOut
+	            }, "-= 0.2");
 	        });
 	    }
 
 	    function hidePopup() {
 	        var tween = new TimelineMax();
-	        tween.fromTo($("#popup-dialog"), 0.5, { scale: 1, opacity: 1 }, { scale: 0, opacity: 0, ease: Back.easeIn }).fromTo($("#popup-overlay"), 0.3, { autoAlpha: 1, zIndex: 70 }, { autoAlpha: 1, zIndex: 70 }, "-= 0.3").set($("#popup-overlay"), { zIndex: -1 });
+	        tween.fromTo(document.getElementById("popup-dialog"), 0.5, {
+	            scale: 1, opacity: 1
+	        }, {
+	            scale: 0, opacity: 0, ease: Back.easeIn
+	        }).fromTo(document.getElementById("popup-overlay"), 0.3, {
+	            autoAlpha: 1, zIndex: 70
+	        }, {
+	            autoAlpha: 1, zIndex: 70
+	        }, "-= 0.3").set(document.getElementById("popup-overlay"), { zIndex: -1 });
 	    }
 
 	    bannerParallaxTween = new TimelineMax();
@@ -96854,12 +96873,20 @@
 	        $scope.priceCategories = response.categories;
 	        $scope.testimontials = response.testimontials;
 
+	        $scope.testimontialSelect = function (next) {
+	            if (next) {
+	                $scope.testimontialCarousel.next();
+	            } else {
+	                $scope.testimontialCarousel.prev();
+	            }
+	        };
+
 	        $timeout(function () {
 	            var slider = {
 	                actual: 0,
 	                before: null,
-	                slides: $(".slide"),
-	                length: $(".slide").length,
+	                slides: document.getElementsByClassName("slide"),
+	                length: document.getElementsByClassName("slide").length,
 	                start: function start() {
 	                    TM.to(this.slides[0], 2, {
 	                        alpha: 1,
@@ -96886,25 +96913,21 @@
 
 	            slider.start();
 
-	            var testimontialCarousel = {
+	            $scope.testimontialCarousel = {
 	                actual: 0,
-	                array: $("#testimontials .ref-slide"),
-	                length: $("#testimontials .ref-slide").length,
+	                array: document.getElementById("testimontials").getElementsByClassName("ref-slide"),
+	                length: document.getElementById("testimontials").getElementsByClassName("ref-slide").length,
 	                build: function build() {
-	                    console.log(this.length + " testimontials found");
 	                    TM.set(this.array[0], { alpha: 1, scale: 1, zIndex: 4 });
-	                    $("#next-testimontial").click(function () {
-	                        this.next();
-	                    }.bind(this));
-	                    $("#prev-testimontial").click(function () {
-	                        this.prev();
-	                    }.bind(this));
 	                },
 	                next: function next() {
-	                    console.log("next testimontial");
 	                    var tween = new TimelineMax(),
 	                        n = this.actual + 1 < this.length && this.actual + 1 || 0;
-	                    tween.fromTo(this.array[this.actual], 0.6, { xPercent: 0, alpha: 1, scale: 1, zIndex: 2 }, { alpha: 0, scale: 0, xPercent: -100, zIndex: 2, ease: Power2.easeOut }, 0).fromTo(this.array[n], 0.6, { alpha: 0, scale: 0, xPercent: 100, zIndex: 4 }, {
+	                    tween.fromTo(this.array[this.actual], 0.6, {
+	                        xPercent: 0, alpha: 1, scale: 1, zIndex: 2
+	                    }, {
+	                        alpha: 0, scale: 0, xPercent: -100, zIndex: 2, ease: Power2.easeOut
+	                    }, 0).fromTo(this.array[n], 0.6, { alpha: 0, scale: 0, xPercent: 100, zIndex: 4 }, {
 	                        alpha: 1,
 	                        scale: 1,
 	                        xPercent: 0,
@@ -96916,11 +96939,14 @@
 	                    }, 0);
 	                },
 	                prev: function prev() {
-	                    console.log("prev testimontial");
 	                    var tween = new TimelineMax(),
 	                        n = this.actual > 0 ? this.actual - 1 : this.length - 1;
-	                    console.log(this.actual + " " + n);
-	                    tween.fromTo(this.array[this.actual], 0.6, { xPercent: 0, alpha: 1, scale: 1, zIndex: 2 }, { alpha: 0, scale: 0, xPercent: 100, zIndex: 2, ease: Power2.easeOut }, 0).fromTo(this.array[n], 0.6, { alpha: 0, scale: 0, xPercent: -100, zIndex: 4 }, {
+
+	                    tween.fromTo(this.array[this.actual], 0.6, {
+	                        xPercent: 0, alpha: 1, scale: 1, zIndex: 2
+	                    }, {
+	                        alpha: 0, scale: 0, xPercent: 100, zIndex: 2, ease: Power2.easeOut
+	                    }, 0).fromTo(this.array[n], 0.6, { alpha: 0, scale: 0, xPercent: -100, zIndex: 4 }, {
 	                        alpha: 1,
 	                        scale: 1,
 	                        xPercent: 0,
@@ -96933,7 +96959,7 @@
 	                }
 	            };
 
-	            testimontialCarousel.build();
+	            $scope.testimontialCarousel.build();
 
 	            offerRows = document.getElementsByClassName('offer-row');
 	            len = offerRows.length;
@@ -96972,6 +96998,11 @@
 	            }
 	        });
 	    }
+
+	    $scope.$on("$destroy", function () {
+	        SMController.destroy(true);
+	        SMController = null;
+	    });
 	}]);
 
 /***/ },
@@ -96980,62 +97011,99 @@
 
 	"use strict";
 
-	var _jquery = __webpack_require__(13);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
 	var _gsap = __webpack_require__(14);
 
-	var _scrollmagic = __webpack_require__(16);
-
-	var _scrollmagic2 = _interopRequireDefault(_scrollmagic);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var $ = _jquery2.default;
-
-	angular.module("webApp").controller("GalleryController", ["$scope", "$timeout", "Factory", "images", function ($scope, $timeout, Factory, images) {
+	angular.module("webApp").controller("GalleryController", ["$timeout", "$mdDialog", "Factory", "images", function ($timeout, $mdDialog, Factory, images) {
 	    "ngInject";
 
 	    console.log(images);
 
 	    var vm = this;
-	    // page = 1;
 
-	    // vm.pageLimit = images.pageLimit;
 	    vm.gallery = images.data;
 	    vm.pagination = images.pages;
 	    vm.selectedPage = 0;
 
-	    vm.getPage = function (page) {
+	    vm.show = show;
+	    vm.getPage = getPage;
+
+	    function getPage(page) {
 	        Factory.GetImages(page).then(function (res) {
 	            console.log(res);
 	            vm.gallery = res.data;
 	            vm.selectedPage = page;
 	        });
-	    };
+	    }
 
-	    // let ctrl = new ScrollMagic.Controller();
+	    function show(ev) {
+	        $mdDialog.show({
+	            controller: "GalleryDialogController",
+	            controllerAs: "vm",
+	            templateUrl: "/templates/application/gallery.tmpl.html",
+	            parent: angular.element(document.body),
+	            targetEvent: ev,
+	            clickOutsideToClose: true,
+	            locals: {
+	                images: vm.gallery
+	            }
+	        }).then(function () {}, function () {});
+	    }
+	}]).controller("GalleryDialogController", ["$timeout", "$mdDialog", "images", function ($timeout, $mdDialog, images) {
+	    "ngInject";
 
-	    // let scene = new ScrollMagic.Scene({ triggerElement: "#loader", triggerHook: "onEnter" })
-	    //     .addTo(ctrl)
-	    //     .on("enter", function(e) {
-	    //         if (page >= vm.pageLimit) {
-	    //             return;
-	    //         }
-	    //         if (!$("#loader").hasClass("active")) {
-	    //             $("#loader").addClass("active");
+	    var vm = this,
+	        TM = _gsap.TweenMax,
+	        len = images.length - 1;
 
-	    //             Factory.GetImages(page).then(function(res) {
-	    //                 console.log(res);
-	    //                 page++;
-	    //                 vm.gallery.push(...res.data);
-	    //                 vm.pageLimit = res.pageLimit;
-	    //                 scene.update(); // make sure the scene gets the new start position
-	    //                 $("#loader").removeClass("active");
-	    //             });
-	    //         }
-	    //     });
+	    var index = 0;
+
+	    vm.images = images;
+	    vm.actual = images[index].source;
+
+	    vm.close = close;
+	    vm.next = next;
+	    vm.prev = prev;
+
+	    function close() {
+	        $mdDialog.cancel();
+	    }
+
+	    function getNext(diff) {
+	        index += diff;
+	        if (index < 0) {
+	            index = len;
+	        } else if (index > len) {
+	            index = 0;
+	        }
+	    }
+
+	    function next() {
+	        getNext(1);
+	        vm.future = vm.images[index].source;
+	        $timeout(function () {
+	            TM.to(document.getElementById("actual"), 0.5, { alpha: 0 });
+	            TM.to(document.getElementById("future"), 0.5, { alpha: 1 });
+	            $timeout(function () {
+	                vm.actual = vm.images[index].source;
+	                TM.set(document.getElementById("actual"), { alpha: 1 });
+	                TM.set(document.getElementById("future"), { alpha: 0 });
+	            }, 510);
+	        });
+	    }
+
+	    function prev() {
+	        getNext(-1);
+	        vm.future = vm.images[index].source;
+	        $timeout(function () {
+	            TM.to(document.getElementById("actual"), 0.5, { alpha: 0 });
+	            TM.to(document.getElementById("future"), 0.5, { alpha: 1 });
+	            $timeout(function () {
+	                vm.actual = vm.images[index].source;
+	                TM.set(document.getElementById("actual"), { alpha: 1 });
+	                TM.set(document.getElementById("future"), { alpha: 0 });
+	            }, 510);
+	        });
+	    }
 	}]);
 
 /***/ }

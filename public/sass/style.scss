@@ -15,10 +15,16 @@ $darkGray: #404545;
 }
 
 body {
-    height: auto;
     font-family: 'Proza Libre', sans-serif;
     min-width: 320px;
     font-size: 14px;
+    overflow: hidden;
+}
+
+#page-content {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
 }
 
 section {
@@ -486,5 +492,19 @@ footer {
         height: 15px;
         background-color: #DDD;
         margin-top: 20px;
+    }
+}
+
+#gallery-popup {
+    img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        &:first-of-type {
+            position: relative;
+            width: 100%;
+        }
     }
 }

@@ -12,10 +12,10 @@
         <div id="menuContent">
             <div id="menuInner" layout="column" layout-align="space-between">
                 <div class="menuInnerButton">
-                    <md-button class="md-whiteframe-3dp" ui-sref="home">Start</md-button>
+                    <md-button class="md-whiteframe-3dp" ng-click="go('home')">Start</md-button>
                 </div>
                 <div class="menuInnerButton">
-                    <md-button class="md-whiteframe-3dp" ui-sref="gallery">Galeria</md-button>
+                    <md-button class="md-whiteframe-3dp" ng-click="go('gallery')">Galeria</md-button>
                 </div>
                 <div class="menuInnerButton">
                     <md-button class="md-whiteframe-3dp">O firmie</md-button>
@@ -49,9 +49,7 @@
             </div>
         </header>
 
-        <div id="page-content">
-            <ui-view></ui-view>
-        </div>
+        <ui-view></ui-view>
 
         <script src="js/bundle.js"></script>
         

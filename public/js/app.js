@@ -35,21 +35,28 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
                 }
             });
     })
-    .run(function($rootScope) {
+    .run(function($rootScope, $state) {
         "ngInject";
 
-        let menuOpened = false,
-            menuContainer = angular.element(document.querySelector('#menuContent')),
-            MenuTL = new TimelineMax({ paused: true });
+        let TM = TweenMax,
+            menuOpened = false,
+            menuContainer = angular.element(document.querySelector('#menuContent'));
 
         $rootScope.toggleMenu = toggleMenu;
-        MenuTL.fromTo(menuContainer, 0.3, { x: "0%" }, { x: "100%" });
+        $rootScope.go = go;
+
+        function go(state, params) {
+            TM.killAll();
+            TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
+            menuOpened = false;
+            $state.go( state, params );
+        }
 
         function toggleMenu() {
             if (!menuOpened) {
-                MenuTL.play();
+                TM.fromTo(menuContainer, 0.3, { x: "0%" }, { x: "100%" });
             } else {
-                MenuTL.reverse();
+                TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
             }
             menuOpened = !menuOpened;
         }

@@ -1,11 +1,13 @@
-<div id="gallery">
-    <div class="gallery-container" layout="row" layout-align="center" layout-wrap>
-        <div class="md-whiteframe-4dp img-container" ng-repeat="image in vm.gallery track by image.id">
-            <div class="gallery-image" style="background: url(media/galery/{{::image.source}}) no-repeat center; background-size: cover;"></div>
+<div id="page-content">
+    <div id="gallery">
+        <div class="gallery-container" layout="row" layout-align="center" layout-wrap>
+            <div class="md-whiteframe-4dp img-container" ng-repeat="image in vm.gallery track by image.id">
+                <div class="gallery-image" ng-click="vm.show($event)" style="background: url(media/galery/{{::image.source}}) no-repeat center; background-size: cover;"></div>
+            </div>
         </div>
-    </div>
-    <!--<div id="loader"></div>    -->
-    <div class="pagination" layout="row" layout-align="center">
-        <md-button class="md-primary" ng-repeat="page in vm.pagination" ng-class="{'md-raised': page === vm.selectedPage}" ng-click="vm.getPage(page)" aria-label="pagination page" ng-bind="page+1"></md-button>
+        <!--<div id="loader"></div>    -->
+        <div class="pagination" layout="row" layout-align="center">
+            <md-button class="md-primary" ng-repeat="page in vm.pagination" ng-class="{'md-raised': page === vm.selectedPage}" ng-click="vm.getPage(page)" aria-label="pagination page" ng-bind="page+1"></md-button>
+        </div>
     </div>
 </div>

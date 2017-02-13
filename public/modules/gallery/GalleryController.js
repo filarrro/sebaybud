@@ -1,53 +1,101 @@
 "use strict";
 
-import jQuery from 'jquery';
 import { TweenMax } from 'gsap';
-import ScrollMagic from 'scrollmagic';
-var $ = jQuery;
 
 angular
     .module("webApp")
-    .controller("GalleryController", function($scope, $timeout, Factory, images) {
+    .controller("GalleryController", function($timeout, $mdDialog, Factory, images) {
         "ngInject";
 
         console.log(images);
 
         let vm = this;
-        // page = 1;
 
-        // vm.pageLimit = images.pageLimit;
         vm.gallery = images.data;
         vm.pagination = images.pages;
         vm.selectedPage = 0;
 
-        vm.getPage = (page) => {
+        vm.show = show;
+        vm.getPage = getPage;
+        
+        function getPage(page) {
             Factory.GetImages(page).then(function(res) {
                 console.log(res);
                 vm.gallery = res.data;
                 vm.selectedPage = page;
             });
-        };
+        }
 
-        // let ctrl = new ScrollMagic.Controller();
+        function show(ev) {
+            $mdDialog.show({
+                controller: "GalleryDialogController",
+                controllerAs: "vm",
+                templateUrl: "/templates/application/gallery.tmpl.html",
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                locals: {
+                    images: vm.gallery
+                }
+            }).then(() => {}, () => {});
+        }
 
-        // let scene = new ScrollMagic.Scene({ triggerElement: "#loader", triggerHook: "onEnter" })
-        //     .addTo(ctrl)
-        //     .on("enter", function(e) {
-        //         if (page >= vm.pageLimit) {
-        //             return;
-        //         }
-        //         if (!$("#loader").hasClass("active")) {
-        //             $("#loader").addClass("active");
+    })
+    .controller("GalleryDialogController", function($timeout, $mdDialog, images) {
+        "ngInject";
 
-        //             Factory.GetImages(page).then(function(res) {
-        //                 console.log(res);
-        //                 page++;
-        //                 vm.gallery.push(...res.data);
-        //                 vm.pageLimit = res.pageLimit;
-        //                 scene.update(); // make sure the scene gets the new start position
-        //                 $("#loader").removeClass("active");
-        //             });
-        //         }
-        //     });
+        const vm = this,
+              TM = TweenMax,
+              len = images.length - 1;
+
+        let index = 0;
+
+        vm.images = images;
+        vm.actual = images[index].source;
+
+        vm.close = close;
+        vm.next = next;
+        vm.prev = prev;
+
+        function close() {
+            $mdDialog.cancel();
+        }
+
+        function getNext(diff) {
+            index += diff;
+            if (index < 0) {
+                index = len;
+            } else if (index > len) {
+                index = 0;
+            }
+        }
+
+        function next() {
+            getNext(1);
+            vm.future = vm.images[index].source;
+            $timeout(() => {
+                TM.to(document.getElementById("actual"), 0.5, {alpha: 0});
+                TM.to(document.getElementById("future"), 0.5, {alpha: 1});
+                $timeout(() => {
+                    vm.actual = vm.images[index].source;
+                    TM.set(document.getElementById("actual"), {alpha: 1});
+                    TM.set(document.getElementById("future"), {alpha: 0});
+                }, 510);
+            });
+        }
+
+        function prev() {
+            getNext(-1);
+            vm.future = vm.images[index].source;
+            $timeout(() => {
+                TM.to(document.getElementById("actual"), 0.5, {alpha: 0});
+                TM.to(document.getElementById("future"), 0.5, {alpha: 1});
+                $timeout(() => {
+                    vm.actual = vm.images[index].source;
+                    TM.set(document.getElementById("actual"), {alpha: 1});
+                    TM.set(document.getElementById("future"), {alpha: 0});
+                }, 510);
+            });
+        }
 
     });
