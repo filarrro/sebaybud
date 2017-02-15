@@ -26,6 +26,8 @@ angular
         $scope.showReference = showReference;
         $scope.hidePopup = hidePopup;
 
+        $scope.togglePriceDetails = togglePriceDetails;
+
 
         Factory.GetData().then(handleData);
 
@@ -64,6 +66,19 @@ angular
                     autoAlpha: 1, zIndex: 70
                 }, "-= 0.3")
                 .set(document.getElementById("popup-overlay"), { zIndex: -1 });
+        }
+
+        function togglePriceDetails(ind) {
+            console.log(ind);
+            let target = document.getElementById(`price-details-${ind}`);
+            const height = target.offsetHeight;
+
+            if (height === 0) {
+                TM.set(target, {height: "auto"});
+                TM.from(target, 0.6, {height: 0, ease: Power1.easeInOut});
+            } else {
+                TM.to(target, 0.5, {height: 0});
+            }
         }
 
         bannerParallaxTween = new TimelineMax();
@@ -217,19 +232,6 @@ angular
                         .addTo(SMController);
                 }
 
-                priceRows = document.getElementsByClassName('price-row');
-                len = priceRows.length;
-                for (i = 0; i < len; i++) {
-                    let tween = TM.fromTo(priceRows[i], 0.3, { y: 50, alpha: 0 }, { y: 0, alpha: 1 });
-                    new ScrollMagic.Scene({
-                            triggerElement: priceRows[i],
-                            triggerHook: 'onCenter',
-                            offset: -150,
-                            reverse: false
-                        })
-                        .setTween(tween)
-                        .addTo(SMController);
-                }
             });
         }
 

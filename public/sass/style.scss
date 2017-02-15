@@ -365,13 +365,33 @@ header {
     .price-cat-container {
         perspective: 700px;
         max-height: none;
+        position: relative;
+        overflow: hidden;
+        margin: 10px 0;
+        h3 {
+            margin: 0;
+        }
+        // &::after {
+        //     display: block;
+        //     content: '';
+        //     background-color: $primaryDark;
+        //     height: 100%;
+        //     position: absolute;
+        //     top: 0;
+        //     width: 100%;
+        //     left: 10px;
+        // }
+        .price-row-details {
+            overflow: hidden;
+            height: 0;
+        }
     }
     .price-row {
-        background-color: $whiteColor;
-        padding: 7px 10px;
+        background: #EAEAEA;
         margin: 10px 0;
-        backface-visibility: hidden;
-        border-radius: 4px;
+        background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.05) 10%, rgba(0, 0, 0, 0.05) 90%, transparent 100%);
+        padding: 7px 25px;
+        font-size: 0.9em;
         .price {
             font-weight: 700;
             color: $primary;

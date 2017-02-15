@@ -91,10 +91,15 @@
     <div class="container">
         <div class="prices-container" layout-gt-md="row" layout-align-gt-md="space-around start" layout-wrap>
             <div flex-gt-md="45" class="price-cat-container" ng-repeat="item in ::priceCategories track by $index">
-                <h3 class="price-row-header" ng-bind="::item.category.name"></h3>
-                <div ng-repeat="priceRow in ::item.priceList" layout="row" layout-align="space-between center" class="md-whiteframe-6dp price-row">
-                    <div ng-bind="::priceRow.name"></div>
-                    <div class="price" ng-bind="::priceRow.price"></div>
+                <h3 class="price-row-header" layout="row" layout-align="space-between center">
+                 <span ng-bind="::item.category.name"></span>
+                 <md-button aria-label="details" ng-click="togglePriceDetails($index)">więcej...</md-button>
+                </h3>
+                <div class="price-row-details" id="price-details-{{$index}}">
+                    <div ng-repeat="priceRow in ::item.priceList" layout="row" layout-align="space-between center" class="price-row">
+                        <div ng-bind="::priceRow.name"></div>
+                        <div class="price" ng-bind="::priceRow.price"></div>
+                    </div>    
                 </div>
             </div>
         </div>
