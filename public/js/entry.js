@@ -1,5 +1,8 @@
 "use strict";
 
+import 'normalize-css';
+import 'material-css';
+
 import "./../sass/style.scss";
 import "./../sass/style-large.scss";
 
