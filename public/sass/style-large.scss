@@ -22,6 +22,9 @@ $darkGray: #404545;
     .container {
         margin: 0 2em;
     }
+    h1.inverse {
+        padding: 20px 20px 30px;
+    }
     p {
         margin: 1em 2em;
     }
@@ -50,9 +53,6 @@ $darkGray: #404545;
         }
     }
     #testimontials {
-        h1 {
-            padding: 20px 20px 30px;
-        }
         .ref-button {
             border-radius: 4px;
             width: 55px;
@@ -122,11 +122,22 @@ $darkGray: #404545;
             }
         }
     }
+    #solcraft {
+        padding-bottom: 40px;
+    }
     #contact {
         .container {
             max-width: 400px;
             margin: 1em auto 3em;
             padding: 0.5em 2em 1px;
+        }
+    }
+    footer {
+        .logo {
+            margin: 20px 50px;
+            padding: 12px;
+            width: 140px;
+            height: 140px;
         }
     }
     .pagination {
@@ -239,6 +250,9 @@ $darkGray: #404545;
         max-width: 1920px;
         margin: 0 auto;
         box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+    }
+    h1.inverse {
+        padding: 30px 20px 30px;
     }
     #prices {
         .container {

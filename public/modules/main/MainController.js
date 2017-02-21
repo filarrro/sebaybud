@@ -9,7 +9,7 @@ angular
         "ngInject";
 
         let TM = TweenMax,
-            SMController = new ScrollMagic.Controller({container: "#page-content"}),
+            SMController = new ScrollMagic.Controller({ container: "#page-content" }),
             i,
             len;
 
@@ -45,9 +45,12 @@ angular
                         zIndex: 70
                     })
                     .fromTo(document.getElementById("popup-dialog"), 1, {
-                        scale: 0, opacity: 0
+                        scale: 0,
+                        opacity: 0
                     }, {
-                        scale: 1, opacity: 1, ease: Elastic.easeOut
+                        scale: 1,
+                        opacity: 1,
+                        ease: Elastic.easeOut
                     }, "-= 0.2");
             });
         }
@@ -56,42 +59,48 @@ angular
             let tween = new TimelineMax();
             tween
                 .fromTo(document.getElementById("popup-dialog"), 0.5, {
-                    scale: 1, opacity: 1
+                    scale: 1,
+                    opacity: 1
                 }, {
-                    scale: 0, opacity: 0, ease: Back.easeIn
+                    scale: 0,
+                    opacity: 0,
+                    ease: Back.easeIn
                 })
                 .fromTo(document.getElementById("popup-overlay"), 0.3, {
-                    autoAlpha: 1, zIndex: 70
+                    autoAlpha: 1,
+                    zIndex: 70
                 }, {
-                    autoAlpha: 1, zIndex: 70
+                    autoAlpha: 1,
+                    zIndex: 70
                 }, "-= 0.3")
                 .set(document.getElementById("popup-overlay"), { zIndex: -1 });
         }
 
-        function togglePriceDetails(ind) {
-            console.log(ind);
+        function togglePriceDetails(ind, event) {
             let target = document.getElementById(`price-details-${ind}`);
             const height = target.offsetHeight;
 
             if (height === 0) {
-                TM.set(target, {height: "auto"});
-                TM.from(target, 0.6, {height: 0, ease: Power1.easeInOut});
+                TM.set(target, { height: "auto" });
+                TM.from(target, 0.6, { height: 0, ease: Power1.easeInOut });
+                TM.set(event.srcElement, { rotation: 180 });
             } else {
-                TM.to(target, 0.5, {height: 0});
+                TM.to(target, 0.5, { height: 0 });
+                TM.set(event.srcElement, { rotation: 0 });
             }
         }
 
         bannerParallaxTween = new TimelineMax();
         litery = document.getElementById('firmName').getElementsByTagName('span');
 
-        bannerParallaxTween.to(document.getElementById('banerContent'), 2, { yPercent: 40, ease: Power0.easeNone }, 0)
+        bannerParallaxTween.to(document.getElementById('banerContent'), 2, { yPercent: 60, ease: Power0.easeNone }, 0)
             .to(document.getElementById('banerText'), 0.7, { alpha: 0 }, 1.3)
             .staggerTo(litery, 0.8, { rotationZ: "60deg", ease: Back.easeOut }, 0.1, 1)
-            .staggerTo(litery, 0.4, { y: 200, ease: Power2.easeIn }, 0.1, 1.2);
+            .staggerTo(litery, 0.4, { y: 150, ease: Power2.easeIn }, 0.1, 1.2);
 
         new ScrollMagic.Scene({
-            triggerElement: document.getElementById('about'),
-            triggerHook: 'onEnter',
+            triggerElement: document.getElementById('baner'),
+            triggerHook: 'onLeave',
             duration: '100%'
         }).setTween(bannerParallaxTween).addTo(SMController);
 
@@ -164,9 +173,16 @@ angular
                             n = (this.actual + 1) < this.length && (this.actual + 1) || 0;
                         tween
                             .fromTo(this.array[this.actual], 0.6, {
-                                xPercent: 0, alpha: 1, scale: 1, zIndex: 2
+                                xPercent: 0,
+                                alpha: 1,
+                                scale: 1,
+                                zIndex: 2
                             }, {
-                                alpha: 0, scale: 0, xPercent: -100, zIndex: 2, ease: Power2.easeOut
+                                alpha: 0,
+                                scale: 0,
+                                xPercent: -100,
+                                zIndex: 2,
+                                ease: Power2.easeOut
                             }, 0)
                             .fromTo(this.array[n], 0.6, { alpha: 0, scale: 0, xPercent: 100, zIndex: 4 }, {
                                 alpha: 1,
@@ -185,9 +201,16 @@ angular
 
                         tween
                             .fromTo(this.array[this.actual], 0.6, {
-                                xPercent: 0, alpha: 1, scale: 1, zIndex: 2
+                                xPercent: 0,
+                                alpha: 1,
+                                scale: 1,
+                                zIndex: 2
                             }, {
-                                alpha: 0, scale: 0, xPercent: 100, zIndex: 2, ease: Power2.easeOut
+                                alpha: 0,
+                                scale: 0,
+                                xPercent: 100,
+                                zIndex: 2,
+                                ease: Power2.easeOut
                             }, 0)
                             .fromTo(this.array[n], 0.6, { alpha: 0, scale: 0, xPercent: -100, zIndex: 4 }, {
                                 alpha: 1,
@@ -237,6 +260,6 @@ angular
 
         $scope.$on("$destroy", () => {
             SMController.destroy(true);
-			SMController = null;
+            SMController = null;
         });
     });

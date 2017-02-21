@@ -5,7 +5,7 @@ $yellowColor: #FFC107;
 $yellowColorDark: #FF6F00;
 $primary: #FFC107;
 $primaryDark: #FFA000;
-$darkGray: #404545;
+$darkGray: #424242;
 @mixin gradient($dir, $start, $end) {
     background: $start;
     background: -webkit-linear-gradient($dir, $start, $end);
@@ -47,6 +47,13 @@ h1 {
         background-color: $darkGray;
         margin: 5px auto 0;
     }
+    &.inverse {
+        background-color: $grayColor;
+        color: $whiteColor;
+        &::after {
+            background-color: $whiteColor;
+        }
+    }
 }
 
 p {
@@ -62,7 +69,11 @@ a {
 }
 
 .text-center {
-    text-align: center;
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left;
 }
 
 .bold {
@@ -101,6 +112,25 @@ a {
     height: 200%;
     transform: translateY(0);
     box-sizing: border-box;
+}
+
+.my-icon-button {
+    width: 40px !important;
+    min-width: 0;
+    height: 40px;
+    margin: 0px !important;
+    padding: 0px;
+    md-icon {
+        transition: transform .3s ease-in-out;
+    }
+}
+
+md-icon {
+    &.md-40 {
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+    }
 }
 
 #menuContent {
@@ -162,24 +192,26 @@ header {
             }
         }
     }
-    .logo {
-        background: $whiteOpacityColor;
-        padding: 2px 10px;
-        position: fixed;
-        top: 10px;
-        right: 25px;
-        text-align: center;
-        border-radius: 50%;
-        height: 70px;
-        img {
-            max-width: 100%;
-            max-height: 100%;
-        }
+}
+
+.logo {
+    background: $whiteOpacityColor;
+    padding: 2px 10px;
+    position: fixed;
+    top: 10px;
+    right: 25px;
+    text-align: center;
+    border-radius: 50%;
+    height: 70px;
+    img {
+        max-width: 100%;
+        max-height: 100%;
     }
 }
 
 #baner {
-    height: 100%;
+    height: 700px;
+    max-height: 100%;
     overflow: hidden;
     #banerContent {
         position: relative;
@@ -275,13 +307,6 @@ header {
 }
 
 #testimontials {
-    h1 {
-        background-color: $darkGray;
-        color: $whiteColor;
-        &::after {
-            background-color: $whiteColor;
-        }
-    }
     .ref-button {
         color: $whiteColor;
         position: absolute;
@@ -400,6 +425,31 @@ header {
     }
 }
 
+#solcraft {
+    background-color: $whiteColor;
+    padding-bottom: 20px;
+    p {
+        text-align: justify;
+    }
+    >div {
+        margin: 0 auto;
+        max-width: 960px;
+    }
+    img {
+        max-width: 100%;
+    }
+    a {
+        text-decoration: none;
+    }
+    .accent {
+        color: $primary;
+        font-weight: bold;
+        sup {
+            font-weight: normal;
+        }
+    }
+}
+
 #contact {
     position: relative;
     .contact-bg {
@@ -475,15 +525,31 @@ header {
 
 footer {
     padding: 10px 15px;
-    background-color: $primary;
-    color: rgba(0, 0, 0, 0.87);
+    background-color: $darkGray;
+    color: $whiteColor;
+    .logo {
+        margin: 10px;
+        padding: 8px;
+        position: static;
+        width: 90px;
+        height: 90px;
+    }
+    .info-row {
+        margin-bottom: 10px;
+        md-icon {
+            margin-right: 10px;
+        }
+    }
 }
 
 .made-by {
-    background-color: $primaryDark;
+    background-color: $grayColor;
     padding: 10px;
     text-align: center;
     color: $whiteColor;
+    md-icon {
+        margin: 0 8px;
+    }
 }
 
 
@@ -496,6 +562,9 @@ footer {
         margin: 20px;
         padding: 0;
         border-radius: 0;
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+        transition: box-shadow .3s ease-in-out, filter .3s ease-in-out;
+        filter: grayscale(.75);
         img {
             max-width: 100%;
         }
@@ -503,13 +572,15 @@ footer {
             width: 100%;
             height: 100%;
         }
+        &:hover {
+            box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
+            filter: grayscale(0);
+        }
     }
-
     .gallery-container {
         max-width: 960px;
         margin: 20px auto;
     }
-
     #loader {
         height: 15px;
         background-color: #DDD;

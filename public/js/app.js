@@ -4,8 +4,14 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
     .config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
         "ngInject";
 
-        $mdThemingProvider.theme("default").primaryPalette("amber", {
-            // 'default': '900'
+        var primary = $mdThemingProvider.extendPalette("grey", {
+            "600": "#333333"
+        });
+
+        $mdThemingProvider.definePalette("primary", primary);
+
+        $mdThemingProvider.theme("default").primaryPalette("primary", {
+            'default': '900'
         });
 
         $locationProvider.html5Mode({
@@ -49,7 +55,7 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
             TM.killAll();
             TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
             menuOpened = false;
-            $state.go( state, params );
+            $state.go(state, params);
         }
 
         function toggleMenu() {
