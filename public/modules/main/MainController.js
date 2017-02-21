@@ -18,7 +18,7 @@ angular
             menuButtons = document.getElementsByClassName('menuInnerButton');
 
         // animation vars
-        let bannerParallaxTween, litery, animatedBackgrounds, offerRows, priceRowsHeaders, priceRows;
+        let header, headerLogo, animatedBackgrounds, offerRows, priceRowsHeaders, priceRows;
 
         $scope.priceCategories = undefined;
         $scope.testimontials = undefined;
@@ -90,19 +90,21 @@ angular
             }
         }
 
-        bannerParallaxTween = new TimelineMax();
-        litery = document.getElementById('firmName').getElementsByTagName('span');
-
-        bannerParallaxTween.to(document.getElementById('banerContent'), 2, { yPercent: 60, ease: Power0.easeNone }, 0)
-            .to(document.getElementById('banerText'), 0.7, { alpha: 0 }, 1.3)
-            .staggerTo(litery, 0.8, { rotationZ: "60deg", ease: Back.easeOut }, 0.1, 1)
-            .staggerTo(litery, 0.4, { y: 150, ease: Power2.easeIn }, 0.1, 1.2);
-
+        header = document.getElementById("header");
+        headerLogo = document.getElementById("header-logo");
+        var tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
+        let tween = new TimelineMax();
+        tween
+            .to(header, 1, { height: 64, backgroundColor: "#121212", ease: Power0.easeNone }, 0)
+            .to(headerLogo, 0.2, { height: 50, width: 40 }, 0.8)
+            .set(header, {
+                boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)"
+            });
         new ScrollMagic.Scene({
             triggerElement: document.getElementById('baner'),
             triggerHook: 'onLeave',
-            duration: '100%'
-        }).setTween(bannerParallaxTween).addTo(SMController);
+            duration: tweenDuration
+        }).setTween(tween).addTo(SMController);
 
         animatedBackgrounds = document.getElementsByClassName('animated-bg');
         len = animatedBackgrounds.length;

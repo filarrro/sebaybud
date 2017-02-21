@@ -169,12 +169,18 @@ header {
     top: 0;
     left: 0;
     z-index: 60;
+    height: 70%;
+    width: 100%;
+    background-color: transparent;
+    pointer-events: none;
+    transition: box-shadow .3s ease-in-out;
     .menuButton {
         position: relative;
         border: 1px solid $whiteColor;
         padding: 5px;
         background-color: $grayColor !important;
         margin: 12px;
+        pointer-events: auto;
         span {
             display: block;
             position: absolute;
@@ -198,11 +204,11 @@ header {
     background: $whiteOpacityColor;
     padding: 2px 10px;
     position: fixed;
-    top: 10px;
+    top: 4px;
     right: 25px;
     text-align: center;
     border-radius: 50%;
-    height: 70px;
+    height: 80px;
     img {
         max-width: 100%;
         max-height: 100%;
@@ -210,8 +216,7 @@ header {
 }
 
 #baner {
-    height: 700px;
-    max-height: 100%;
+    height: 70%;
     overflow: hidden;
     #banerContent {
         position: relative;
