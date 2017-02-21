@@ -92,7 +92,7 @@ angular
 
         header = document.getElementById("header");
         headerLogo = document.getElementById("header-logo");
-        var tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
+        let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
         let tween = new TimelineMax();
         tween
             .to(header, 1, { height: 64, backgroundColor: "#121212", ease: Power0.easeNone }, 0)
@@ -100,22 +100,12 @@ angular
             .set(header, {
                 boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)"
             });
-        new ScrollMagic.Scene({
+
+        let HEADER_SCENE = new ScrollMagic.Scene({
             triggerElement: document.getElementById('baner'),
             triggerHook: 'onLeave',
             duration: tweenDuration
         }).setTween(tween).addTo(SMController);
-
-        animatedBackgrounds = document.getElementsByClassName('animated-bg');
-        len = animatedBackgrounds.length;
-        for (i = 0; i < len; i++) {
-            let tween = TM.fromTo(animatedBackgrounds[i], 1, { yPercent: 0 }, { yPercent: -50, ease: Power0.easeNone });
-            new ScrollMagic.Scene({
-                triggerElement: animatedBackgrounds[i],
-                triggerHook: 'onEnter',
-                duration: "200%"
-            }).setTween(tween).addTo(SMController);
-        }
 
         function handleData(response) {
             $scope.priceCategories = response.categories;
@@ -229,36 +219,60 @@ angular
 
                 $scope.testimontialCarousel.build();
 
-                offerRows = document.getElementsByClassName('offer-row');
-                len = offerRows.length;
-                for (i = 0; i < len; i++) {
-                    let tween = TM.from(offerRows[i], 0.5, { alpha: 0, scale: 0, ease: Back.easeOut });
-                    new ScrollMagic.Scene({
-                            triggerElement: offerRows[i],
-                            triggerHook: 'onCenter',
-                            offset: -150,
-                            reverse: false
-                        })
-                        .setTween(tween)
-                        .addTo(SMController);
-                }
+                if (!window.IS_MOBILE) {
+                    animatedBackgrounds = document.getElementsByClassName('animated-bg');
+                    len = animatedBackgrounds.length;
+                    for (i = 0; i < len; i++) {
+                        let tween = TM.fromTo(animatedBackgrounds[i], 1, {
+                            yPercent: 0
+                        }, {
+                            yPercent: -50,
+                            ease: Power0.easeNone
+                        });
+                        new ScrollMagic.Scene({
+                            triggerElement: animatedBackgrounds[i],
+                            triggerHook: 'onEnter',
+                            duration: "200%"
+                        }).setTween(tween).addTo(SMController);
+                    }
 
-                priceRowsHeaders = document.getElementsByClassName('price-row-header');
-                len = priceRowsHeaders.length;
-                for (i = 0; i < len; i++) {
-                    let tween = TM.from(priceRowsHeaders[i], 0.3, { x: -100, alpha: 0 });
-                    new ScrollMagic.Scene({
-                            triggerElement: priceRowsHeaders[i],
-                            triggerHook: 'onCenter',
-                            offset: -150,
-                            reverse: false
-                        })
-                        .setTween(tween)
-                        .addTo(SMController);
-                }
+                    offerRows = document.getElementsByClassName('offer-row');
+                    len = offerRows.length;
+                    for (i = 0; i < len; i++) {
+                        let tween = TM.from(offerRows[i], 0.5, { alpha: 0, scale: 0, ease: Back.easeOut });
+                        new ScrollMagic.Scene({
+                                triggerElement: offerRows[i],
+                                triggerHook: 'onCenter',
+                                offset: -150,
+                                reverse: false
+                            })
+                            .setTween(tween)
+                            .addTo(SMController);
+                    }
 
+                    priceRowsHeaders = document.getElementsByClassName('price-row-header');
+                    len = priceRowsHeaders.length;
+                    for (i = 0; i < len; i++) {
+                        let tween = TM.from(priceRowsHeaders[i], 0.3, { x: -100, alpha: 0 });
+                        new ScrollMagic.Scene({
+                                triggerElement: priceRowsHeaders[i],
+                                triggerHook: 'onCenter',
+                                offset: -150,
+                                reverse: false
+                            })
+                            .setTween(tween)
+                            .addTo(SMController);
+                    }
+                }
             });
         }
+
+        // window.onresize = function RepairScene(event) {
+        //     let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
+        //     TM.set(header, { height: tweenDuration });
+        //     HEADER_SCENE.duration(tweenDuration);
+        //     HEADER_SCENE.update();
+        // };
 
         $scope.$on("$destroy", () => {
             SMController.destroy(true);
