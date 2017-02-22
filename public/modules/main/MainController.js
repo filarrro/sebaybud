@@ -5,7 +5,7 @@ import ScrollMagic from 'scrollmagic';
 
 angular
     .module("webApp")
-    .controller("MainController", function($rootScope, $scope, $timeout, Factory) {
+    .controller("MainController", function($rootScope, $scope, $timeout, $state, Factory) {
         "ngInject";
 
         let TM = TweenMax,
@@ -30,6 +30,21 @@ angular
 
 
         Factory.GetData().then(handleData);
+
+        header = document.getElementById("header");
+        headerLogo = document.getElementById("header-logo");
+        let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
+        const headerTween = new TimelineMax();
+        headerTween
+            .to(header, 1, { height: 64, backgroundColor: "#121212", ease: Power0.easeNone }, 0)
+            .to(headerLogo, 0.2, { height: 50, width: 40 }, 0.8)
+            .set(header, {
+                boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)"
+            });
+
+        let HEADER_SCENE = new ScrollMagic.Scene({
+            duration: tweenDuration
+        }).setTween(headerTween).addTo(SMController);
 
         function showReference(item) {
             console.log(item);
@@ -89,23 +104,6 @@ angular
                 TM.set(event.srcElement, { rotation: 0 });
             }
         }
-
-        header = document.getElementById("header");
-        headerLogo = document.getElementById("header-logo");
-        let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
-        let tween = new TimelineMax();
-        tween
-            .to(header, 1, { height: 64, backgroundColor: "#121212", ease: Power0.easeNone }, 0)
-            .to(headerLogo, 0.2, { height: 50, width: 40 }, 0.8)
-            .set(header, {
-                boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)"
-            });
-
-        let HEADER_SCENE = new ScrollMagic.Scene({
-            triggerElement: document.getElementById('baner'),
-            triggerHook: 'onLeave',
-            duration: tweenDuration
-        }).setTween(tween).addTo(SMController);
 
         function handleData(response) {
             $scope.priceCategories = response.categories;
@@ -267,12 +265,23 @@ angular
             });
         }
 
-        // window.onresize = function RepairScene(event) {
-        //     let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
-        //     TM.set(header, { height: tweenDuration });
-        //     HEADER_SCENE.duration(tweenDuration);
-        //     HEADER_SCENE.update();
-        // };
+        window.onresize = (event) => {
+            // TM.set(header, {clearProps:"all"});
+            // headerTween.clear();
+            // let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
+            // // headerTween
+            // //     .to(header, 1, { height: 64, backgroundColor: "#121212", ease: Power0.easeNone }, 0)
+            // //     .to(headerLogo, 0.2, { height: 50, width: 40 }, 0.8)
+            // //     .set(header, {
+            // //         boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)"
+            // //     });
+            // // headerTween.progress(0);
+            // // HEADER_SCENE.setTween(headerTween);
+            // // // let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
+            // // // TM.set(header, { height: tweenDuration });
+            // HEADER_SCENE.duration(tweenDuration);
+            // HEADER_SCENE.update();
+        };
 
         $scope.$on("$destroy", () => {
             SMController.destroy(true);
