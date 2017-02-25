@@ -66,7 +66,7 @@
         <h1 class="inverse">Referencje</h1>
         <div class="ref-container-outer">
             <div class="ref-container">
-                <div class="ref-slide md-whiteframe-4dp" ng-repeat="testimontial in ::testimontials track by testimontial.id" ng-click="showReference(testimontial)" style="background: url(/media/testimontials/{{::testimontial.img}}) no-repeat center; background-size: cover;">
+                <div class="ref-slide md-whiteframe-4dp" ng-repeat="testimontial in ::testimontials track by testimontial.id" ng-click="showReference(testimontial, $event)" style="background: url(/media/testimontials/{{::testimontial.img}}) no-repeat center; background-size: cover;">
                     <div class="ref-overlay" layout="row" layout-align="center center">
                         <div class="testmontial-desc">
                             <div class="testmontial-text" ng-bind="::testimontial.text"></div>
@@ -176,7 +176,7 @@
         </div>
     </section>
 
-    <div id="popup-overlay" layout="row" layout-align="center center">
+    <!--<div id="popup-overlay" layout="row" layout-align="center center">
         <div class="popup-container">
             <md-button id="popup-cancel" ng-click="hidePopup()">
                 <md-icon class="material-icons">close</md-icon>
@@ -185,7 +185,7 @@
                 <img ng-src="/media/testimontials/{{modalData.img}}" alt="Referencja" />
             </div>
         </div>
-    </div>
+    </div>-->
 
     <footer layout="row" layout-align="center center">
         <div class="logo">

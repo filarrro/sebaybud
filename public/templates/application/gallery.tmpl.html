@@ -14,13 +14,11 @@
                 <div class="gallery-img-popup" id="actual" ng-style="vm.actualStyle"></div>
             </div>
         </div>
-    </md-dialog-content>
-    <md-dialog-actions layout="row">
-        <md-button class="my-icon-button" aria-label="Poprzedni" ng-click="vm.prev()">
+        <md-button class="my-icon-button popup-nav-btn prev" aria-label="Poprzedni" ng-click="vm.prev()">
             <md-icon class="material-icon md-40">arrow_left</md-icon>
         </md-button>
-        <md-button class="my-icon-button" aria-label="Następny" ng-click="vm.next()">
+        <md-button class="my-icon-button popup-nav-btn next" aria-label="Następny" ng-click="vm.next()">
             <md-icon class="material-icon md-40">arrow_right</md-icon>
         </md-button>
-    </md-dialog-actions>
+    </md-dialog-content>
 </md-dialog>

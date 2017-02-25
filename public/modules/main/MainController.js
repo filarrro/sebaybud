@@ -5,7 +5,7 @@ import ScrollMagic from 'scrollmagic';
 
 angular
     .module("webApp")
-    .controller("MainController", function($rootScope, $scope, $timeout, $state, Factory) {
+    .controller("MainController", function($rootScope, $scope, $timeout, $state, $mdPanel, $mdDialog, Factory) {
         "ngInject";
 
         let TM = TweenMax,
@@ -46,28 +46,47 @@ angular
             duration: tweenDuration
         }).setTween(headerTween).addTo(SMController);
 
-        function showReference(item) {
+        function showReference(item, ev) {
             console.log(item);
-            $scope.modalData = item;
-            $timeout(function() {
-                let tween = new TimelineMax();
-                tween
-                    .fromTo(document.getElementById("popup-overlay"), 0.5, {
-                        autoAlpha: 0,
-                        zIndex: 70
-                    }, {
-                        autoAlpha: 1,
-                        zIndex: 70
-                    })
-                    .fromTo(document.getElementById("popup-dialog"), 1, {
-                        scale: 0,
-                        opacity: 0
-                    }, {
-                        scale: 1,
-                        opacity: 1,
-                        ease: Elastic.easeOut
-                    }, "-= 0.2");
-            });
+            // let animation = $mdPanel.newPanelAnimation(),
+            //     target = `#ref-slide-${item.id}`;
+            // // animation.duration(400);
+            // animation.openFrom(target);
+            // animation.closeTo(target);
+            // animation.withAnimation($mdPanel.animation.SCALE);
+
+            // let config = {
+            //     attachTo: angular.element(document.body),
+            //     controller: 'TetsimontialPanelController',
+            //     controllerAs: 'vm',
+            //     disableParentScroll: true,
+            //     templateUrl: 'templates/application/testimontial.tmpl.html',
+            //     hasBackdrop: true,
+            //     panelClass: 'panel-dialog',
+            //     position: $mdPanel.newPanelPosition().absolute().center(),
+            //     trapFocus: true,
+            //     zIndex: 150,
+            //     clickOutsideToClose: true,
+            //     escapeToClose: true,
+            //     focusOnOpen: true,
+            //     animation: animation,
+            //     locals: {
+            //         data: item
+            //     }
+            // };
+            // $mdPanel.open(config);
+
+            $mdDialog.show({
+                controller: 'TetsimontialPanelController',
+                controllerAs: 'vm',
+                templateUrl: 'templates/application/testimontial.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                    data: item
+                }
+            }).then(() => {}, () => {});
         }
 
         function hidePopup() {
@@ -266,25 +285,17 @@ angular
         }
 
         window.onresize = (event) => {
-            // TM.set(header, {clearProps:"all"});
-            // headerTween.clear();
-            // let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
-            // // headerTween
-            // //     .to(header, 1, { height: 64, backgroundColor: "#121212", ease: Power0.easeNone }, 0)
-            // //     .to(headerLogo, 0.2, { height: 50, width: 40 }, 0.8)
-            // //     .set(header, {
-            // //         boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)"
-            // //     });
-            // // headerTween.progress(0);
-            // // HEADER_SCENE.setTween(headerTween);
-            // // // let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
-            // // // TM.set(header, { height: tweenDuration });
-            // HEADER_SCENE.duration(tweenDuration);
-            // HEADER_SCENE.update();
+            location.reload();
         };
 
         $scope.$on("$destroy", () => {
             SMController.destroy(true);
             SMController = null;
         });
+    })
+    .controller("TetsimontialPanelController", function($mdPanel, data) {
+        "ngInject";
+
+        const vm = this;
+        vm.img = data.img;
     });
