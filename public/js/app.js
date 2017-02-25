@@ -50,6 +50,7 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
 
         $rootScope.toggleMenu = toggleMenu;
         $rootScope.go = go;
+        $rootScope.scrollTo = scrollTo;
 
         function go(state, params) {
             TM.killAll();
@@ -65,5 +66,13 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
                 TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
             }
             menuOpened = !menuOpened;
+        }
+
+        function scrollTo(id) {
+            let el = document.getElementById(id),
+                page = document.getElementById("page-content");
+            TM.to(page, 0.6, { scrollTo: { y: el, offsetY: 60 } });
+            TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
+            menuOpened = false;
         }
     });

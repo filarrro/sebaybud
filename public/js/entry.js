@@ -9,6 +9,7 @@ import "./../sass/style-large.scss";
 import jQuery from 'jquery';
 import { TweenMax } from 'gsap';
 import ScrollMagic from 'scrollmagic';
+import 'imports?define=>false!gsapScrollToPlugin';
 import 'imports?define=>false!ScrollMagicGSAP';
 
 import 'angular';
