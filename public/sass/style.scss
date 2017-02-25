@@ -68,6 +68,10 @@ a {
     position: relative;
 }
 
+.event-auto {
+    pointer-events: auto;
+}
+
 .text-center {
     text-align: center !important;
 }
@@ -120,7 +124,14 @@ a {
     height: 40px;
     margin: 0px !important;
     padding: 0px;
+    &.open {
+        md-icon {
+            transform: rotateZ(180deg);
+        }
+    }
     md-icon {
+        pointer-events: none;
+        transform: rotateZ(0deg);
         transition: transform .3s ease-in-out;
     }
     &.popup-nav-btn {
@@ -153,6 +164,7 @@ a {
 }
 
 #menuContent {
+    display: block;
     position: fixed;
     left: -250px;
     top: 0;
@@ -193,7 +205,11 @@ header {
     background-color: #121212;
     pointer-events: none;
     transition: box-shadow .3s ease-in-out;
+    .header-btn {
+        display: none;
+    }
     .menuButton {
+        display: inline-block;
         position: relative;
         border: 1px solid $whiteColor;
         padding: 5px;
@@ -573,6 +589,7 @@ footer {
     align-items: center;
     min-height: 100%;
     padding-top: 64px;
+    box-sizing: border-box;
     .img-container {
         width: 120px;
         height: 120px;

@@ -57,22 +57,22 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
                 if (state === "home") {
                     scrollTo("baner");
                 } else {
-                    TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
+                    TM.to(menuContainer, 0.3, { x: "0%" });
                     menuOpened = false;
                 }
                 return;
             }
             TM.killAll();
-            TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
+            TM.to(menuContainer, 0.3, { x: "0%" });
             menuOpened = false;
             $state.go(state, params);
         }
 
         function toggleMenu() {
             if (!menuOpened) {
-                TM.fromTo(menuContainer, 0.3, { x: "0%" }, { x: "100%" });
+                TM.to(menuContainer, 0.3, { x: "100%" });
             } else {
-                TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
+                TM.to(menuContainer, 0.3, { x: "0%" });
             }
             menuOpened = !menuOpened;
         }
@@ -81,7 +81,7 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
             let el = document.getElementById(id),
                 page = document.getElementById("page-content");
             TM.to(page, 0.6, { scrollTo: { y: el, offsetY: 60 } });
-            TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
+            TM.to(menuContainer, 0.3, { x: "0%" });
             menuOpened = false;
         }
     });

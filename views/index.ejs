@@ -12,7 +12,7 @@
         <div id="menuContent">
             <div id="menuInner" layout="column" layout-align="space-between">
                 <div class="menuInnerButton">
-                    <md-button class="md-whiteframe-3dp" ng-click="go('home')">Strona główna</md-button>
+                    <md-button class="md-whiteframe-3dp" ng-click="go('home')">Start</md-button>
                 </div>
                 <div class="menuInnerButton">
                     <md-button class="md-whiteframe-3dp" ng-click="go('gallery')">Galeria</md-button>
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <header id="header" class="md-whiteframe-8dp">
+        <header id="header" class="md-whiteframe-8dp" layout="row">
             <md-button class="md-fab md-mini menuButton" ng-click="toggleMenu()" aria-label="menu">
                 <span></span>
                 <span></span>
@@ -40,6 +40,14 @@
             </md-button>
             <div class="logo" id="header-logo">
                 <img src="img/logo.png" alt="Logo firmy Sebaybud"/>
+            </div>
+            <div class="nav-btns event-auto">
+                <md-button class="header-btn" ng-click="go('home')">Start</md-button>
+                <md-button class="header-btn" ng-click="go('gallery')">Galeria</md-button>
+                <md-button class="header-btn" ng-click="scrollTo('offer')">Oferta</md-button>
+                <md-button class="header-btn" ng-click="scrollTo('testimontials')">Referencje</md-button>
+                <md-button class="header-btn" ng-click="scrollTo('prices')">Cennik</md-button>
+                <md-button class="header-btn" ng-click="scrollTo('contact')">Kontakt</md-button>
             </div>
         </header>
 

@@ -91,10 +91,10 @@ angular
             if (height === 0) {
                 TM.set(target, { height: "auto" });
                 TM.from(target, 0.6, { height: 0, ease: Power1.easeInOut });
-                TM.set(event.srcElement, { rotation: 180 });
+                event.srcElement.classList.add("open");
             } else {
                 TM.to(target, 0.5, { height: 0 });
-                TM.set(event.srcElement, { rotation: 0 });
+                event.srcElement.classList.remove("open");
             }
         }
 
