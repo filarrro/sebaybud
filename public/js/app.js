@@ -53,6 +53,15 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
         $rootScope.scrollTo = scrollTo;
 
         function go(state, params) {
+            if (state === $state.current.name) {
+                if (state === "home") {
+                    scrollTo("baner");
+                } else {
+                    TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
+                    menuOpened = false;
+                }
+                return;
+            }
             TM.killAll();
             TM.fromTo(menuContainer, 0.3, { x: "100%" }, { x: "0%" });
             menuOpened = false;

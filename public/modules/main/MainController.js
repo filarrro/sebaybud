@@ -18,7 +18,7 @@ angular
             menuButtons = document.getElementsByClassName('menuInnerButton');
 
         // animation vars
-        let header, headerLogo, animatedBackgrounds, offerRows, priceRowsHeaders, priceRows;
+        let banner, header, headerLogo, animatedBackgrounds, offerRows, priceRowsHeaders, priceRows;
 
         $scope.priceCategories = undefined;
         $scope.testimontials = undefined;
@@ -31,51 +31,25 @@ angular
 
         Factory.GetData().then(handleData);
 
-        header = document.getElementById("header");
-        headerLogo = document.getElementById("header-logo");
-        let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
-        const headerTween = new TimelineMax();
-        headerTween
-            .to(header, 1, { height: 64, backgroundColor: "#121212", ease: Power0.easeNone }, 0)
-            .to(headerLogo, 0.2, { height: 50, width: 40 }, 0.8)
-            .set(header, {
-                boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)"
-            });
+        banner = document.getElementById("banerContent");
+        // header = document.getElementById("header");
+        // headerLogo = document.getElementById("header-logo");
+        // let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
+        const bannerTween = TM.to(banner, 1, { y: "60%", ease: Power0.easeNone });
+        // const headerTween = new TimelineMax();
+        // headerTween
+        // .to(header, 1, { height: 64, backgroundColor: "#121212", ease: Power0.easeNone }, 0)
+        // .to(headerLogo, 0.2, { height: 50, width: 40 }, 0.8)
+        // .set(header, {
+        //     boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)"
+        // });
 
         let HEADER_SCENE = new ScrollMagic.Scene({
-            duration: tweenDuration
-        }).setTween(headerTween).addTo(SMController);
+            duration: "100%"
+        }).setTween(bannerTween).addTo(SMController);
 
         function showReference(item, ev) {
             console.log(item);
-            // let animation = $mdPanel.newPanelAnimation(),
-            //     target = `#ref-slide-${item.id}`;
-            // // animation.duration(400);
-            // animation.openFrom(target);
-            // animation.closeTo(target);
-            // animation.withAnimation($mdPanel.animation.SCALE);
-
-            // let config = {
-            //     attachTo: angular.element(document.body),
-            //     controller: 'TetsimontialPanelController',
-            //     controllerAs: 'vm',
-            //     disableParentScroll: true,
-            //     templateUrl: 'templates/application/testimontial.tmpl.html',
-            //     hasBackdrop: true,
-            //     panelClass: 'panel-dialog',
-            //     position: $mdPanel.newPanelPosition().absolute().center(),
-            //     trapFocus: true,
-            //     zIndex: 150,
-            //     clickOutsideToClose: true,
-            //     escapeToClose: true,
-            //     focusOnOpen: true,
-            //     animation: animation,
-            //     locals: {
-            //         data: item
-            //     }
-            // };
-            // $mdPanel.open(config);
-
             $mdDialog.show({
                 controller: 'TetsimontialPanelController',
                 controllerAs: 'vm',
@@ -284,9 +258,9 @@ angular
             });
         }
 
-        window.onresize = (event) => {
-            location.reload();
-        };
+        // window.onresize = (event) => {
+        //     location.reload();
+        // };
 
         $scope.$on("$destroy", () => {
             SMController.destroy(true);
