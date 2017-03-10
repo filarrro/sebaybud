@@ -41,11 +41,14 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
                 }
             });
     })
-    .run(function($rootScope, $state) {
+    .run(function($rootScope, $state, $location, $anchorScroll, $timeout) {
         "ngInject";
+
+        $anchorScroll.yOffset = 64;
 
         let TM = TweenMax,
             menuOpened = false,
+            pageLoaderVisible = false,
             menuContainer = angular.element(document.querySelector('#menuContent'));
 
         $rootScope.toggleMenu = toggleMenu;
@@ -54,18 +57,24 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
 
         function go(state, params) {
             if (state === $state.current.name) {
+                TM.to(menuContainer, 0.3, { x: "0%" });
+                menuOpened = false;
                 if (state === "home") {
-                    scrollTo("baner");
-                } else {
-                    TM.to(menuContainer, 0.3, { x: "0%" });
-                    menuOpened = false;
+                    scrollTo(params.anchor);
                 }
                 return;
+            } else {
+                TM.killAll();
+                TM.to(menuContainer, 0.3, { x: "0%" });
+                menuOpened = false;
+                showPageLoader();
+                $timeout(() => {
+                    if (params && params.anchor) {
+                        $rootScope.anchor = params.anchor;
+                    }
+                    $state.go(state, params);
+                }, 200);
             }
-            TM.killAll();
-            TM.to(menuContainer, 0.3, { x: "0%" });
-            menuOpened = false;
-            $state.go(state, params);
         }
 
         function toggleMenu() {
@@ -79,9 +88,34 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
 
         function scrollTo(id) {
             let el = document.getElementById(id),
-                page = document.getElementById("page-content");
+                page = document.getElementsByTagName("body");
             TM.to(page, 0.6, { scrollTo: { y: el, offsetY: 60 } });
-            TM.to(menuContainer, 0.3, { x: "0%" });
-            menuOpened = false;
         }
+
+        function showPageLoader() {
+            pageLoaderVisible = true;
+            let loader = document.getElementById("page-loader");
+            TM.to(loader, .2, { autoAlpha: 1 });
+        }
+
+        function hidePageLoader() {
+            pageLoaderVisible = false;
+            let loader = document.getElementById("page-loader");
+            TM.to(loader, .2, { autoAlpha: 0 });
+        }
+
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            if ($rootScope.anchor) {
+                $location.hash($rootScope.anchor);
+                $timeout(() => {
+                    $anchorScroll();
+                    $rootScope.anchor = undefined;
+                }, 180);
+            }
+            if (pageLoaderVisible) {
+                $timeout(() => {
+                    hidePageLoader();
+                }, 200);
+            }
+        });
     });

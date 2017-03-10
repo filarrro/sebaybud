@@ -9,7 +9,7 @@ angular
         "ngInject";
 
         let TM = TweenMax,
-            SMController = new ScrollMagic.Controller({ container: "#page-content" }),
+            SMController = new ScrollMagic.Controller(),
             i,
             len;
 
