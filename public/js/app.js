@@ -44,12 +44,15 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
     .run(function($rootScope, $state, $location, $anchorScroll, $timeout) {
         "ngInject";
 
-        $anchorScroll.yOffset = 64;
+        const PAGE_LOADER_DURATION_MS = 200,
+            PAGE_LOADER_DURATION_S = 0.2;
 
         let TM = TweenMax,
             menuOpened = false,
             pageLoaderVisible = false,
             menuContainer = angular.element(document.querySelector('#menuContent'));
+
+        $anchorScroll.yOffset = 64;
 
         $rootScope.toggleMenu = toggleMenu;
         $rootScope.go = go;
@@ -73,7 +76,7 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
                         $rootScope.anchor = params.anchor;
                     }
                     $state.go(state, params);
-                }, 200);
+                }, PAGE_LOADER_DURATION_MS);
             }
         }
 
@@ -95,13 +98,13 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
         function showPageLoader() {
             pageLoaderVisible = true;
             let loader = document.getElementById("page-loader");
-            TM.to(loader, .2, { autoAlpha: 1 });
+            TM.to(loader, PAGE_LOADER_DURATION_S, { autoAlpha: 1 });
         }
 
         function hidePageLoader() {
             pageLoaderVisible = false;
             let loader = document.getElementById("page-loader");
-            TM.to(loader, .2, { autoAlpha: 0 });
+            TM.to(loader, PAGE_LOADER_DURATION_S, { autoAlpha: 0 });
         }
 
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {

@@ -9,7 +9,8 @@ angular
 
         console.log(images);
 
-        let vm = this;
+        let vm = this,
+            imageBoxes;
 
         vm.gallery = images.data;
         vm.pagination = images.pages;
@@ -17,13 +18,45 @@ angular
 
         vm.show = show;
         vm.getPage = getPage;
-        
+        vm.prevPage = prevPage;
+        vm.nextPage = nextPage;
+
         function getPage(page) {
-            Factory.GetImages(page).then(function(res) {
-                console.log(res);
-                vm.gallery = res.data;
-                vm.selectedPage = page;
+            if (vm.selectedPage === page) {
+                return;
+            }
+            imageBoxes = document.getElementsByClassName("img-container");
+            TweenMax.staggerTo(imageBoxes, 0.2, {
+                scale: 0
+            }, 0.02, function() {
+                Factory.GetImages(page).then(function(res) {
+                    console.log(res);
+                    vm.gallery = res.data;
+                    vm.selectedPage = page;
+                    $timeout(() => {
+                        imageBoxes = document.getElementsByClassName("img-container");
+                        TweenMax.staggerFromTo(imageBoxes, 0.2, { scale: 0 }, { scale: 1 }, 0.02);
+                    });
+                });
             });
+        }
+
+        function prevPage() {
+            if (vm.selectedPage === 0) {
+                return;
+            } else {
+                let page = vm.selectedPage - 1;
+                getPage(page);
+            }
+        }
+
+        function nextPage() {
+            if (vm.selectedPage === vm.pagination[vm.pagination.length - 1]) {
+                return;
+            } else {
+                let page = vm.selectedPage + 1;
+                getPage(page);
+            }
         }
 
         function show(ev, position) {
@@ -33,7 +66,7 @@ angular
                 templateUrl: "/templates/application/gallery.tmpl.html",
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose:true,
+                clickOutsideToClose: true,
                 locals: {
                     images: vm.gallery,
                     position
@@ -46,8 +79,8 @@ angular
         "ngInject";
 
         const vm = this,
-              TM = TweenMax,
-              len = images.length - 1;
+            TM = TweenMax,
+            len = images.length - 1;
 
         let index = position;
 
@@ -82,12 +115,12 @@ angular
             getNext(1);
             vm.futureStyle = getStyle(images[index].source);
             $timeout(() => {
-                TM.to(document.getElementById("actual"), 0.5, {alpha: 0});
-                TM.to(document.getElementById("future"), 0.5, {alpha: 1});
+                TM.to(document.getElementById("actual"), 0.5, { alpha: 0 });
+                TM.to(document.getElementById("future"), 0.5, { alpha: 1 });
                 $timeout(() => {
                     vm.actualStyle = getStyle(images[index].source);
-                    TM.set(document.getElementById("actual"), {alpha: 1});
-                    TM.set(document.getElementById("future"), {alpha: 0});
+                    TM.set(document.getElementById("actual"), { alpha: 1 });
+                    TM.set(document.getElementById("future"), { alpha: 0 });
                 }, 510);
             });
         }
@@ -96,12 +129,12 @@ angular
             getNext(-1);
             vm.futureStyle = getStyle(images[index].source);
             $timeout(() => {
-                TM.to(document.getElementById("actual"), 0.5, {alpha: 0});
-                TM.to(document.getElementById("future"), 0.5, {alpha: 1});
+                TM.to(document.getElementById("actual"), 0.5, { alpha: 0 });
+                TM.to(document.getElementById("future"), 0.5, { alpha: 1 });
                 $timeout(() => {
                     vm.actualStyle = getStyle(images[index].source);
-                    TM.set(document.getElementById("actual"), {alpha: 1});
-                    TM.set(document.getElementById("future"), {alpha: 0});
+                    TM.set(document.getElementById("actual"), { alpha: 1 });
+                    TM.set(document.getElementById("future"), { alpha: 0 });
                 }, 510);
             });
         }
