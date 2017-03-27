@@ -2,9 +2,12 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-    entry: __dirname + '/public/js/entry.js',
+    entry: {
+        bundle: __dirname + '/public/js/entry.js',
+        login: __dirname + '/public/js/entry-login.js'
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: __dirname + '/public/js'
     },
     module: {

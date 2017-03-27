@@ -10,47 +10,14 @@ var express = require('express'),
 
 var router = express.Router();
 
-router.route('/users')
-    .get(function(req, res) {
-        User.all().then(function(users) {
-            res.json(users);
-        });
-    })
-    .post(function(req, res) {
-        User.create({
-            name: req.body.name,
-            age: req.body.age
-        }).then(function(err) {
-            if (err)
-                res.send(err);
-            res.json({ message: 'User created!' });
-        });
+// funkcja sprawdzająca czy użytkownik jest zalogowany
+var isAuthenticated = function(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+    res.json({
+        error: "Access denied"
     });
-router.route('/users/:id')
-    .get(function(req, res) {
-        User.findById(req.params.id).then(function(user) {
-            res.json({
-                user: user
-            });
-        });
-    })
-    .put(function(req, res) {
-        User.findById(req.params.id).then(function(user) {
-            user.update({
-                name: req.body.name,
-                age: req.body.age
-            }).then(function() {
-                res.json({ message: 'updated' });
-            });
-        });
-    })
-    .delete(function(req, res) {
-        User.findById(req.params.id).then(function(user) {
-            user.destroy().then(function() {
-                res.json({ message: "deleted" });
-            });
-        });
-    });
+};
 
 router.route('/priceCategory')
     .get(function(req, res) {
@@ -58,7 +25,7 @@ router.route('/priceCategory')
             res.json(data);
         });
     })
-    .post(function(req, res) {
+    .post(isAuthenticated, function(req, res, next) {
         PriceCategory.create({
             name: req.body.name
         }).then(function(err) {
@@ -67,6 +34,7 @@ router.route('/priceCategory')
             res.json({ message: 'Created' });
         });
     });
+
 router.route('/priceCategory/:id')
     .get(function(req, res) {
         PriceCategory.findById(req.params.id).then(function(data) {
@@ -75,7 +43,7 @@ router.route('/priceCategory/:id')
             });
         });
     })
-    .put(function(req, res) {
+    .put(isAuthenticated, function(req, res) {
         PriceCategory.findById(req.params.id).then(function(data) {
             data.update({
                 name: req.body.name
@@ -84,7 +52,7 @@ router.route('/priceCategory/:id')
             });
         });
     })
-    .delete(function(req, res) {
+    .delete(isAuthenticated, function(req, res) {
         PriceCategory.findById(req.params.id).then(function(data) {
             data.destroy().then(function() {
                 res.json({ message: "deleted" });
@@ -98,7 +66,7 @@ router.route('/prices')
             res.json(data);
         });
     })
-    .post(function(req, res) {
+    .post(isAuthenticated, function(req, res) {
         Price.create({
             name: req.body.name,
             price: req.body.price,
@@ -117,7 +85,7 @@ router.route('/prices/:id')
             });
         });
     })
-    .put(function(req, res) {
+    .put(isAuthenticated, function(req, res) {
         Price.findById(req.params.id).then(function(data) {
             data.update({
                 name: req.body.name,
@@ -127,7 +95,7 @@ router.route('/prices/:id')
             });
         });
     })
-    .delete(function(req, res) {
+    .delete(isAuthenticated, function(req, res) {
         Price.findById(req.params.id).then(function(data) {
             data.destroy().then(function() {
                 res.json({ message: "deleted" });
@@ -141,7 +109,7 @@ router.route('/files')
             res.json(data);
         });
     })
-    .post(function(req, res) {
+    .post(isAuthenticated, function(req, res) {
         var base64 = new Buffer(req.body.image.replace(/^data:image\/(png|gif|jpeg);base64,/, ''), 'base64');
         var hash = shortid.generate() + '.jpg';
         fs.writeFile("public/media/galery/" + hash, base64, 'base64', function(err) {
@@ -161,7 +129,7 @@ router.route('/files')
         });
     });
 router.route('/files/:id')
-    .delete(function(req, res) {
+    .delete(isAuthenticated, function(req, res) {
         File.findById(req.params.id).then(function(data) {
             var filePath = "public/media/galery/" + data.source;
             fs.unlinkSync(filePath);
@@ -177,7 +145,7 @@ router.route('/testimontials')
             res.json(data);
         });
     })
-    .post(function(req, res) {
+    .post(isAuthenticated, function(req, res) {
         var base64 = new Buffer(req.body.image.replace(/^data:image\/(png|gif|jpeg);base64,/, ''), 'base64');
         var hash = shortid.generate() + '.jpg';
         fs.writeFile("public/media/testimontials/" + hash, base64, 'base64', function(err) {
@@ -196,7 +164,7 @@ router.route('/testimontials')
         });
     });
 router.route('/testimontials/:id')
-    .delete(function(req, res) {
+    .delete(isAuthenticated, function(req, res) {
         Testimontial.findById(req.params.id).then(function(data) {
             var filePath = "public/media/testimontials/" + data.img;
             fs.unlinkSync(filePath);
@@ -214,7 +182,7 @@ router.route('/prices/:id')
             });
         });
     })
-    .put(function(req, res) {
+    .put(isAuthenticated, function(req, res) {
         File.findById(req.params.id).then(function(data) {
             data.update({
                 source: req.body.source,
@@ -225,7 +193,7 @@ router.route('/prices/:id')
             });
         });
     })
-    .delete(function(req, res) {
+    .delete(isAuthenticated, function(req, res) {
         File.findById(req.params.id).then(function(data) {
             data.destroy().then(function() {
                 res.json({ message: "deleted" });
