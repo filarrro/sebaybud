@@ -6,30 +6,95 @@
 
         <link rel="stylesheet" href="css/angular-material.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+        <style>
+        body {
+            background-color: #6A1B9A;
+        }
+        .wrapper {
+            position: relative;
+            overflow: auto;
+            width: 100%;
+            height: 100%;
+        }
+        .background-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url(img/bridge.jpg) no-repeat center center;
+            background-size: cover;
+        }
+        .gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1A237E;
+            background: linear-gradient(to bottom right, #303F9F, #1A237E);
+            opacity: 0.88;
+        }
+        .login-box {
+            max-width: 320px !important;
+            min-width: 280px;
+            width: 80%;
+        }
+        .md-button.submit-btn {
+            display: block !important;
+            width: 100%;
+            margin: 40px 0 30px;
+        }
+        md-input-container.md-icon-left {
+            margin: 30px 0;
+        }
+        md-input-container .md-errors-spacer {display: none;}
+        .admine {
+            position: relative;
+            color: #FFF;
+            font-weight: bold;
+        }
+        .blue-text {
+            color: #2196F3;
+        }
+        .material-icons.large {
+            position: relative;
+            color: #FFF;
+            font-size: 70px;
+            width: 70px;
+            height: 70px;
+        }
+        </style>
         <script type="text/javascript" src="js/login.js"></script>
     </head>
-    <body ng-cloak layout="row" layout-align="center center">
-        <div flex="30" class="md-whiteframe-4dp" layout-padding>
-            <div>
-                <h3>Logowanie</h3>
-            </div>
-            <div>
-                <form novalidate id="loginForm" name="loginForm" ng-submit="login(loginForm.$valid)" method="POST">
-                    <md-input-container class="md-block">
-                        <label>Login</label>
-                        <input name="username" type="text" ng-model="data.username" required/>
-                    </md-input-container>
-                    <md-input-container class="md-block">
-                        <label>Hasło</label>
-                        <input name="password" type="password" ng-model="data.password" required/>
-                    </md-input-container>
-                    <div layout="row" layout-align="center">
-                        <md-button class="md-primary md-raised" type="submit">
-                            Zaloguj
-                        </md-button>
-                    </div>
-                </form>
+    <body ng-cloak>
+        <div class="background-img"></div>
+        <div class="gradient"></div>
+        <div class="wrapper" layout="row" layout-align="center center">
+            <div class="login-box">
+                <div>
+                    <form novalidate id="loginForm" name="loginForm" ng-submit="login(loginForm.$valid)" method="POST">
+                        <div layout="row" layout-align="center" class="md-display-2 admine">
+                            Ad<span class="blue-text">Mine</span>
+                        </div>
+                        <div layout="row" layout-align="center">
+                            <md-icon class="material-icons large">&#xE853;</md-icon>
+                        </div>
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Login</label>
+                            <md-icon class="material-icons">&#xE7FD;</md-icon>
+                            <input name="username" type="text" ng-model="data.username" required/>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Hasło</label>
+                            <md-icon class="material-icons">&#xE897;</md-icon>
+                            <input name="password" type="password" ng-model="data.password" required/>
+                        </md-input-container>
+                            <md-button class="md-primary md-raised submit-btn" type="submit">
+                                Zaloguj
+                            </md-button>
+                    </form>
+                </div>
             </div>
         </div>
     </body>

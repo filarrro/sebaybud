@@ -13,10 +13,10 @@ angular.module("webApp", ["ngMaterial"])
     .config(function($mdThemingProvider) {
         "ngInject";
 
-        $mdThemingProvider.theme("default").primaryPalette("indigo");
+        $mdThemingProvider.theme("default").primaryPalette("blue").dark();
 
     })
-    .run(function($rootScope, $timeout, LoginService) {
+    .run(function($rootScope, $timeout, $mdToast, LoginService) {
         "ngInject";
 
         $rootScope.data = {};
@@ -25,15 +25,15 @@ angular.module("webApp", ["ngMaterial"])
             if (valid) {
                 document.getElementById('loginForm').action = "/login";
                 document.getElementById("loginForm").submit();
-                // LoginService.Login($rootScope.data).then(function(res) {
-                //     console.log(res);
-                //     $rootScope.data = {};
-                // });
             } else {
-                alert("wypełnij formularz");
+                $mdToast.show(
+                    $mdToast.simple()
+                    .textContent('Wypełnij formularz')
+                    .position("top right")
+                    .hideDelay(3500)
+                );
             }
-        }
-
+        };
     })
     .factory("LoginService", function($http, $q, $httpParamSerializer) {
         "ngInject";

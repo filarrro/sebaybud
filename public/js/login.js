@@ -63,8 +63,8 @@
 	angular.module("webApp", ["ngMaterial"]).config(["$mdThemingProvider", function ($mdThemingProvider) {
 	    "ngInject";
 
-	    $mdThemingProvider.theme("default").primaryPalette("indigo");
-	}]).run(["$rootScope", "$timeout", "LoginService", function ($rootScope, $timeout, LoginService) {
+	    $mdThemingProvider.theme("default").primaryPalette("blue").dark();
+	}]).run(["$rootScope", "$timeout", "$mdToast", "LoginService", function ($rootScope, $timeout, $mdToast, LoginService) {
 	    "ngInject";
 
 	    $rootScope.data = {};
@@ -73,12 +73,8 @@
 	        if (valid) {
 	            document.getElementById('loginForm').action = "/login";
 	            document.getElementById("loginForm").submit();
-	            // LoginService.Login($rootScope.data).then(function(res) {
-	            //     console.log(res);
-	            //     $rootScope.data = {};
-	            // });
 	        } else {
-	            alert("wypełnij formularz");
+	            $mdToast.show($mdToast.simple().textContent('Wypełnij formularz').position("top right").hideDelay(3500));
 	        }
 	    };
 	}]).factory("LoginService", ["$http", "$q", "$httpParamSerializer", function ($http, $q, $httpParamSerializer) {

@@ -34,7 +34,11 @@ app.get('/login', function(req, res) {
     res.render('login');
 });
 app.get('/admin', function(req, res) {
-    res.render('admin');
+    if (req.isAuthenticated()) {
+        res.render('admin');
+    } else {
+        res.redirect("/login");
+    }
 });
 
 app.use('/api', router);
