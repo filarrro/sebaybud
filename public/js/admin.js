@@ -1,10 +1,14 @@
-angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResource', 'ngMaterial'])
-    .config(["$routeProvider", "$mdThemingProvider", function($routeProvider, $mdThemingProvider) {
+angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngResource', 'ngMaterial'])
+    .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$mdThemingProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider) {
         $mdThemingProvider.theme('default').primaryPalette('blue');
 
-        $routeProvider
-            .when('/category', {
-                controller: 'PriceController',
+        $urlRouterProvider.otherwise('/price');
+
+        $stateProvider
+            .state({
+                name: "category",
+                url: "/category",
+                controller: "PriceController",
                 templateUrl: 'templates/admin/category.html',
                 resolve: {
                     list: function(Factory) {
@@ -18,47 +22,63 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                     }
                 }
             })
-            .when('/price', {
-                controller: 'PriceController',
+            .state({
+                name: "categoryedit",
+                url: "/category/edit/:id",
+                controller: "CatPriceController",
+                controllerAs: "vm",
+                templateUrl: "modules/admin/price/price.html",
+                resolve: {
+                    category: function(PriceCategoryFactory, $stateParams) {
+                        return PriceCategoryFactory.get({ id: $stateParams.id }).$promise;
+                    }
+                }
+            })
+            .state({
+                name: "price",
+                url: "/price",
+                controller: "PriceController",
                 templateUrl: 'templates/price.html',
                 resolve: {
                     list: function(Factory) {
                         return Factory.GetData();
                     },
                     priceList: function(PriceFactory) {
-                        return PriceFactory.query().$promise
+                        return PriceFactory.query().$promise;
                     },
                     priceCategories: function(PriceCategoryFactory) {
-                        return PriceCategoryFactory.query().$promise
+                        return PriceCategoryFactory.query().$promise;
                     }
                 }
             })
-            .when('/testimontials', {
+            .state({
+                name: "testimontials",
+                url: "/testimontials",
                 controller: 'TestimontialsController',
                 templateUrl: 'templates/testimontials.html',
                 resolve: {
                     list: function(TestimontialFactory) {
-                        return TestimontialFactory.query().$promise
+                        return TestimontialFactory.query().$promise;
                     }
                 }
             })
-            .when('/gallery', {
+            .state({
+                name: "gallery",
+                url: "/gallery",
                 controller: 'GalleryController',
                 templateUrl: 'templates/gallery.html',
                 resolve: {
                     list: function(FileFactory) {
-                        return FileFactory.query().$promise
+                        return FileFactory.query().$promise;
                     }
                 }
-            })
-            .otherwise({
-                redirectTo: '/price'
             });
+
     }])
     .run([function() {
         console.log("run");
     }])
-    .controller("TestimontialsController", ["$scope", "$route", "$mdDialog", "TestimontialFactory", "list", function($scope, $route, $mdDialog, TestimontialFactory, list) {
+    .controller("TestimontialsController", ["$scope", "$state", "$mdDialog", "TestimontialFactory", "list", function($scope, $state, $mdDialog, TestimontialFactory, list) {
         $scope.list = list;
         $scope.testimontial = {};
 
@@ -71,7 +91,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                 var item = new TestimontialFactory(data);
                 item.$save(function(res) {
                     console.log(res);
-                    $route.reload();
+                    $state.reload();
                 });
             });
         };
@@ -100,7 +120,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
             $mdDialog.cancel();
         };
     }])
-    .controller("GalleryController", ["$scope", "$route", "$mdDialog", "FileFactory", "list", function($scope, $route, $mdDialog, FileFactory, list) {
+    .controller("GalleryController", ["$scope", "$state", "$mdDialog", "FileFactory", "list", function($scope, $state, $mdDialog, FileFactory, list) {
         $scope.list = list;
 
         $scope.add = function() {
@@ -116,7 +136,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                 });
                 item.$save(function(res) {
                     console.log(res);
-                    $route.reload();
+                    $state.reload();
                 });
             });
         };
@@ -145,7 +165,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
             $mdDialog.cancel();
         };
     }])
-    .controller("PriceController", ["$scope", "$route", "$mdDialog", "PriceFactory", "PriceCategoryFactory", "list", "priceList", "priceCategories", function($scope, $route, $mdDialog, PriceFactory, PriceCategoryFactory, list, priceList, priceCategories) {
+    .controller("PriceController", ["$scope", "$state", "$mdDialog", "PriceFactory", "PriceCategoryFactory", "list", "priceList", "priceCategories", function($scope, $state, $mdDialog, PriceFactory, PriceCategoryFactory, list, priceList, priceCategories) {
         $scope.list = list.categories;
         $scope.priceList = priceList;
         $scope.categories = priceCategories;
@@ -167,25 +187,27 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                 }
             }).then(function(data) {
                 console.log(data);
-                $route.reload();
+                $state.reload();
             });
         }
 
         function edit(item, ev) {
-            $mdDialog.show({
-                controller: DialogController,
-                controllerAs: "vm",
-                templateUrl: 'templates/admin/category.tmpl.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                locals: {
-                    item: item
-                }
-            }).then(function(data) {
-                console.log(data);
-                $route.reload();
-            });
+            console.log(item);
+            $state.go('categoryedit', { id: item.id });
+            // $mdDialog.show({
+            //     controller: DialogController,
+            //     controllerAs: "vm",
+            //     templateUrl: 'templates/admin/category.tmpl.html',
+            //     parent: angular.element(document.body),
+            //     targetEvent: ev,
+            //     clickOutsideToClose: true,
+            //     locals: {
+            //         item: item
+            //     }
+            // }).then(function(data) {
+            //     console.log(data);
+            //     $state.reload();
+            // });
         }
 
         $scope.save = function(valid) {
@@ -193,7 +215,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                 var price = new PriceFactory($scope.newPrice);
                 price.$save(function(response) {
                     console.log(response);
-                    $route.reload();
+                    $state.reload();
                 });
             }
         };
@@ -203,7 +225,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                 if ($scope.priceList[i].id === price.id) {
                     $scope.priceList[i].$delete(function(response) {
                         console.log(response);
-                        $route.reload();
+                        $state.reload();
                     });
                     break;
                 }
@@ -216,7 +238,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                     name: $scope.categoryName
                 });
                 priceCat.$save(function(response) {
-                    $route.reload();
+                    $state.reload();
                 });
             }
         };
@@ -234,7 +256,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
                     if ($scope.categories[i].id === category.id) {
                         $scope.categories[i].$delete(function(response) {
                             console.log(response);
-                            $route.reload();
+                            $state.reload();
                         });
                         break;
                     }
@@ -277,7 +299,9 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ngRoute', 'ngResour
         }
     }])
     .factory("PriceFactory", ["$resource", function($resource) {
-        return $resource('/api/prices/:id', { id: "@id" });
+        return $resource('/api/prices/:id', { id: "@id" }, {
+            'update': { method: 'PUT' }
+        });
     }])
     .factory("PriceCategoryFactory", ["$resource", function($resource) {
         return $resource('/api/priceCategory/:id', { id: "@id" }, {

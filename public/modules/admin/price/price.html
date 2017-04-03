@@ -1,0 +1,44 @@
+<div class="md-table md-whiteframe-4dp">
+    <div class="md-table-header">
+        <div class="md-table-row" layout="row" layout-align="space-between center">
+            <h2 class="primary-text" ng-bind="::vm.category.name"></h2>
+            <div>
+                <md-button ng-click="vm.editCategory($event)" class="md-icon-button">
+                    <md-icon class="material-icons">&#xE3C9;</md-icon>
+                </md-button>
+                <md-button class="md-icon-button">
+                    <md-icon class="material-icons">&#xE872;</md-icon>
+                </md-button>
+            </div>
+            <md-button ng-click="vm.add($event)" class="md-fab md-primary" aria-label="Dodaj">
+                <md-icon class="material-icons">&#xE145;</md-icon>
+            </md-button>
+        </div>
+        <div class="md-table-row bold" layout="row" layout-align="none center">
+            <div class="md-table-cell" flex="70">
+                Opis
+            </div>
+            <div class="md-table-cell text-right" flex>
+                Cena
+            </div>
+        </div>
+    </div>
+    <div class="md-table-body">
+        <div class="md-table-row" layout="row" layout-align="none center" ng-repeat="item in vm.list">
+            <div class="md-table-cell actions" style="width: 100px;" layout="row">
+                <md-button ng-click="vm.edit(item, $event)" class="md-icon-button md-primary md-hue-1" aria-label="edycja">
+                    <md-icon class="material-icons">&#xE3C9;</md-icon>
+                </md-button>
+                <md-button ng-click="vm.deleteItem(item, $event)" class="md-icon-button md-primary md-hue-1" aria-label="usuwanie">
+                    <md-icon class="material-icons">&#xE872;</md-icon>
+                </md-button>
+            </div>
+            <div class="md-table-cell bold" flex="70">
+                <span ng-bind="::item.name"></span>
+            </div>
+            <div class="md-table-cell text-right" flex>
+                <span ng-bind="::item.price"></span>
+            </div>
+        </div>
+    </div>
+</div>

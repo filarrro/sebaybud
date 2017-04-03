@@ -119,6 +119,10 @@ md-input-container.no-errors .md-errors-spacer {
     bottom: 5px;
 }
 
+.mgb-30 {
+    margin-bottom: 30px;
+}
+
 .md-table {
     background-color: #f5f5f5;
 }

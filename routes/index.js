@@ -38,8 +38,15 @@ router.route('/priceCategory')
 router.route('/priceCategory/:id')
     .get(function(req, res) {
         PriceCategory.findById(req.params.id).then(function(data) {
-            res.json({
-                data: data
+            Price.all({
+                where: {
+                    categoryId: data.id
+                }
+            }).then(function(priceList) {
+                res.json({
+                    data: data,
+                    priceList: priceList
+                });
             });
         });
     })
