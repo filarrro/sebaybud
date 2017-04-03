@@ -1,9 +1,11 @@
-var passport = require('passport'),
+var MD5 = require("crypto-js/md5"),
+    passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     User = require('../models').User;
 
 function validPassword(user, password) {
-    return user.password === password;
+    var hash = MD5(password).toString();
+    return user.password === hash;
 }
 
 passport.serializeUser(function(user, done) {

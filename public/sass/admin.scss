@@ -16,8 +16,7 @@ body {
 
 .viewWrapper {
     position: relative;
-    background-color: #EEE;
-    padding: 25px;
+    padding: 10px 20px;
     height: calc(100% - 64px);
     overflow: auto;
 }
@@ -67,19 +66,11 @@ md-input-container.no-errors .md-errors-spacer {
 }
 
 .primary-text {
-    color: rgb(33, 150, 243);
+    color: #3F51B5;
 }
 
 .bold {
-    font-weight: bold !important;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.text-right {
-    text-align: right;
+    font-weight: bold;
 }
 
 .testimontial-card {
@@ -117,44 +108,4 @@ md-input-container.no-errors .md-errors-spacer {
     position: absolute;
     right: 5px;
     bottom: 5px;
-}
-
-.md-table {
-    background-color: #f5f5f5;
-}
-
-.md-table .md-table-header {
-    position: relative;
-    color: rgba(0, 0, 0, 0.54);
-    font-size: 0.9em;
-}
-
-.md-table .md-table-header .md-table-row {
-    padding-left: 115px;
-}
-
-.md-table .md-table-header .md-table-row:hover {
-    background-color: initial;
-}
-
-.md-table .md-table-header .md-table-row .md-fab {
-    margin: 0;
-    position: absolute;
-    bottom: 18px;
-    left: 25px;
-}
-
-.md-table .md-table-row {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 10px 30px 10px 15px;
-    min-height: 45px;
-    transition: background-color 0.225s ease-in-out;
-}
-
-.md-table .md-table-row:hover {
-    background-color: #EEE;
-}
-
-.md-table .md-table-row .md-table-cell.actions .md-icon-button {
-    margin: 0;
 }

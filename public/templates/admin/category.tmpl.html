@@ -1,0 +1,28 @@
+<md-dialog aria-label="Kategoria">
+    <form name="form" ng-cloak novalidate ng-submit="vm.hide(form.$valid)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Kategoria</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon class="material-icons">&#xE5CD;</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="no-errors">
+                    <label>Nazwa kategorii</label>
+                    <input type="text" ng-model="vm.data.name" required />
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button type="submit" class="md-primary">
+                Zapisz
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

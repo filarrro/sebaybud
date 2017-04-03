@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Admin</title>
+        <title>AdMine</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
         <link rel="stylesheet" href="css/angular-material.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="modules/cropper/cropper.min.css"/>
         <link rel="stylesheet" href="css/admin.css"/>
 
     </head>
-    <body ng-app="app" ng-cloak layout="row" class="appContainer">
-        <div flex="15" class="md-whiteframe-9dp">
-            <div>
-                <h3>AdminApp</h3>
-            </div>
-            <div layout="column">
-                <md-button class="md-nostyle" href="#/price" aria-label="Cennik">Cennik</md-button>
-                <md-button class="md-nostyle" href="#/testimontials" aria-label="Referencje">Referencje</md-button>
-                <md-button class="md-nostyle" href="#/gallery" aria-label="Galeria">Galeria</md-button>
-                <form method="GET" action="/logout">                
-                    <md-button type="submit" class="md-nostyle" aria-label="wyloguj">Wyloguj</md-button>
-                </form>
-            </div>
-        </div>
-        <div class="viewWrapper" flex>
+    <body ng-app="app" ng-cloak class="appContainer">
+        <header>
+            <md-toolbar class="md-primary md-whiteframe-4dp">
+                <div class="md-toolbar-tools" layout="row">
+                    <h3 class="md-title bold">AdMine</h3>
+                    <div layout="row">
+                        <md-button class="md-nostyle" href="#/price" aria-label="Cennik">Cennik</md-button>
+                        <md-button class="md-nostyle" href="#/testimontials" aria-label="Referencje">Referencje</md-button>
+                        <md-button class="md-nostyle" href="#/gallery" aria-label="Galeria">Galeria</md-button>
+                        <form method="GET" action="/logout">                
+                            <md-button type="submit" class="md-nostyle" aria-label="wyloguj">Wyloguj</md-button>
+                        </form>
+                    </div>
+                </div>
+            </md-toolbar>
+        </header>
+        <div class="viewWrapper">
             <div ng-view></div>
         </div>
 
@@ -40,3 +42,4 @@
         <script type="text/javascript" src="modules/cropper/cropper-directive.js"></script>
     </body>
 </html>
+
