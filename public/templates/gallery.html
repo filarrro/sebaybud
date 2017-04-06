@@ -3,7 +3,7 @@
 </md-button>
 <div layout="row" layout-align="center" layout-wrap>
     <div class="md-whiteframe-5dp gallery-item" ng-repeat="item in list track by item.id">
-        <img ng-src="media/galery/{{item.source}}" alt="Zdjęcie" />
+        <img ng-src="media/galery/{{::item.thumb}}" alt="Zdjęcie" />
         <md-button class="md-fab md-mini md-warn" ng-click="delete(item, $index)">
             <md-icon class="material-icons">delete</md-icon>
         </md-button>

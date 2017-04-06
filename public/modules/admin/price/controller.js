@@ -1,19 +1,54 @@
 "use strict";
 
 angular.module('app')
-    .controller("CatPriceController", ["$mdDialog", "$state", "PriceFactory", "category", function($mdDialog, $state, PriceFactory, category) {
+    .controller("CatPriceController", ["$mdDialog", "$state", "PriceFactory", "PriceCategoryFactory", "category", function($mdDialog, $state, PriceFactory, PriceCategoryFactory, category) {
         var vm = this;
         console.log(category);
         vm.category = category.data;
         vm.list = category.priceList;
 
         vm.editCategory = editCategory;
+        vm.deleteCategory = deleteCategory;
         vm.add = add;
         vm.edit = edit;
         vm.deleteItem = deleteItem;
 
         function editCategory(ev) {
-            // TODO
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: "vm",
+                templateUrl: 'templates/admin/category.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                    item: angular.copy(vm.category)
+                }
+            }).then(function(item) {
+                console.log(item);
+                PriceCategoryFactory.update({ id: item.id }, item, function(response) {
+                    console.log(response);
+                    $state.reload();
+                });
+            });
+        }
+
+        function deleteCategory(ev) {
+            var confirm = $mdDialog.confirm()
+                .title('Usunąć element?')
+                .textContent('Nie będzie możliwości jego późniejszego przywrócenia.')
+                .ariaLabel('Usuwanie')
+                .targetEvent(ev)
+                .ok('Tak')
+                .cancel('Nie');
+            $mdDialog.show(confirm).then(function(result) {
+                PriceCategoryFactory.delete({ id: vm.category.id }, null, function(response) {
+                    console.log(response);
+                    if (response && response.message) {
+                        $state.go('category');
+                    }
+                });
+            });
         }
 
         function add(ev) {
@@ -84,24 +119,13 @@ angular.module('app')
             vm.cancel = cancel;
 
             if (item) {
+                console.log(item)
                 vm.data = item;
             }
 
             function hide(valid) {
                 if (valid) {
                     $mdDialog.hide(vm.data);
-                    // if (item) {
-                    //     PriceCategoryFactory.update({ id: item.id }, item, function(response) {
-                    //         console.log(response);
-                    //         $mdDialog.hide(response);
-                    //     });
-                    // } else {
-                    //     var priceCat = new PriceCategoryFactory(vm.data);
-                    //     priceCat.$save(function(response) {
-                    //         console.log(response);
-                    //         $mdDialog.hide(response);
-                    //     });
-                    // }
                 }
             }
 

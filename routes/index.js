@@ -117,29 +117,41 @@ router.route('/files')
         });
     })
     .post(isAuthenticated, function(req, res) {
-        var base64 = new Buffer(req.body.image.replace(/^data:image\/(png|gif|jpeg);base64,/, ''), 'base64');
-        var hash = shortid.generate() + '.jpg';
+        var base64 = new Buffer(req.body.image.replace(/^data:image\/(png|gif|jpeg);base64,/, ''), 'base64'),
+            base64thumb = new Buffer(req.body.thumb.replace(/^data:image\/(png|gif|jpeg);base64,/, ''), 'base64');
+        var hashwo = shortid.generate();
+        var hash = hashwo + '.jpg',
+            hashThumb = hashwo + '_thumb.jpg';
         fs.writeFile("public/media/galery/" + hash, base64, 'base64', function(err) {
             console.log(err);
             if (err)
                 res.send(err);
 
-            File.create({
-                source: hash,
-                desc: req.body.desc || '',
-                type: req.body.type
-            }).then(function(err) {
+            fs.writeFile("public/media/galery/" + hashThumb, base64thumb, 'base64', function(err) {
+                console.log(err);
                 if (err)
                     res.send(err);
-                res.json({ message: 'Created' });
+                File.create({
+                    source: hash,
+                    thumb: hashThumb,
+                    desc: req.body.desc || '',
+                    type: req.body.type
+                }).then(function(err) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    res.json({ message: 'Created' });
+                });
             });
         });
     });
 router.route('/files/:id')
     .delete(isAuthenticated, function(req, res) {
         File.findById(req.params.id).then(function(data) {
-            var filePath = "public/media/galery/" + data.source;
+            var filePath = "public/media/galery/" + data.source,
+                thumbPath = "public/media/galery/" + data.thumb;
             fs.unlinkSync(filePath);
+            fs.unlinkSync(thumbPath);
             data.destroy().then(function() {
                 res.json({ message: "deleted" });
             });

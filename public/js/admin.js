@@ -131,6 +131,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
             }).then(function(data) {
                 var item = new FileFactory({
                     image: data.image,
+                    thumb: data.thumb,
                     desc: '',
                     type: 1
                 });
@@ -152,13 +153,14 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
         $scope.data = {};
         $scope.cropperOptions = {
             aspectRatio: "a" / 2,
-            height: 600,
+            height: 800,
             fillColor: "#FFF",
             imgType: "image/jpeg"
         };
         $scope.save = function() {
             var img = $scope.sendToServer();
             $scope.data.image = img.image;
+            $scope.data.thumb = img.thumb;
             $mdDialog.hide($scope.data);
         };
         $scope.cancel = function() {

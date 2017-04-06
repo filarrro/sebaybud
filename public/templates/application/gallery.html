@@ -3,7 +3,7 @@
         <div class="gallery-container" layout="row" layout-align="center" layout-wrap>
             <div ng-repeat="image in vm.gallery track by $index">
                 <md-button class="md-whiteframe-4dp img-container" ng-click="vm.show($event, $index)" aria-label="gallery image">
-                    <div class="gallery-image" style="background: url(media/galery/{{::image.source}}) no-repeat center; background-size: cover;"></div>
+                    <div class="gallery-image" style="background: url(media/galery/{{::image.thumb}}) no-repeat center; background-size: cover;"></div>
                 </md-button>
             </div>
         </div>

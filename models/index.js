@@ -15,6 +15,7 @@ var User = sequelize.define('user', {
 var File = sequelize.define('file', {
     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
     source: { type: Sequelize.STRING, allowNull: false },
+    thumb: Sequelize.STRING,
     desc: Sequelize.STRING,
     type: { type: Sequelize.INTEGER, allowNull: false }
 });
