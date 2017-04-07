@@ -2,22 +2,16 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
     .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$mdThemingProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider) {
         $mdThemingProvider.theme('default').primaryPalette('blue');
 
-        $urlRouterProvider.otherwise('/price');
+        $urlRouterProvider.otherwise('/category');
 
         $stateProvider
             .state({
                 name: "category",
                 url: "/category",
-                controller: "PriceController",
+                controller: "CategoryController",
                 templateUrl: 'templates/admin/category.html',
                 resolve: {
-                    list: function(Factory) {
-                        return Factory.GetData();
-                    },
-                    priceList: function(PriceFactory) {
-                        return PriceFactory.query().$promise;
-                    },
-                    priceCategories: function(PriceCategoryFactory) {
+                    list: function(PriceCategoryFactory) {
                         return PriceCategoryFactory.query().$promise;
                     }
                 }
@@ -31,23 +25,6 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
                 resolve: {
                     category: function(PriceCategoryFactory, $stateParams) {
                         return PriceCategoryFactory.get({ id: $stateParams.id }).$promise;
-                    }
-                }
-            })
-            .state({
-                name: "price",
-                url: "/price",
-                controller: "PriceController",
-                templateUrl: 'templates/price.html',
-                resolve: {
-                    list: function(Factory) {
-                        return Factory.GetData();
-                    },
-                    priceList: function(PriceFactory) {
-                        return PriceFactory.query().$promise;
-                    },
-                    priceCategories: function(PriceCategoryFactory) {
-                        return PriceCategoryFactory.query().$promise;
                     }
                 }
             })
@@ -167,10 +144,8 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
             $mdDialog.cancel();
         };
     }])
-    .controller("PriceController", ["$scope", "$state", "$mdDialog", "PriceFactory", "PriceCategoryFactory", "list", "priceList", "priceCategories", function($scope, $state, $mdDialog, PriceFactory, PriceCategoryFactory, list, priceList, priceCategories) {
-        $scope.list = list.categories;
-        $scope.priceList = priceList;
-        $scope.categories = priceCategories;
+    .controller("CategoryController", ["$scope", "$state", "$mdDialog", "PriceFactory", "PriceCategoryFactory", "list", function($scope, $state, $mdDialog, PriceFactory, PriceCategoryFactory, list) {
+        $scope.categories = list;
         console.log("categories", $scope.categories);
 
         $scope.add = add;
@@ -196,20 +171,6 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
         function edit(item, ev) {
             console.log(item);
             $state.go('categoryedit', { id: item.id });
-            // $mdDialog.show({
-            //     controller: DialogController,
-            //     controllerAs: "vm",
-            //     templateUrl: 'templates/admin/category.tmpl.html',
-            //     parent: angular.element(document.body),
-            //     targetEvent: ev,
-            //     clickOutsideToClose: true,
-            //     locals: {
-            //         item: item
-            //     }
-            // }).then(function(data) {
-            //     console.log(data);
-            //     $state.reload();
-            // });
         }
 
         $scope.save = function(valid) {

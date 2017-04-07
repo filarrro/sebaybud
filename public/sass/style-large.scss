@@ -191,6 +191,7 @@ $darkGray: #404545;
             margin: 0;
             padding: 0 25px;
             border-radius: 0;
+            width: 100%;
         }
         .logo {
             position: static;
@@ -283,6 +284,17 @@ $darkGray: #404545;
     #gallery {
         .img-container {
             margin: 20px;
+        }
+    }
+    .my-icon-button {
+        &.popup-nav-btn {
+            width: 68px !important;
+            height: 68px;
+            md-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 60px;
+            }
         }
     }
 }

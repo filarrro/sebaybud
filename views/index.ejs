@@ -15,7 +15,7 @@
         <script src="dist/bundle.js"></script>
     </head>
     <body ng-cloak>
-        <div id="menuContent">
+        <div id="menuContent" class="md-whiteframe-4dp">
             <div id="menuInner" layout="column" layout-align="space-between">
                 <div class="menuInnerButton">
                     <md-button class="md-whiteframe-3dp" ng-click="go('home', {anchor: 'baner'})">Start</md-button>
@@ -47,13 +47,25 @@
             <div class="logo" id="header-logo">
                 <img src="img/logo.png" alt="Logo firmy Sebaybud"/>
             </div>
-            <div class="nav-btns event-auto">
-                <md-button class="header-btn" ng-click="go('home', {anchor: 'baner'})">Start</md-button>
-                <md-button class="header-btn" ng-click="go('home', {anchor: 'offer'})">Oferta</md-button>
-                <md-button class="header-btn" ng-click="go('home', {anchor: 'testimontials'})">Referencje</md-button>
-                <md-button class="header-btn" ng-click="go('home', {anchor: 'prices'})">Cennik</md-button>
-                <md-button class="header-btn" ng-click="go('home', {anchor: 'contact'})">Kontakt</md-button>
-                <md-button class="header-btn" ng-click="go('gallery')">Galeria</md-button>
+            <div class="nav-btns event-auto" layout="row">
+                <div flex>
+                    <md-button class="header-btn" ng-click="go('home', {anchor: 'baner'})">Start</md-button>
+                </div>
+                <div flex>
+                    <md-button class="header-btn" ng-click="go('home', {anchor: 'offer'})">Oferta</md-button>
+                </div>
+                <div flex>
+                    <md-button class="header-btn" ng-click="go('home', {anchor: 'testimontials'})">Referencje</md-button>
+                </div>
+                <div flex>
+                    <md-button class="header-btn" ng-click="go('home', {anchor: 'prices'})">Cennik</md-button>
+                </div>
+                <div flex>
+                    <md-button class="header-btn" ng-click="go('home', {anchor: 'contact'})">Kontakt</md-button>
+                </div>
+                <div flex>
+                    <md-button class="header-btn" ng-click="go('gallery')">Galeria</md-button>
+                </div>
             </div>
         </header>
 

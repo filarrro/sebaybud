@@ -1,24 +1,19 @@
 <md-dialog aria-label="Gallery images" id="gallery-popup">
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <span flex></span>
-            <md-button class="md-icon-button white-text" ng-click="vm.close()">
-                <md-icon class="material-icons">close</md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
     <md-dialog-content>
         <div class="md-dialog-content">
             <div class="relative">
-                <div class="gallery-img-popup" id="future" ng-style="vm.futureStyle"></div>
-                <div class="gallery-img-popup" id="actual" ng-style="vm.actualStyle"></div>
+                <md-progress-circular md-diameter="40"></md-progress-circular>
+                <img src="" class="gallery-img-popup" id="gallery-img" alt="Galeria" />
+                <md-button class="my-icon-button popup-nav-btn close" aria-label="Zamknij" ng-click="vm.close()">
+                    <md-icon class="material-icon md-40">close</md-icon>
+                </md-button>
+                <md-button class="my-icon-button popup-nav-btn prev" aria-label="Poprzedni" ng-click="vm.prev()">
+                    <md-icon class="material-icon md-40">arrow_left</md-icon>
+                </md-button>
+                <md-button class="my-icon-button popup-nav-btn next" aria-label="Następny" ng-click="vm.next()">
+                    <md-icon class="material-icon md-40">arrow_right</md-icon>
+                </md-button>
             </div>
         </div>
-        <md-button class="my-icon-button popup-nav-btn prev" aria-label="Poprzedni" ng-click="vm.prev()">
-            <md-icon class="material-icon md-40">arrow_left</md-icon>
-        </md-button>
-        <md-button class="my-icon-button popup-nav-btn next" aria-label="Następny" ng-click="vm.next()">
-            <md-icon class="material-icon md-40">arrow_right</md-icon>
-        </md-button>
     </md-dialog-content>
 </md-dialog>

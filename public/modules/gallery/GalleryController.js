@@ -81,25 +81,51 @@ angular
         const vm = this,
             TM = TweenMax,
             len = images.length - 1;
+        let IMAGE_EL;
 
-        let index = position;
+
+        let index = position,
+            image;
 
         vm.images = images;
-        vm.actualStyle = getStyle(images[index].source);
 
         vm.close = close;
         vm.next = next;
         vm.prev = prev;
 
+        activate();
+
+        function activate() {
+            $timeout(() => {
+                IMAGE_EL = document.getElementById("gallery-img");
+                image = new Image();
+                image.onload = function() {
+                    let hI = image.height,
+                        wI = image.width;
+
+                    let { w, h } = calculateDimensions(wI, hI);
+
+                    IMAGE_EL.src = `/media/galery/${images[index].source}`;
+
+                    TM.to(IMAGE_EL, 0.225, { width: w });
+                    TM.to(IMAGE_EL, 0.225, {
+                        height: h,
+                        delay: 0.07,
+                        onComplete: function() {
+                            TM.to(IMAGE_EL, 0.225, { autoAlpha: 1 });
+                        }
+                    });
+                };
+                image.src = `/media/galery/${images[index].source}`;
+            });
+        }
+
         function close() {
             $mdDialog.cancel();
         }
 
-        function getStyle(src) {
-            return {
-                background: `url(/media/galery/${src}) no-repeat center`,
-                backgroundSize: "cover"
-            };
+        function changeSrc() {
+            image.src = `/media/galery/${images[index].source}`;
         }
 
         function getNext(diff) {
@@ -113,30 +139,49 @@ angular
 
         function next() {
             getNext(1);
-            vm.futureStyle = getStyle(images[index].source);
-            $timeout(() => {
-                TM.to(document.getElementById("actual"), 0.5, { alpha: 0 });
-                TM.to(document.getElementById("future"), 0.5, { alpha: 1 });
-                $timeout(() => {
-                    vm.actualStyle = getStyle(images[index].source);
-                    TM.set(document.getElementById("actual"), { alpha: 1 });
-                    TM.set(document.getElementById("future"), { alpha: 0 });
-                }, 510);
+            TM.to(IMAGE_EL, 0.225, {
+                autoAlpha: 0,
+                onComplete: function() {
+                    changeSrc();
+                }
             });
         }
 
         function prev() {
             getNext(-1);
-            vm.futureStyle = getStyle(images[index].source);
-            $timeout(() => {
-                TM.to(document.getElementById("actual"), 0.5, { alpha: 0 });
-                TM.to(document.getElementById("future"), 0.5, { alpha: 1 });
-                $timeout(() => {
-                    vm.actualStyle = getStyle(images[index].source);
-                    TM.set(document.getElementById("actual"), { alpha: 1 });
-                    TM.set(document.getElementById("future"), { alpha: 0 });
-                }, 510);
+            TM.to(IMAGE_EL, 0.225, {
+                autoAlpha: 0,
+                onComplete: function() {
+                    changeSrc();
+                }
             });
+        }
+
+        function calculateDimensions(w, h) {
+            let wW = Math.floor(window.innerWidth * 0.9),
+                hW = Math.floor(window.innerHeight * 0.9),
+                fixW, fixH;
+
+            if (w > wW) {
+                fixW = wW / w;
+            }
+            if (h > hW) {
+                fixH = hW / h;
+            }
+
+            if (!fixW && !fixH) { return { w, h }; }
+            if (fixW && fixH) {
+                if (fixW < fixH) {
+                    return { w: wW, h: h * fixW };
+                } else {
+                    return { w: w * fixH, h: hW };
+                }
+            }
+            if (fixW) {
+                return { w: wW, h: h * fixW };
+            } else {
+                return { w: w * fixH, h: hW };
+            }
         }
 
     });
