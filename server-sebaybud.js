@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 var passport = require('./passport');
 
 var models = require('./models/index');
@@ -54,6 +56,56 @@ app.get('/logout',
         req.logout();
         res.redirect('/login');
     });
+
+app.post('/contact-mail', function(req, res) {
+
+    var mailAccountUser = 'sebaybud.kontakt@gmail.com';
+    var mailAccountPassword = 'zaq1@WSX';
+
+    var fromEmailAddress = 'sebaybud.kontakt@gmail.com';
+    var toEmailAddress = 'sebaybud@gmail.com';
+
+    var transport = nodemailer.createTransport(smtpTransport({
+        service: 'gmail',
+        auth: {
+            user: mailAccountUser,
+            pass: mailAccountPassword
+        },
+        tls: { rejectUnauthorized: false }
+    }));
+
+    var mail = {
+        from: fromEmailAddress,
+        to: toEmailAddress,
+        subject: req.body.title,
+        text: "Hello!",
+        html: `
+        <h3 style="color:rgba(0,0,0,0.87);">
+            <small style="color:rgba(0,0,0,0.54);">Od:</small> ${req.body.name}
+        </h3>
+        <h3 style="color:rgba(0,0,0,0.87);">
+            <small style="color:rgba(0,0,0,0.54);">E-mail:</small> ${req.body.email}
+        </h3>
+        <p style="text-align:justify;font-style:italic;color:rgba(0,0,0,0.87);">${req.body.content}</p>
+        `
+    };
+
+    transport.sendMail(mail, function(error, response) {
+        if (error) {
+            console.log("error", error);
+            res.json({
+                error: "Wystąpił błąd przy wysyłaniu wiadomości"
+            });
+        } else {
+            console.log("Message sent: " + response);
+            res.json({
+                message: "Wiadomość wysłana"
+            });
+        }
+
+        transport.close();
+    });
+});
 
 app.get('*', function(req, res) {
     res.render('index');

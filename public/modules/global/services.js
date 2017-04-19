@@ -7,7 +7,8 @@ angular
 
         var service = {
             GetData: getData,
-            GetImages: getImages
+            GetImages: getImages,
+            sendMail: sendMail
         };
         return service;
 
@@ -36,6 +37,17 @@ angular
                     console.log(err);
                     defered.resolve(err);
                 });
+            return defered.promise;
+        }
+
+        function sendMail(data) {
+            var defered = $q.defer();
+            $http.post('/contact-mail', data).then(function(success) {
+                defered.resolve(success.data);
+            }, function(error) {
+                console.log("error", error);
+                defered.resolve(error);
+            });
             return defered.promise;
         }
     });

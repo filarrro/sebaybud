@@ -91,7 +91,7 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
 
         function scrollTo(id) {
             let el = document.getElementById(id),
-                page = document.getElementsByTagName("body");
+                page = document.getElementById("page-content");
             TM.to(page, 0.6, { scrollTo: { y: el, offsetY: 60 } });
         }
 

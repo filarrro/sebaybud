@@ -15,10 +15,11 @@ $darkGray: #424242;
 }
 
 body {
+    box-sizing: border-box;
     font-family: 'Proza Libre', sans-serif;
     min-width: 320px;
     font-size: 14px;
-    height: auto;
+    padding-top: 64px;
 }
 
 section {
@@ -261,10 +262,14 @@ header {
     visibility: hidden;
 }
 
+#page-content {
+    height: 100%;
+    overflow: auto;
+}
+
 #baner {
     height: 70%;
     overflow: hidden;
-    margin-top: 64px;
     #banerContent {
         position: relative;
         height: 100%;
@@ -596,7 +601,6 @@ footer {
 
 #gallery {
     min-height: 100%;
-    padding-top: 64px;
     box-sizing: border-box;
     .img-container {
         width: 120px;

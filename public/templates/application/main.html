@@ -149,7 +149,7 @@
         <div class="contact-bg"></div>
         <h1>Kontakt</h1>
         <div class="container">
-            <form name="contactForm" novalidate>
+            <form name="contactForm" novalidate ng-submit="sendMail(contactForm.$valid)">
                 <md-input-container class="md-block">
                     <label>Nazwisko lub pseudonim</label>
                     <input type="text" ng-model="contact.name" required />
@@ -164,10 +164,10 @@
                 </md-input-container>
                 <md-input-container class="md-block">
                     <label>Treść wiadomości</label>
-                    <textarea ng-model="contact.text" rows="3" required></textarea>
+                    <textarea ng-model="contact.content" rows="3" required></textarea>
                 </md-input-container>
                 <div layout="row" layout-align="center">
-                    <md-button type="submit" class="md-primary md-raised">
+                    <md-button type="submit" class="md-primary md-raised" ng-disabled="sendingMail">
                         <md-icon class="materal-icons">send</md-icon>
                         Wyślij
                     </md-button>
@@ -175,17 +175,6 @@
             </form>
         </div>
     </section>
-
-    <!--<div id="popup-overlay" layout="row" layout-align="center center">
-        <div class="popup-container">
-            <md-button id="popup-cancel" ng-click="hidePopup()">
-                <md-icon class="material-icons">close</md-icon>
-            </md-button>
-            <div id="popup-dialog">
-                <img ng-src="/media/testimontials/{{modalData.img}}" alt="Referencja" />
-            </div>
-        </div>
-    </div>-->
 
     <footer layout="row" layout-align="center center">
         <div class="logo">

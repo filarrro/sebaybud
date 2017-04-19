@@ -9,17 +9,16 @@ angular
         "ngInject";
 
         let TM = TweenMax,
-            SMController = new ScrollMagic.Controller(),
+            SMController,
+            HEADER_SCENE,
             i,
             len;
-
-        let body = angular.element(document.querySelector('body')),
-            innerMenu = angular.element(document.querySelector('#menuInner')),
-            menuButtons = document.getElementsByClassName('menuInnerButton');
 
         // animation vars
         let banner, header, headerLogo, animatedBackgrounds, offerRows, priceRowsHeaders, priceRows;
 
+        $scope.contact = {};
+        $scope.sendingMail = false;
         $scope.priceCategories = undefined;
         $scope.testimontials = undefined;
 
@@ -27,26 +26,18 @@ angular
         $scope.hidePopup = hidePopup;
 
         $scope.togglePriceDetails = togglePriceDetails;
-
+        $scope.sendMail = sendMail;
 
         Factory.GetData().then(handleData);
 
-        banner = document.getElementById("banerContent");
-        // header = document.getElementById("header");
-        // headerLogo = document.getElementById("header-logo");
-        // let tweenDuration = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 0.7 - 64;
-        const bannerTween = TM.to(banner, 1, { y: "60%", ease: Power0.easeNone });
-        // const headerTween = new TimelineMax();
-        // headerTween
-        // .to(header, 1, { height: 64, backgroundColor: "#121212", ease: Power0.easeNone }, 0)
-        // .to(headerLogo, 0.2, { height: 50, width: 40 }, 0.8)
-        // .set(header, {
-        //     boxShadow: "0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)"
-        // });
-
-        let HEADER_SCENE = new ScrollMagic.Scene({
-            duration: "100%"
-        }).setTween(bannerTween).addTo(SMController);
+        $timeout(() => {
+            banner = document.getElementById("banerContent");
+            const bannerTween = TM.to(banner, 1, { y: "60%", ease: Power0.easeNone });
+            SMController = new ScrollMagic.Controller({ container: "#page-content" });
+            HEADER_SCENE = new ScrollMagic.Scene({
+                duration: "100%"
+            }).setTween(bannerTween).addTo(SMController);
+        });
 
         function showReference(item, ev) {
             console.log(item);
@@ -95,6 +86,38 @@ angular
             } else {
                 TM.to(target, 0.5, { height: 0 });
                 event.srcElement.classList.remove("open");
+            }
+        }
+
+        function sendMail(valid) {
+            if (valid) {
+                $scope.sendingMail = true;
+                Factory.sendMail($scope.contact).then(function(res) {
+                    console.log(res);
+                    $scope.sendingMail = false;
+                    if (res.message) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .clickOutsideToClose(true)
+                            .title('Wiadomość wysłana')
+                            .textContent('Twoja wiadomość została wysłana. Odezwiemy się do Ciebie wkrótce.')
+                            .ariaLabel('Info')
+                            .ok('ok')
+                        );
+                        $scope.contact = {};
+                        $scope.contactForm.$setPristine();
+                        $scope.contactForm.$setUntouched();
+                    } else {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .clickOutsideToClose(true)
+                            .title('Wystąpił błąd')
+                            .textContent('Wystapił nieoczekiwany bląd podczas próby wysłania wiadomości.')
+                            .ariaLabel('Info')
+                            .ok('ok')
+                        );
+                    }
+                });
             }
         }
 
