@@ -253,14 +253,13 @@ angular
                     offerRows = document.getElementsByClassName('offer-row');
                     len = offerRows.length;
                     for (i = 0; i < len; i++) {
-                        let tween = TM.from(offerRows[i], 0.5, { alpha: 0, scale: 0, ease: Back.easeOut });
                         new ScrollMagic.Scene({
                                 triggerElement: offerRows[i],
                                 triggerHook: 'onCenter',
                                 offset: -150,
                                 reverse: false
                             })
-                            .setTween(tween)
+                            .setClassToggle(offerRows[i], "is-visible")
                             .addTo(SMController);
                     }
 

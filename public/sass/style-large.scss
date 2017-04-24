@@ -231,9 +231,14 @@ $darkGray: #404545;
             max-width: 960px;
             margin: 30px auto;
             padding: 0 3em;
-            li {
-                margin-bottom: 15px;
-                background-color: $lightGray;
+        }
+        .offer-row {
+            margin-bottom: 15px;
+            background-color: $lightGray;
+            transform: scale(0);
+            transition: transform ease-out 0.225s;
+            &.is-visible {
+                transform: scale(1);
             }
         }
     }

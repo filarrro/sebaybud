@@ -21,6 +21,15 @@ angular
         vm.prevPage = prevPage;
         vm.nextPage = nextPage;
 
+        activate();
+
+        function activate() {
+            $timeout(() => {
+                imageBoxes = document.getElementsByClassName("img-container");
+                TweenMax.staggerTo(imageBoxes, 0.2, { scale: 1 }, 0.02);
+            });
+        }
+
         function getPage(page) {
             if (vm.selectedPage === page) {
                 return;
