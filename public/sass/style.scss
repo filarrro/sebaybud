@@ -259,7 +259,11 @@ header {
     z-index: 40;
     background-color: #F5F5F5;
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
+    transition: opacity ease-in-out 0.2s;
+    &.is-visible {
+        opacity: 1;
+    }
 }
 
 #page-content {
@@ -290,6 +294,11 @@ header {
             height: 100%;
             opacity: 0;
             position: absolute;
+            transition: opacity ease-in-out 0.7s;
+            &.is-actual {
+                opacity: 1;
+                z-index: 2;
+            }
             &.slide1 {
                 background: url("../img/source/slide1.jpeg") no-repeat center;
                 background-size: cover;
@@ -311,6 +320,10 @@ header {
         right: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.6);
+        z-index: 3;
+    }
+    .baner-text {
+        z-index: 5;
     }
 }
 

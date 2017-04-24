@@ -12,7 +12,8 @@ angular
             SMController,
             HEADER_SCENE,
             i,
-            len;
+            len,
+            slider;
 
         // animation vars
         let banner, header, headerLogo, animatedBackgrounds, offerRows, priceRowsHeaders, priceRows;
@@ -28,16 +29,20 @@ angular
         $scope.togglePriceDetails = togglePriceDetails;
         $scope.sendMail = sendMail;
 
-        Factory.GetData().then(handleData);
+        activate();
 
-        $timeout(() => {
-            banner = document.getElementById("banerContent");
-            const bannerTween = TM.to(banner, 1, { y: "60%", ease: Power0.easeNone });
-            SMController = new ScrollMagic.Controller({ container: "#page-content" });
-            HEADER_SCENE = new ScrollMagic.Scene({
-                duration: "100%"
-            }).setTween(bannerTween).addTo(SMController);
-        });
+        function activate() {
+            Factory.GetData().then(handleData);
+
+            $timeout(() => {
+                banner = document.getElementById("banerContent");
+                const bannerTween = TM.to(banner, 1, { y: "60%", ease: Power0.easeNone });
+                SMController = new ScrollMagic.Controller({ container: "#page-content" });
+                HEADER_SCENE = new ScrollMagic.Scene({
+                    duration: "100%"
+                }).setTween(bannerTween).addTo(SMController);
+            });
+        }
 
         function showReference(item, ev) {
             console.log(item);
@@ -134,34 +139,29 @@ angular
             };
 
             $timeout(function() {
-                let slider = {
+                slider = {
                     actual: 0,
                     before: null,
+                    timeout: undefined,
                     slides: document.getElementsByClassName("slide"),
                     length: document.getElementsByClassName("slide").length,
                     start: function() {
-                        TM.to(this.slides[0], 2, {
-                            alpha: 1,
-                            onComplete: function() {
-                                this.actual = 1;
-                                this.before = 0;
-                                this.next();
-                            }.bind(this)
-                        });
+                        this.slides[0].classList.add("is-actual");
+                        this.actual = 1;
+                        this.before = 0;
+                        this.timeout = $timeout(() => {
+                            this.next();
+                        }, 3500);
                     },
                     next: function() {
-                        let tween = new TimelineMax({ delay: 4 });
-                        tween
-                            .to(this.slides[this.actual], 1.5, { alpha: 1, ease: Power0.easeNone }, 0)
-                            .to(this.slides[this.before], 1.5, {
-                                alpha: 0,
-                                ease: Power0.easeNone,
-                                onComplete: function() {
-                                    this.before = this.actual;
-                                    this.actual = (this.actual + 1) < this.length && (this.actual + 1) || 0;
-                                    this.next();
-                                }.bind(this)
-                            }, 0);
+                        console.log(this.slides, typeof(this.slides));
+                        this.slides[this.before].classList.remove("is-actual");
+                        this.slides[this.actual].classList.add("is-actual");
+                        this.before = this.actual;
+                        this.actual = (this.actual + 1) < this.length && (this.actual + 1) || 0;
+                        this.timeout = $timeout(() => {
+                            this.next();
+                        }, 3500);
                     }
                 };
 
@@ -266,27 +266,24 @@ angular
                     priceRowsHeaders = document.getElementsByClassName('price-row-header');
                     len = priceRowsHeaders.length;
                     for (i = 0; i < len; i++) {
-                        let tween = TM.from(priceRowsHeaders[i], 0.3, { x: -100, alpha: 0 });
+                        // let tween = TM.from(priceRowsHeaders[i], 0.3, { x: -100, alpha: 0 });
                         new ScrollMagic.Scene({
                                 triggerElement: priceRowsHeaders[i],
                                 triggerHook: 'onCenter',
                                 offset: -150,
                                 reverse: false
                             })
-                            .setTween(tween)
+                            .setClassToggle(priceRowsHeaders[i], "is-visible")
                             .addTo(SMController);
                     }
                 }
             });
         }
 
-        // window.onresize = (event) => {
-        //     location.reload();
-        // };
-
         $scope.$on("$destroy", () => {
             SMController.destroy(true);
             SMController = null;
+            $timeout.cancel(slider.timeout);
         });
     })
     .controller("TetsimontialPanelController", function($mdPanel, data) {

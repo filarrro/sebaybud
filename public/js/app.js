@@ -97,14 +97,12 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
 
         function showPageLoader() {
             pageLoaderVisible = true;
-            let loader = document.getElementById("page-loader");
-            TM.to(loader, PAGE_LOADER_DURATION_S, { autoAlpha: 1 });
+            document.getElementById("page-loader").classList.add("is-visible");
         }
 
         function hidePageLoader() {
             pageLoaderVisible = false;
-            let loader = document.getElementById("page-loader");
-            TM.to(loader, PAGE_LOADER_DURATION_S, { autoAlpha: 0 });
+            document.getElementById("page-loader").classList.remove("is-visible");
         }
 
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
@@ -118,7 +116,7 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
             if (pageLoaderVisible) {
                 $timeout(() => {
                     hidePageLoader();
-                }, 200);
+                }, PAGE_LOADER_DURATION_MS);
             }
         });
     });
