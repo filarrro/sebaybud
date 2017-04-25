@@ -1,8 +1,5 @@
 "use strict";
 
-import { TweenMax } from 'gsap';
-import ScrollMagic from 'scrollmagic';
-
 angular
     .module("webApp")
     .controller("MainController", function($rootScope, $scope, $timeout, $state, $mdPanel, $mdDialog, Factory) {

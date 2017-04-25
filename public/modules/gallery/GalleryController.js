@@ -1,7 +1,5 @@
 "use strict";
 
-import { TweenMax } from 'gsap';
-
 angular
     .module("webApp")
     .controller("GalleryController", function($timeout, $mdDialog, Factory, images) {
@@ -119,7 +117,7 @@ angular
                     TM.to(IMAGE_EL, 0.225, { width: w });
                     TM.to(IMAGE_EL, 0.225, {
                         height: h,
-                        delay: 0.07,
+                        delay: 0.05,
                         onComplete: function() {
                             TM.to(IMAGE_EL, 0.225, { autoAlpha: 1 });
                         }

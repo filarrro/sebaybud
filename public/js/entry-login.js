@@ -1,14 +1,5 @@
 "use strict";
 
-import 'normalize-css';
-import 'material-css';
-
-import 'angular';
-import 'angular-aria';
-import 'angular-animate';
-import 'angular-ui-router';
-import 'angular-material';
-
 angular.module("webApp", ["ngMaterial"])
     .config(function($mdThemingProvider) {
         "ngInject";
