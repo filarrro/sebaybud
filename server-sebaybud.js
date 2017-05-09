@@ -1,4 +1,5 @@
 var express = require('express');
+var compression = require('compression');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var nodemailer = require('nodemailer');
@@ -11,11 +12,18 @@ var router = require('./routes/index');
 
 var app = express();
 
+// Add content compression middleware
+app.use(compression());
+
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 app.set('views', __dirname + '/views');
-app.use(express.static(__dirname + '/public'));
+
+// Add static middleware
+var oneMonth = 2592000000;
+app.use(express.static(__dirname + '/public', { maxAge: oneMonth }));
+
 app.set('view engine', 'ejs');
 
 app.use(session({
