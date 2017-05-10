@@ -1,8 +1,9 @@
 var Sequelize = require('sequelize');
+var Config = require('../config');
 var db = {};
 
-var sequelize = new Sequelize('sebaybud', 'root', '', {
-    host: 'localhost',
+var sequelize = new Sequelize(Config.DB_NAME, Config.DB_USER, Config.DB_PASS, {
+    host: Config.DB_HOST,
     dialect: 'mysql'
 });
 

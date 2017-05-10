@@ -29,10 +29,10 @@ passport.use(new LocalStrategy(
             }
         }).then(function(user) {
             if (!user) {
-                return done(null, false, { message: 'Incorrect username.' });
+                return done(null, false, { message: 'Incorrect username or password.' });
             }
             if (!validPassword(user, password)) {
-                return done(null, false, { message: 'Incorrect password.' });
+                return done(null, false, { message: 'Incorrect username or password.' });
             }
             return done(null, user);
         }).catch(function(err) {
