@@ -2,10 +2,13 @@ var express = require('express');
 var compression = require('compression');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var validator = require('express-validator');
+var helmet = require('helmet');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var passport = require('./passport');
 
+var Config = require('./config');
 var models = require('./models/index');
 var sequelize = models.sequelize;
 var router = require('./routes/index');
@@ -18,6 +21,18 @@ app.use(compression());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
+//never allow in frames
+app.use(helmet.frameguard({ action: 'deny' }));
+
+// sanitize user input for all requests
+app.use(validator());
+app.use(function(req, res, next) {
+    for (var item in req.body) {
+        req.sanitize(item).escape();
+    }
+    next();
+});
+
 app.set('views', __dirname + '/views');
 
 // Add static middleware
@@ -29,13 +44,13 @@ app.set('view engine', 'ejs');
 app.use(session({
     secret: 'mySuperSecretSessionKey',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { maxAge: 2592000000 }, // 30 days
+    httpOnly: true
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-var port = process.env.PORT || 8080;
 
 app.get('/', function(req, res) {
     res.render('index');
@@ -71,7 +86,7 @@ app.post('/contact-mail', function(req, res) {
     var mailAccountPassword = 'zaq1@WSX';
 
     var fromEmailAddress = 'sebaybud.kontakt@gmail.com';
-    var toEmailAddress = 'sebaybud@gmail.com';
+    var toEmailAddress = Config.CONTACT_MAIL;
 
     var transport = nodemailer.createTransport(smtpTransport({
         service: 'gmail',
@@ -120,6 +135,6 @@ app.get('*', function(req, res) {
 });
 
 sequelize.sync().then(function() {
-    app.listen(port);
-    console.log('Magic happens on port ' + port);
+    app.listen(Config.PROCESS_PORT);
+    console.log('Working hard on port ' + Config.PROCESS_PORT);
 });
