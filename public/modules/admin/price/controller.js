@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('app')
-    .controller("CatPriceController", ["$mdDialog", "$state", "PriceFactory", "PriceCategoryFactory", "category", function($mdDialog, $state, PriceFactory, PriceCategoryFactory, category) {
+    .controller("CatPriceController", function($mdDialog, $state, PriceFactory, PriceCategoryFactory, category) {
         var vm = this;
         console.log(category);
         vm.category = category.data;
@@ -119,7 +119,6 @@ angular.module('app')
             vm.cancel = cancel;
 
             if (item) {
-                console.log(item)
                 vm.data = item;
             }
 
@@ -134,4 +133,4 @@ angular.module('app')
             }
         }
 
-    }]);
+    });

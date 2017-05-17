@@ -35,6 +35,7 @@
     "jshint": "^2.9.4",
     "jshint-loader": "^0.8.3",
     "ng-annotate-loader": "^0.2.0",
+    "ng-annotate-webpack-plugin": "^0.2.1-pre",
     "node-sass": "^4.0.0",
     "path": "^0.12.7",
     "sass-loader": "^4.1.0",

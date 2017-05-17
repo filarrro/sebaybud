@@ -26,12 +26,6 @@ app.use(helmet.frameguard({ action: 'deny' }));
 
 // sanitize user input for all requests
 app.use(validator());
-app.use(function(req, res, next) {
-    for (var item in req.body) {
-        req.sanitize(item).escape();
-    }
-    next();
-});
 
 app.set('views', __dirname + '/views');
 
@@ -81,6 +75,10 @@ app.get('/logout',
     });
 
 app.post('/contact-mail', function(req, res) {
+    // escape special characters
+    for (var item in req.body) {
+        req.sanitize(item).escape();
+    }
 
     var mailAccountUser = 'sebaybud.kontakt@gmail.com';
     var mailAccountPassword = 'zaq1@WSX';
@@ -131,7 +129,7 @@ app.post('/contact-mail', function(req, res) {
 });
 
 app.get('*', function(req, res) {
-    res.render('index');
+    res.redirect("/");
 });
 
 sequelize.sync().then(function() {

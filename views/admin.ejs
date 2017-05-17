@@ -1,47 +1,49 @@
-<!DOCTYPE html>
-<html>
+<html ng-app="app">
     <head>
         <title>AdMine</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
-        <link rel="stylesheet" href="css/angular-material.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="modules/cropper/cropper.min.css"/>
-        <link rel="stylesheet" href="css/admin.css"/>
 
+        <script type="text/javascript" src="modules/cropper/cropper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-aria.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-resource.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.js"></script>
+
+        <script src="dist/admin.js"></script>
     </head>
-    <body ng-app="app" ng-cloak class="appContainer">
-        <header>
+    <body ng-cloak class="appContainer">
+        <header class="header">
             <md-toolbar class="md-primary md-whiteframe-4dp">
                 <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                    <h3 class="md-title bold">AdMine</h3>
-                    <div layout="row" layout-align="space-around center" flex="70">
-                        <md-button class="md-nostyle" ui-sref="category" aria-label="Cennik">Cennik</md-button>
-                        <md-button class="md-nostyle" ui-sref="testimontials" aria-label="Referencje">Referencje</md-button>
-                        <md-button class="md-nostyle" ui-sref="gallery" aria-label="Galeria">Galeria</md-button>
-                        <form method="GET" action="/logout">                
-                            <md-button type="submit" class="md-nostyle" aria-label="wyloguj">Wyloguj</md-button>
+                    <h3 class="md-title bold" flex="20">AdMine</h3>
+                    <div layout="row" layout-align="start center">
+                        <md-button class="md-nostyle header-link" ui-sref="category" ui-sref-active="active" aria-label="Cennik">Cennik</md-button>
+                        <md-button class="md-nostyle header-link" ui-sref="testimontials" ui-sref-active="active" aria-label="Referencje">Referencje</md-button>
+                        <md-button class="md-nostyle header-link" ui-sref="gallery" ui-sref-active="active" aria-label="Galeria">Galeria</md-button>
+                    </div>
+                    <div flex layout="row" layout-align="end">
+                        <form method="GET" action="/logout" style="height:100%;">                
+                            <md-button type="submit" class="md-nostyle header-link" aria-label="wyloguj">Wyloguj</md-button>
                         </form>
                     </div>
-                    <div></div>
                 </div>
             </md-toolbar>
         </header>
+
         <div class="viewWrapper">
             <div ui-view></div>
         </div>
 
-        <script type="text/javascript" src="modules/cropper/cropper.min.js"></script>
-        <script type="text/javascript" src="js/angular/angular.min.js"></script>
-        <script type="text/javascript" src="js/angular/angular-ui-router.min.js"></script>
-        <script type="text/javascript" src="js/angular/angular-aria.min.js"></script>
-        <script type="text/javascript" src="js/angular/angular-animate.min.js"></script>
-        <script type="text/javascript" src="js/angular/angular-messages.min.js"></script>
-        <script type="text/javascript" src="js/angular/angular-resource.min.js"></script>
-        <script type="text/javascript" src="js/angular/angular-material.min.js"></script>
-        <script type="text/javascript" src="js/admin.js"></script>
-        <script type="text/javascript" src="modules/cropper/cropper-directive.js"></script>
-        <script type="text/javascript" src="modules/admin/price/controller.js"></script>
+        <div class="page-loader" id="page-loader" layout="row" layout-align="center center">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+
     </body>
 </html>
 

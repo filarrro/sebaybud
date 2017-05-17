@@ -1,5 +1,5 @@
-angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngResource', 'ngMaterial'])
-    .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$mdThemingProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider) {
+angular.module('app', ['ngAria', 'ngAnimate', 'ui.router', 'ngResource', 'ngMaterial'])
+    .config(function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider) {
         $mdThemingProvider.theme('default').primaryPalette('blue');
 
         $urlRouterProvider.otherwise('/category');
@@ -51,18 +51,42 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
                 }
             });
 
-    }])
-    .run([function() {
-        console.log("run");
-    }])
-    .controller("TestimontialsController", ["$scope", "$state", "$mdDialog", "TestimontialFactory", "list", function($scope, $state, $mdDialog, TestimontialFactory, list) {
+    })
+    .run(function($rootScope, $state, $timeout) {
+        const PAGELOADER = document.getElementById("page-loader");
+        let forceState = false;
+
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
+            if (!forceState && $state.current.name !== toState.name) {
+                event.preventDefault();
+                forceState = true;
+                PAGELOADER.classList.add("is-visible");
+                $timeout(function() {
+                    $state.go(toState, toParams);
+                }, 225);
+            } else {
+                forceState = false;
+            }
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function() {
+            PAGELOADER.classList.remove("is-visible");
+        });
+
+        $rootScope.$on('$stateChangeError', function() {
+            PAGELOADER.classList.remove("is-visible");
+        });
+
+    })
+    .controller("TestimontialsController", function($scope, $state, $mdDialog, TestimontialFactory, list) {
         $scope.list = list;
         $scope.testimontial = {};
 
-        $scope.add = function() {
+        $scope.add = function(ev) {
             $mdDialog.show({
                 controller: 'TestimontialDialogController',
                 templateUrl: 'templates/testimontials.tmpl.html',
+                targetEvent: ev,
                 clickOutsideToClose: true
             }).then(function(data) {
                 var item = new TestimontialFactory(data);
@@ -79,8 +103,8 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
                 $scope.list.splice(index, 1);
             });
         };
-    }])
-    .controller("TestimontialDialogController", ["$scope", "$mdDialog", function($scope, $mdDialog) {
+    })
+    .controller("TestimontialDialogController", function($scope, $mdDialog) {
         $scope.data = {};
         $scope.cropperOptions = {
             aspectRatio: "a" / 2,
@@ -96,14 +120,15 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
-    }])
-    .controller("GalleryController", ["$scope", "$state", "$mdDialog", "FileFactory", "list", function($scope, $state, $mdDialog, FileFactory, list) {
+    })
+    .controller("GalleryController", function($scope, $state, $mdDialog, FileFactory, list) {
         $scope.list = list;
 
-        $scope.add = function() {
+        $scope.add = function(ev) {
             $mdDialog.show({
                 controller: 'GalleryDialogController',
                 templateUrl: 'templates/gallery.tmpl.html',
+                targetEvent: ev,
                 clickOutsideToClose: true
             }).then(function(data) {
                 var item = new FileFactory({
@@ -125,8 +150,8 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
                 $scope.list.splice(index, 1);
             });
         };
-    }])
-    .controller("GalleryDialogController", ["$scope", "$mdDialog", function($scope, $mdDialog) {
+    })
+    .controller("GalleryDialogController", function($scope, $mdDialog) {
         $scope.data = {};
         $scope.cropperOptions = {
             aspectRatio: "a" / 2,
@@ -143,8 +168,8 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
-    }])
-    .controller("CategoryController", ["$scope", "$state", "$mdDialog", "PriceFactory", "PriceCategoryFactory", "list", function($scope, $state, $mdDialog, PriceFactory, PriceCategoryFactory, list) {
+    })
+    .controller("CategoryController", function($scope, $state, $mdDialog, PriceFactory, PriceCategoryFactory, list) {
         $scope.categories = list;
         console.log("categories", $scope.categories);
 
@@ -260,7 +285,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
                 $mdDialog.cancel();
             }
         }
-    }])
+    })
     .factory("PriceFactory", ["$resource", function($resource) {
         return $resource('/api/prices/:id', { id: "@id" }, {
             'update': { method: 'PUT' }
@@ -282,16 +307,14 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ngMessages', 'ui.router', 'ngReso
         service.GetData = function() {
             var defered = $q.defer();
             $http.get("/api/main-page")
-                .success(function(data) {
-                    console.log(data);
+                .then(function(data) {
                     defered.resolve(data);
                 })
-                .error(function(err) {
-                    console.log("error");
-                    console.log(err);
+                .catch(function(err) {
+                    console.log("error", err);
                     defered.resolve(err);
                 });
             return defered.promise;
         };
         return service;
-    }])
+    }]);

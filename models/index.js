@@ -34,7 +34,7 @@ var Price = sequelize.define('price', {
     price: { type: Sequelize.STRING, allowNull: false }
 });
 
-var PriceCategory = sequelize.define('priceCategory', {
+var PriceCategory = sequelize.define('pricecategory', {
     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: Sequelize.STRING, allowNull: false }
 });

@@ -1,7 +1,7 @@
-<md-button ng-click="add()" class="md-fab md-primary fab" type="button">
+<md-button ng-click="add($event)" class="md-fab md-primary fab" type="button">
     <md-icon class="material-icons">add</md-icon>
 </md-button>
-<div layout="row" layout-align="center" layout-wrap>
+<div layout="row" layout-align="center start" layout-wrap>
     <div class="md-whiteframe-3dp testimontial-card" ng-repeat="item in list track by item.id">
         <img ng-src="media/testimontials/{{item.img}}" alt="Referencja" />
         <div layout="row" layout-align="space-between center">
