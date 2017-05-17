@@ -3,8 +3,6 @@
 angular
     .module("webApp")
     .controller("GalleryController", function($timeout, $mdDialog, Factory, images) {
-        "ngInject";
-
         console.log(images);
 
         let vm = this,
@@ -70,7 +68,7 @@ angular
             $mdDialog.show({
                 controller: "GalleryDialogController",
                 controllerAs: "vm",
-                templateUrl: "/templates/application/gallery.tmpl.html",
+                templateUrl: "/modules/application/gallery/gallery.tmpl.html",
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,
@@ -83,8 +81,6 @@ angular
 
     })
     .controller("GalleryDialogController", function($timeout, $mdDialog, images, position) {
-        "ngInject";
-
         const vm = this,
             TM = TweenMax,
             len = images.length - 1;

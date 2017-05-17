@@ -259,7 +259,13 @@ router.route('/galerry-files/:size/:page')
             for (let i = 0; i < pageLimit; i++) {
                 pagesArr.push(i);
             }
-            File.findAll({ offset: offset, limit: limit }).then(function(data) {
+            File.findAll({
+                order: [
+                    ['id', 'DESC']
+                ],
+                offset: offset,
+                limit: limit
+            }).then(function(data) {
                 res.json({
                     data: data,
                     pages: pagesArr

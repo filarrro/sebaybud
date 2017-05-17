@@ -36,6 +36,11 @@ module.exports = {
     plugins: [
         new ngAnnotatePlugin({
             add: true
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                drop_console: true
+            }
         })
     ],
     externals: {

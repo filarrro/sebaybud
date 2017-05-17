@@ -3,8 +3,6 @@
 angular
     .module("webApp")
     .factory("Factory", function($http, $q) {
-        "ngInject";
-
         var service = {
             GetData: getData,
             GetImages: getImages,

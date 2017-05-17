@@ -1,5 +1,7 @@
 angular.module('app', ['ngAria', 'ngAnimate', 'ui.router', 'ngResource', 'ngMaterial'])
-    .config(function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider, $compileProvider) {
+        $compileProvider.debugInfoEnabled(false);
+
         $mdThemingProvider.theme('default').primaryPalette('blue');
 
         $urlRouterProvider.otherwise('/category');

@@ -3,8 +3,6 @@
 angular
     .module("webApp")
     .controller("MainController", function($rootScope, $scope, $timeout, $state, $mdPanel, $mdDialog, Factory) {
-        "ngInject";
-
         let TM = TweenMax,
             SMController,
             HEADER_SCENE,
@@ -46,7 +44,7 @@ angular
             $mdDialog.show({
                 controller: 'TetsimontialPanelController',
                 controllerAs: 'vm',
-                templateUrl: 'templates/application/testimontial.tmpl.html',
+                templateUrl: 'modules/application/testimontials/testimontial.tmpl.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,

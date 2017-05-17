@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("webApp", ["ui.router", "ngMaterial"])
-    .config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
-        "ngInject";
+    .config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
+        $compileProvider.debugInfoEnabled(false);
 
         var primary = $mdThemingProvider.extendPalette("grey", {
             "600": "#333333"
@@ -26,14 +26,14 @@ angular.module("webApp", ["ui.router", "ngMaterial"])
                 url: "/",
                 controller: `MainController`,
                 controllerAs: `vm`,
-                templateUrl: `templates/application/main.html`
+                templateUrl: `modules/application/main/main.html`
             })
             .state({
                 name: "gallery",
                 url: "/gallery",
                 controller: `GalleryController`,
                 controllerAs: `vm`,
-                templateUrl: `templates/application/gallery.html`,
+                templateUrl: `modules/application/gallery/gallery.html`,
                 resolve: {
                     images: function(Factory) {
                         return Factory.GetImages();
