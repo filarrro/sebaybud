@@ -9,7 +9,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ui.router', 'ngResource', 'ngMate
                 name: "category",
                 url: "/category",
                 controller: "CategoryController",
-                templateUrl: 'templates/admin/category.html',
+                templateUrl: "modules/admin/price/category.html",
                 resolve: {
                     list: function(PriceCategoryFactory) {
                         return PriceCategoryFactory.query().$promise;
@@ -32,7 +32,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ui.router', 'ngResource', 'ngMate
                 name: "testimontials",
                 url: "/testimontials",
                 controller: 'TestimontialsController',
-                templateUrl: 'templates/testimontials.html',
+                templateUrl: 'modules/admin/testimontials/testimontials.html',
                 resolve: {
                     list: function(TestimontialFactory) {
                         return TestimontialFactory.query().$promise;
@@ -43,7 +43,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ui.router', 'ngResource', 'ngMate
                 name: "gallery",
                 url: "/gallery",
                 controller: 'GalleryController',
-                templateUrl: 'templates/gallery.html',
+                templateUrl: 'modules/admin/gallery/gallery.html',
                 resolve: {
                     list: function(FileFactory) {
                         return FileFactory.query().$promise;
@@ -85,7 +85,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ui.router', 'ngResource', 'ngMate
         $scope.add = function(ev) {
             $mdDialog.show({
                 controller: 'TestimontialDialogController',
-                templateUrl: 'templates/testimontials.tmpl.html',
+                templateUrl: 'modules/admin/testimontials/testimontials.tmpl.html',
                 targetEvent: ev,
                 clickOutsideToClose: true
             }).then(function(data) {
@@ -127,7 +127,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ui.router', 'ngResource', 'ngMate
         $scope.add = function(ev) {
             $mdDialog.show({
                 controller: 'GalleryDialogController',
-                templateUrl: 'templates/gallery.tmpl.html',
+                templateUrl: 'modules/admin/gallery/gallery.tmpl.html',
                 targetEvent: ev,
                 clickOutsideToClose: true
             }).then(function(data) {
@@ -180,7 +180,7 @@ angular.module('app', ['ngAria', 'ngAnimate', 'ui.router', 'ngResource', 'ngMate
             $mdDialog.show({
                 controller: DialogController,
                 controllerAs: "vm",
-                templateUrl: 'templates/admin/category.tmpl.html',
+                templateUrl: 'modules/admin/price/category.tmpl.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,

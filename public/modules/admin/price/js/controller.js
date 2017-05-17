@@ -17,7 +17,7 @@ angular.module('app')
             $mdDialog.show({
                 controller: DialogController,
                 controllerAs: "vm",
-                templateUrl: 'templates/admin/category.tmpl.html',
+                templateUrl: 'modules/admin/price/category.tmpl.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,
